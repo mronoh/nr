@@ -1,15 +1,14 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 import Bg01 from '/public/images/bg01.jpg';
 import Bg02 from '/public/images/bg02.jpg';
 import Bg03 from '/public/images/bg03.jpg';
 import Bg04 from '/public/images/bg04.jpg';
-import styles from '@/styles';
-import Navbar from '@/components/Navbar';
-import CountDownTimer from '@/components/CountDownTimer';
-import Footer from '@/components/Footer';
+import HomePageCover from '@/components/home/HomePageCover';
+import WhoAreWe from '@/components/home/WhoAreWe';
+import FeaturedBlogs from '@/components/home/FeaturedBlogs';
+import Achievements from '@/components/home/Achievements';
 
 export default function Home() {
   const [bg, setBg] = useState(Bg01);
@@ -68,25 +67,12 @@ export default function Home() {
 
   return (
     <main
-      className={`bg-cover min-h-screen flex flex-col relative transition-background`}
-      style={{ backgroundImage: `url(${bg.src})` }}
-    >
-      <div className="absolute inset-0 bg-black opacity-50 z-0" />
-      <Navbar />
-      <div className={`${styles.innerWidth} w-full flex justify-center items-center sm:p-16 xs:p-8 px-6 py-12 relative`}>
-        <div className={`flex-col text-center sm:p-16 xs:p-8 px-6 py-12`}>
-          <h1 className="font-bold md:text-8xl text-4xl uppercase text-white sm:mb-12 mb-6">
-            Coming Soon
-          </h1>
-          <CountDownTimer
-            days={days}
-            hours={hours}
-            minutes={minutes}
-            seconds={seconds}
-          />
-        </div>
-      </div>
-      <Footer />
+      className={` bg-cover min-h-screen justify-center flex flex-col relative transition-background`}>
+      {/* <div className="absolute inset-0 z-0 bg-black opacity-50" /> */}
+      <HomePageCover />
+      <WhoAreWe />
+      <FeaturedBlogs />
+      <Achievements />
     </main>
   );
 }
