@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import '/styles/globals.css'
-import Navbar from '@/components/Navbar'
+import WantATour from '@/components/shared/WantATour';
+import Footer from '../components/footer';
+import Header from '@/components/header';
 import { cx } from '@/utils'
 
 const inter = Montserrat({ subsets: ['latin'] })
@@ -34,8 +36,11 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head> 
-      <body className={cx(mont.variable, "font-mont relative overflow-x-hidden bg-[#f7f7f7]")}>
-        {children}
+      <body className={cx(mont.variable, "font-mont relative overflow-x-hidden bg-bgColor")}>
+        <Header />
+          {children}
+        <WantATour />
+        <Footer />
       </body>
     </html>
   )
