@@ -1,3 +1,5 @@
+import { compareDesc, parseISO, format } from "date-fns";
+
 export const calculateTimeLeft = () => {
   const targetDate = new Date('2023-12-01 00:00:00'); // Set your target date here
   const currentDate = new Date();
@@ -13,4 +15,13 @@ export const calculateTimeLeft = () => {
   const seconds = Math.floor((difference / 1000) % 60);
 
   return `${days}Days ${hours}Hr ${minutes}Min ${seconds}Sec`;
+}
+
+export const cx = (...classNames: (string | undefined)[]) => {
+  return classNames.filter(Boolean).join(' ');
+}
+
+
+export const formatDate = (date: string, dateFormat='MMMM dd, yyyy') => {
+  return format(parseISO(date), dateFormat);
 }
