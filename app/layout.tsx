@@ -1,9 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import '/styles/globals.css'
 import Navbar from '@/components/Navbar'
+import { cx } from '@/utils'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Montserrat({ subsets: ['latin'] })
+
+const mont = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
 
 export const metadata: Metadata = {
   title: 'NgwoRocks',
@@ -27,7 +34,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head> 
-      <body className={inter.className}>
+      <body className={cx(mont.variable, "font-mont relative overflow-x-hidden bg-[#f7f7f7]")}>
         {children}
       </body>
     </html>
