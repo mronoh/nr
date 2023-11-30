@@ -13,9 +13,9 @@ const WantATour = () => {
           alt="Want to tour?"
           className="absolute object-cover right-0 top-0 h-full rounded-3xl -z-10 w-full"
         />
-        <div className="z-10 text-white flex flex-col justify-center items-center w-max">
-          <h2 className="text-7xl font-bold mb-4">Want to tour?</h2>
-          <p className="text-center text-xl mb-8 max-w-lg">
+        <div className="z-10 text-white flex flex-col justify-center items-center w-max px-5">
+          <h2 className="text-3xl sm:text-6xl md:text-7xl font-bold mb-4">Want to tour?</h2>
+          <p className="text-center text-base md:text-xl mb-8 max-w-xs md:max-w-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
             voluptatum.
           </p>
