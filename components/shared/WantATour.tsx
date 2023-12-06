@@ -5,8 +5,8 @@ import { BackIcon } from "../icons";
 
 const WantATour = () => {
   return (
-    <section className="px-5 sm:px-16 py-24 max-w-7xl mx-auto w-full">
-      <div className="px-16 py-16 flex flex-col relative h-[519px] justify-center items-center border rounded-3xl">
+    <section className="px-5 sm:px-10 py-24 max-w-7xl mx-auto w-full">
+      <div className="px-10 py-16 flex flex-col relative h-[519px] justify-center items-center border rounded-3xl">
         <div className="absolute top-0 left-0 z-0 w-full h-full rounded-3xl from-dark/50 bg-gradient-to-b to-dark/90" />
         <Image
           src={wantToTour}
