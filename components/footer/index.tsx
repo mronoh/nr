@@ -10,7 +10,7 @@ import { footerPages } from "@/constants";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="px-5 sm:px-16 py-8 w-full  bg-dark rounded-t-3xl border-t-[12px] border-accent">
+    <footer className="px-5 sm:px-10 py-8 w-full  bg-dark rounded-t-3xl border-t-[12px] border-accent">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between text-light ">
           <div className="flex gap-8 justify-around sm:justify-between">

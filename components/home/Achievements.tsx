@@ -3,7 +3,7 @@ import React from 'react'
 
 const Achievements = () => {
   return (
-    <section className='px-5 sm:px-16 py-24 max-w-7xl mx-auto w-full'>
+    <section className='px-5 sm:px-10 py-24 max-w-7xl mx-auto w-full'>
       <div>
       <h2 className="text-dark text-4xl mb-12 font-semibold">Achievements</h2>
       <div className="relative h-24 overflow-x-hidden">

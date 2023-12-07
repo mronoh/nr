@@ -1,5 +1,5 @@
 "use client"
-import styles from "@/styles";
+
 import Logo from "@/public/icons/ngworocks_logo.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <header className={cx(scrollPosition > 0 ? 'shadow' : 'shadow-none', 'sticky -top-2 w-full z-30 py-6 bg-white')}>
       <nav
-        className='max-w-7xl px-5 sm:px-16 font-semibold mx-auto flex justify-between relative items-center text-lg  text-dark capitalize font-semi-bold'
+        className='max-w-7xl px-5 sm:px-10 font-semibold mx-auto flex justify-between relative items-center text-lg  text-dark capitalize font-semi-bold'
       >
         <Link
           href="/"
