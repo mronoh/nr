@@ -1,9 +1,13 @@
-import React from 'react'
+import HomeCover from '@/components/blog/HomeCover'
+import RecentBlogs from '@/components/blog/RecentPosts'
+import FeaturedBlogs from '@/components/home/FeaturedBlogs'
 
 const BlogPage = () => {
   return (
     <main>
-      Blog Page
+      <HomeCover />
+      <FeaturedBlogs />
+      <RecentBlogs />
     </main>
   )
 }
