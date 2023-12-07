@@ -9,6 +9,7 @@ export interface Blog {
   url: string
   publishedAt: string
   tags: string[]
+  description?: string
   image: {
     filePath: string
     blurhashDataUrl: string
