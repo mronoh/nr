@@ -1,8 +1,8 @@
-import React from 'react'
 import BlogLayoutOne, { Blog } from '../blog/BlogLayoutOne'
-import homeBgImg from '@/public/images/homeBgImg.png'
+import BlogLayoutTwo from '../blog/BlogLayoutTwo';
+import { cx } from '@/utils';
 
-const dummyBlog: Blog = {
+export const dummyBlog: Blog = {
   title: "Sample Blog Post",
   url: "https://example.com/sample-blog-post",
   publishedAt: "2023-11-30T12:00:00Z",
@@ -17,16 +17,19 @@ const dummyBlog: Blog = {
 
 const FeaturedBlogs = () => {
   return (
-    <section className='px-5 sm:px-16 py-24 max-w-7xl mx-auto w-full'>
+    <section className='px-5 sm:px-10 py-24 max-w-7xl mx-auto w-full'>
       <div>
       <h2 className="text-dark text-4xl mb-12 font-semibold">Featured Blogs</h2>
-      <div className="flex gap-8">
-        <div className="w-1/2">
+      <div className={cx("grid grid-cols-2 grid-rows-2 gap-6")}>
+        <article className="relative col-span-2 row-span-2 lg:col-span-1">
+          <BlogLayoutTwo blog={dummyBlog} />
+        </article>
+        <article className="relative col-span-2 row-span-1 sm:col-span-1">
           <BlogLayoutOne blog={dummyBlog} />
-        </div>
-        <div className="w-1/2">
+        </article>
+        <article className="relative col-span-2 row-span-1 sm:col-span-1">
           <BlogLayoutOne blog={dummyBlog} />
-        </div>
+        </article>
       </div>
       </div>
     </section>
