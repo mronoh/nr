@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react'
 
 const WhoAreWe = () => {
   return (
-    <section className="pt-72 py-24 px-5 sm:px-10 max-w-7xl mx-auto w-full">
-      <div className="flex">
-        <div className="flex flex-col justify-center max-w-xl w-1/2">
-          <h2 className="text-dark text-4xl mb-12 font-semibold">
+    <section className='mx-auto w-full max-w-7xl px-5 py-24 pt-72 sm:px-10'>
+      <div className='flex'>
+        <div className='flex w-1/2 max-w-xl flex-col justify-center'>
+          <h2 className='mb-12 text-4xl font-semibold text-dark'>
             Who we are?
           </h2>
-          <p className="text-dark text-xl leading-relaxed">
-            <span className="text-accent">Ngworocks</span>, a dynamic endeavor
+          <p className='text-xl leading-relaxed text-dark'>
+            <span className='text-accent'>Ngworocks</span>, a dynamic endeavor
             driven by young creative minds, celebrating culture and tourism
             through vibrant events, guided exploration, and community
             engagement. Embracing heritage, we aspire to make Ngwo a vibrant
@@ -18,7 +18,7 @@ const WhoAreWe = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WhoAreWe;
+export default WhoAreWe

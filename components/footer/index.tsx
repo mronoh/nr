@@ -1,35 +1,35 @@
-import React from "react";
-import { FacebookIcon, InstagramIcon, MailIcon } from "../icons";
-import Link from "next/link";
-import Image from "next/image";
-import Logo from "@/public/icons/ngworocks_logo.svg";
-import getOnAppStore from "@/public/icons/app-store-badge.svg";
-import getOnPlayStore from "@/public/icons/google-play-badge.svg";
-import { footerPages } from "@/constants";
+import React from 'react'
+import { FacebookIcon, InstagramIcon, MailIcon } from '../icons'
+import Link from 'next/link'
+import Image from 'next/image'
+import Logo from '@/public/icons/ngworocks_logo.svg'
+import getOnAppStore from '@/public/icons/app-store-badge.svg'
+import getOnPlayStore from '@/public/icons/google-play-badge.svg'
+import { footerPages } from '@/constants'
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
   return (
-    <footer className="px-5 sm:px-10 py-8 w-full  bg-dark rounded-t-3xl border-t-[12px] border-accent">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col sm:flex-row justify-between text-light ">
-          <div className="flex gap-8 justify-around sm:justify-between">
+    <footer className='w-full rounded-t-3xl border-t-[12px] border-accent  bg-dark px-5 py-8 sm:px-10'>
+      <div className='mx-auto max-w-7xl'>
+        <div className='flex flex-col justify-between text-light sm:flex-row '>
+          <div className='flex justify-around gap-8 sm:justify-between'>
             {/* Follow us on social media  */}
-            <div className="">
-              <h3 className="uppercase text-lg font-semibold mb-2">
+            <div className=''>
+              <h3 className='mb-2 text-lg font-semibold uppercase'>
                 follow us
               </h3>
-              <span className="flex flex-col gap-1 text-sm">
-                <a href="www.facebook.com" className="flex">
-                  <FacebookIcon className="w-6 h-6 mr-2" />
+              <span className='flex flex-col gap-1 text-sm'>
+                <a href='www.facebook.com' className='flex'>
+                  <FacebookIcon className='mr-2 h-6 w-6' />
                   @ngworocks
                 </a>
-                <a href="www.instagram.com" className="flex">
-                  <InstagramIcon className="w-6 h-6 mr-2" />
+                <a href='www.instagram.com' className='flex'>
+                  <InstagramIcon className='mr-2 h-6 w-6' />
                   @ngworocks
                 </a>
-                <a href="www.instagram.com" className="flex">
-                  <MailIcon className="w-6 h-6 mr-2" />
+                <a href='www.instagram.com' className='flex'>
+                  <MailIcon className='mr-2 h-6 w-6' />
                   ngworocks@gmail.com
                 </a>
               </span>
@@ -37,10 +37,10 @@ const Footer = () => {
 
             {/* Pages  */}
             <div>
-              <h3 className="uppercase text-lg font-semibold mb-2">Pages</h3>
-              <span className="flex flex-col gap-1 text-sm">
+              <h3 className='mb-2 text-lg font-semibold uppercase'>Pages</h3>
+              <span className='flex flex-col gap-1 text-sm'>
                 {footerPages.map((page, index) => (
-                  <Link href={page.url} key={index} className="">
+                  <Link href={page.url} key={index} className=''>
                     {page.name}
                   </Link>
                 ))}
@@ -48,34 +48,34 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-8 w-fit">
-            <Link href="/" className="h-16 flex justify-center w-fit">
+          <div className='flex w-fit flex-col items-center gap-8'>
+            <Link href='/' className='flex h-16 w-fit justify-center'>
               <Image
                 src={Logo}
-                alt="Ngwo Rocks Logo"
-                className="h-full w-auto"
+                alt='Ngwo Rocks Logo'
+                className='h-full w-auto'
               />
             </Link>
-            <span className="flex gap-4">
+            <span className='flex gap-4'>
               <Image
                 src={getOnAppStore}
-                alt="Get on app store badge"
-                className="border border-light rounded-md h-9 w-auto"
+                alt='Get on app store badge'
+                className='h-9 w-auto rounded-md border border-light'
               />
               <Image
                 src={getOnPlayStore}
-                alt="Get on play store badge"
-                className="border border-light rounded-md h-9 w-auto"
+                alt='Get on play store badge'
+                className='h-9 w-auto rounded-md border border-light'
               />
             </span>
           </div>
         </div>
-        <p className="text-light font-thin mt-8">
+        <p className='mt-8 font-thin text-light'>
           © {currentYear} Ngworocks. All rights reserved.
         </p>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
