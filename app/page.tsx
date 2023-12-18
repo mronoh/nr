@@ -21,7 +21,7 @@ export default function Home() {
   let interval = useRef();
 
   const startTimer = () => {
-    const endDate = new Date('December 20, 2023 00:00:00').getTime();
+    const endDate = new Date('December 26, 2023 00:00:00').getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
