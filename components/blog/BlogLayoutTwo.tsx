@@ -21,7 +21,7 @@ const BlogLayoutTwo = ({ blog }: { blog: Blog }) => {
       />
       <div className='absolute bottom-0 z-20 p-4 text-light'>
         <Tag
-          link={`/categories/${slugger(blog.tags[0])}`}
+          link={`/tags/${slugger(blog.tags[0])}`}
           title={blog.tags[0]}
           className='!border px-6 py-2 text-sm'
         />

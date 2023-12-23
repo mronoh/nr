@@ -32,7 +32,7 @@ const HomeCover = () => {
           )}
         >
           <Tag
-            link={`/categories/${slug(blog.tags[0])}`}
+            link={`/tags/${slug(blog.tags[0])}`}
             title={blog.tags[0]}
           />
           <Link href={blog.url} className='mt-6'>
