@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <head>
+      {/* <head>
         <link
           rel='apple-touch-icon'
           sizes='180x180'
@@ -49,7 +49,7 @@ export default function RootLayout({
           href='/favicon/favicon-16x16.png'
         />
         <link rel='manifest' href='/site.webmanifest' />
-      </head>
+      </head> */}
       <body
         className={cx(
           mont.variable,
