@@ -18,30 +18,29 @@ export const dummyBlog: Blog = {
   }
 }
 
-const FeaturedBlogs = async () => {
-  const posts = await sanityFetch<any>({ query: postsQuery })
-  
-  
-  return (
-    <section className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'>
-      <div>
-        <h2 className='mb-12 text-4xl font-semibold text-dark'>
-          Featured Blogs
-        </h2>
-        <div className={cx('grid grid-cols-2 grid-rows-2 gap-6')}>
-          <article className='relative col-span-2 row-span-2 lg:col-span-1'>
-            <BlogLayoutTwo post={posts[4 ]} />
-          </article>
-          <article className='relative col-span-2 row-span-1 sm:col-span-1'>
-            <BlogLayoutOne post={posts[0]} />
-          </article>
-          <article className='relative col-span-2 row-span-1 sm:col-span-1'>
-            <BlogLayoutOne post={posts[8]} />
-          </article>
+const FeaturedBlogs = async ({ posts=[] }: { posts: Post[] }) => {
+  if (posts.length > 0) {
+    return (
+      <section className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'>
+        <div>
+          <h2 className='mb-12 text-4xl font-semibold text-dark'>
+            Featured Blogs
+          </h2>
+          <div className={cx('grid grid-cols-2 grid-rows-2 gap-6')}>
+            <article className='relative col-span-2 row-span-2 lg:col-span-1'>
+              <BlogLayoutTwo post={posts[0]} />
+            </article>
+            <article className='relative col-span-2 row-span-1 sm:col-span-1'>
+              <BlogLayoutOne post={posts[1]} />
+            </article>
+            <article className='relative col-span-2 row-span-1 sm:col-span-1'>
+              <BlogLayoutOne post={posts[2]} />
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    )
+  }
 }
 
 export default FeaturedBlogs
