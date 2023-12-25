@@ -23,44 +23,22 @@ export const metadata: Metadata = {
   }
 }
 
-export default function RootLayout({
+export default function IndexLayout({
   children
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang='en'>
-      {/* <head>
-        <link
-          rel='apple-touch-icon'
-          sizes='180x180'
-          href='/favicon/apple-touch-icon.png'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          sizes='32x32'
-          href='/favicon/favicon-32x32.png'
-        />
-        <link
-          rel='icon'
-          type='image/png'
-          sizes='16x16'
-          href='/favicon/favicon-16x16.png'
-        />
-        <link rel='manifest' href='/site.webmanifest' />
-      </head> */}
-      <body
-        className={cx(
-          mont.variable,
-          'relative overflow-x-hidden bg-bgColor font-mont'
-        )}
-      >
-        <Header />
-        {children}
-        <WantATour />
-        <Footer />
-      </body>
-    </html>
+    <div
+      className={cx(
+        mont.variable,
+        'relative overflow-x-hidden bg-bgColor font-mont'
+      )}
+    >
+      <Header />
+      {children}
+      <WantATour />
+      <Footer />
+    </div>
   )
 }
