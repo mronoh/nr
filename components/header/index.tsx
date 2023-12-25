@@ -3,26 +3,39 @@
 import Logo from '@/public/icons/ngworocks_logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Fade as Hamburger } from 'hamburger-react'
 import { cx } from '@/utils'
-import { useScrollPosition } from '../hooks'
 import { usePathname } from 'next/navigation'
 import { mobileNavLinks, navLinks1, navLinks2 } from '@/constants'
+import { PreviewBanner } from '../preview/PreviewBanner'
 
-const Header = () => {
+const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
   const [toggled, setToggled] = useState(false)
-  const scrollPosition = useScrollPosition()
   const pathname = usePathname()
+  const [isSticky, setSticky] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setSticky(window.scrollY > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <header
       className={cx(
-        scrollPosition > 0 ? 'fixed top-0 shadow ' : 'shadow-none',
-        'z-30 block w-full bg-white py-6 transition-all duration-200 ease-in-out'
+        isSticky ? 'sticky top-0 shadow ' : 'shadow-none',
+        'relative z-30 block w-full bg-white transition-all duration-200 ease-in-out'
       )}
     >
-      <nav className='relative mx-auto flex max-w-7xl items-center justify-between px-5 text-base font-semibold  capitalize text-dark sm:px-10'>
+      {isDraftMode && <PreviewBanner />}
+      <nav className='mx-auto flex max-w-7xl items-center justify-between px-5 py-6 text-base font-semibold  capitalize text-dark sm:px-10'>
         <Link
           href='/'
           className='flex h-full justify-center lg:absolute lg:right-1/2 lg:translate-x-1/2'
