@@ -37,6 +37,7 @@ export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0]
      'title': post->title,
      'slug': post->slug.current,
      'author': post->author->,
+      'publishedAt': post->publishedAt,
      'tags': post->tags[]->{..., "slug": slug.current},
      'mainImage': post->mainImage{
          "image": asset->url,
