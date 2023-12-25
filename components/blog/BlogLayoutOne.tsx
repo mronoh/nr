@@ -2,7 +2,7 @@ import { urlForImage } from '@/sanity/lib/image'
 import styles from '@/styles'
 import { cx, formatDate } from '@/utils'
 import { SanityDocument } from 'next-sanity'
-import { Author } from 'next/dist/lib/metadata/types/metadata-types'
+import { BsFillCalendar2DateFill } from 'react-icons/bs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -66,7 +66,7 @@ const BlogLayoutOne = ({ post }: { post: Post }) => {
         </span>
         {post?.slug && (
           <Link href={`/blog/${post.slug}`}>
-            <h2 className='text-lg font-semibold capitalize text-dark'>
+            <h2 className='text-lg font-semibold capitalize text-dark line-clamp-3'>
               <span
                 className={cx(styles.underline, 'from-accent/50 to-accent/50')}
               >
@@ -75,9 +75,10 @@ const BlogLayoutOne = ({ post }: { post: Post }) => {
             </h2>
           </Link>
         )}
-        {post?.publishedAt && (
-          <p className='text-gray text-base'>{formatDate(post.publishedAt)}</p>
-        )}
+        <p className='text-gray text-sm flex mt-2 gap-2 items-center'>
+        <BsFillCalendar2DateFill />
+        {post?.publishedAt ? formatDate(post.publishedAt) : 'publishedAt'}
+      </p>
       </div>
     </div>
   )
