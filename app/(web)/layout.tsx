@@ -45,7 +45,7 @@ export default function IndexLayout({
       )}
     >
       <Header isDraftMode={draftModeEnabled} />
-      <Suspense>{children}</Suspense>
+      {children}
       <WantATour />
       <Footer />
     </div>
