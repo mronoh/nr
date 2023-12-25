@@ -11,14 +11,17 @@ const BlogLayoutTwo = ({ post }: { post: Post }) => {
     <div className=''>
       <div className='absolute left-0 top-0 z-10 h-full w-full rounded-xl bg-gradient-to-b from-transparent to-dark/90' />
       {post?.mainImage && (
-        <Image
-          src={urlForImage(post.mainImage.image).url()}
-          alt={post.mainImage.alt ?? post?.title}
-          placeholder='blur'
-          blurDataURL={post.mainImage.lqip}
-          fill
-          className='h-full w-full rounded-xl -z-0 object-cover object-center'
-        />
+        <div className='relative min-h-[320px] w-full overflow-hidden rounded-xl pt-[56.25%] lg:static lg:h-auto'>
+          <Image
+            src={urlForImage(post.mainImage.image).url()}
+            alt={post.mainImage.alt ?? post?.title}
+            placeholder='blur'
+            blurDataURL={post.mainImage.lqip}
+            layout='fill'
+            objectFit='cover'
+            className='absolute left-0 top-0 h-full w-full rounded-xl'
+          />
+        </div>
       )}
       <div className='absolute bottom-0 z-20 p-4 text-light'>
         {post?.tags && (
@@ -29,7 +32,7 @@ const BlogLayoutTwo = ({ post }: { post: Post }) => {
           />
         )}
         <Link href={`/blog/${post?.slug}`} className='mt-6'>
-          <h2 className='class="font-bold mt-4 text-2xl capitalize text-light'>
+          <h2 className='mt-4 text-2xl font-semibold capitalize text-light'>
             <span className={cx(styles.underline)}>{post?.title}</span>
           </h2>
         </Link>
