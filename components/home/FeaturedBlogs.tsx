@@ -21,7 +21,7 @@ export const dummyBlog: Blog = {
 const FeaturedBlogs = async ({ posts=[] }: { posts: Post[] }) => {
   if (posts.length > 0) {
     return (
-      <section className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'>
+      <section className='mx-auto w-full max-w-7xl px-5 pt-24 sm:px-10'>
         <div>
           <h2 className='mb-12 text-4xl font-semibold text-dark'>
             Featured Blogs
