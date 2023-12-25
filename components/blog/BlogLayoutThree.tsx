@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Blog, Post } from './BlogLayoutOne'
 import { urlForImage } from '@/sanity/lib/image'
+import { BsFillCalendar2DateFill } from 'react-icons/bs'
 
 const BlogLayoutThree = ({ post }: { post: Post }) => {
   return (
@@ -39,7 +40,7 @@ const BlogLayoutThree = ({ post }: { post: Post }) => {
             </span>
           </h2>
         </Link>
-        <p className='text-gray text-base'>{formatDate(post?.publishedAt)}</p>
+        <p className='text-gray text-sm mt-2 flex gap-2 items-center'><BsFillCalendar2DateFill />{formatDate(post?.publishedAt)}</p>
       </div>
     </div>
   )
