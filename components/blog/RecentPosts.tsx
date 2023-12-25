@@ -1,27 +1,15 @@
 import { cx } from '@/utils'
-import BlogLayoutOne, { Post } from '../blog/BlogLayoutOne'
-import BlogLayoutTwo from '../blog/BlogLayoutTwo'
-import styles from '@/styles'
 import BlogLayoutThree from '../blog/BlogLayoutThree'
 import Link from 'next/link'
-import { dummyBlog } from '../home/FeaturedBlogs'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { postsQuery } from '@/sanity/lib/queries'
-
-const recentBlogs = [
-  dummyBlog,
-  dummyBlog,
-  dummyBlog,
-  dummyBlog,
-  dummyBlog,
-  dummyBlog
-]
+import { Post } from './BlogLayoutOne'
 
 const RecentBlogs = async () => {
   const posts = await sanityFetch<any>({ query: postsQuery })
-  const recentBlogs = posts.slice(0, 6);
+  const recentBlogs = posts.slice(0, 6)
   return (
-    <section className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'>
+    <section className='mx-auto w-full max-w-7xl px-5 pt-24 sm:px-10'>
       <div className='flex w-full items-center justify-between'>
         <h2 className='mb-12 text-4xl font-semibold text-dark'>Recent Blogs</h2>
         <Link
