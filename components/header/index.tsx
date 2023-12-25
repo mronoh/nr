@@ -18,11 +18,11 @@ const Header = () => {
   return (
     <header
       className={cx(
-        scrollPosition > 0 ? 'shadow' : 'shadow-none',
-        'sticky -top-2 z-30 w-full bg-white py-6'
+        scrollPosition > 0 ? 'fixed top-0 shadow ' : 'shadow-none',
+        'z-30 block w-full bg-white py-6 transition-all duration-200 ease-in-out'
       )}
     >
-      <nav className='font-semi-bold relative mx-auto flex max-w-7xl items-center justify-between px-5 text-lg font-semibold  capitalize text-dark sm:px-10'>
+      <nav className='relative mx-auto flex max-w-7xl items-center justify-between px-5 text-base font-semibold  capitalize text-dark sm:px-10'>
         <Link
           href='/'
           className='flex h-full justify-center lg:absolute lg:right-1/2 lg:translate-x-1/2'
