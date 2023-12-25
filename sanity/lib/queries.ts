@@ -30,3 +30,31 @@ export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{
 export const postPathsQuery = groq`*[_type == "post" && defined(slug.current)][]{
     "params": { "slug": slug.current }
   }`
+
+// Get blog featured posts and blog home cover post
+export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0] {
+  'featuredPosts': featuredPosts[]{
+     'title': post->title,
+     'slug': post->slug.current,
+     'author': post->author->,
+     'tags': post->tags[]->{..., "slug": slug.current},
+     'mainImage': post->mainImage{
+         "image": asset->url,
+         "lqip": asset->metadata.lqip,
+         alt,
+       },
+   },
+   'homeCoverPost': homeCoverPost {
+    post->{
+      title,
+      "slug": slug.current,
+      author->,
+      tags[]->{..., "slug": slug.current},
+      mainImage {
+        "image": asset->url,
+        "lqip": asset->metadata.lqip,
+        alt,
+      },
+    }
+  }
+   }`
