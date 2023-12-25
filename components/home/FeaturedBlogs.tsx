@@ -1,6 +1,9 @@
-import BlogLayoutOne, { Blog } from '../blog/BlogLayoutOne'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import BlogLayoutOne, { Blog, Post } from '../blog/BlogLayoutOne'
 import BlogLayoutTwo from '../blog/BlogLayoutTwo'
 import { cx } from '@/utils'
+import { SanityDocument } from 'next-sanity'
+import { postsQuery } from '@/sanity/lib/queries'
 
 export const dummyBlog: Blog = {
   title: 'Sample Blog Post',
@@ -15,7 +18,10 @@ export const dummyBlog: Blog = {
   }
 }
 
-const FeaturedBlogs = () => {
+const FeaturedBlogs = async () => {
+  const posts = await sanityFetch<any>({ query: postsQuery })
+  
+  
   return (
     <section className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'>
       <div>
@@ -24,13 +30,13 @@ const FeaturedBlogs = () => {
         </h2>
         <div className={cx('grid grid-cols-2 grid-rows-2 gap-6')}>
           <article className='relative col-span-2 row-span-2 lg:col-span-1'>
-            <BlogLayoutTwo blog={dummyBlog} />
+            <BlogLayoutTwo post={posts[4 ]} />
           </article>
           <article className='relative col-span-2 row-span-1 sm:col-span-1'>
-            <BlogLayoutOne blog={dummyBlog} />
+            <BlogLayoutOne post={posts[0]} />
           </article>
           <article className='relative col-span-2 row-span-1 sm:col-span-1'>
-            <BlogLayoutOne blog={dummyBlog} />
+            <BlogLayoutOne post={posts[8]} />
           </article>
         </div>
       </div>
