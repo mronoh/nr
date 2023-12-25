@@ -13,7 +13,7 @@ const HomeCover = async ({ post }: { post: Post }) => {
       <section className='mx-auto mt-8 w-full max-w-7xl'>
         <article
           className={cx(
-            'relative mx-5 flex h-[80vh] flex-col items-start justify-end sm:mx-10'
+            'relative mx-5 flex h-[80vh] max-h-[630px] flex-col items-start justify-end sm:mx-10'
           )}
         >
           <div className='absolute left-0 top-0 z-10 h-full w-full rounded-3xl bg-gradient-to-b from-transparent to-dark/90' />
