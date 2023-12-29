@@ -7,7 +7,7 @@ import { cx } from '@/utils'
 import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
 import { token } from '@/sanity/lib/fetch'
-import { Suspense } from 'react'
+import Script from 'next/script'
 
 const inter = Montserrat({ subsets: ['latin'] })
 
@@ -38,12 +38,14 @@ export default function IndexLayout({
   const draftModeEnabled = draftMode().isEnabled
 
   const layout = (
-    <div
-      className={cx(
-        mont.variable,
-        'relative min-h-screen bg-bgColor font-mont'
-      )}
-    >
+    <div className={cx(mont.variable, 'relative min-h-screen font-mont')}>
+      <Script id='theme' strategy='beforeInteractive'>
+        {`if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+          } else {
+            document.documentElement.classList.remove('dark')
+          }`}
+      </Script>
       <Header isDraftMode={draftModeEnabled} />
       {children}
       <WantATour />
