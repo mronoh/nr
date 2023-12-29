@@ -16,7 +16,7 @@ const HomeCover = async ({ post }: { post: Post }) => {
             'relative mx-5 flex h-[80vh] max-h-[630px] flex-col items-start justify-end sm:mx-10'
           )}
         >
-          <div className='absolute left-0 top-0 z-10 h-full w-full rounded-3xl bg-gradient-to-b from-transparent to-dark/90' />
+          <div className='dark:to-bgdark absolute left-0 top-0 z-10 h-full w-full rounded-3xl bg-gradient-to-b from-transparent to-dark/90' />
           <Image
             src={urlForImage(post.post.mainImage.image).url()}
             alt={post.post.title}
