@@ -24,7 +24,7 @@ const Services = () => {
   return (
     <section id='serviceshomepage' className='relative  mt-24 w-full py-24 '>
       <div className='mx-auto max-w-7xl px-5 sm:px-10'>
-        <h2 className='mb-12 text-center text-4xl font-semibold text-light'>
+        <h2 className='mb-8 text-center text-4xl font-semibold text-light md:mb-12 lg:text-5xl'>
           Our Services
         </h2>
         <div className='flex w-full flex-wrap justify-center gap-8 lg:gap-16'>
