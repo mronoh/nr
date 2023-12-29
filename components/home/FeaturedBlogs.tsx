@@ -23,7 +23,7 @@ const FeaturedBlogs = async ({ posts = [] }: { posts: Post[] }) => {
     return (
       <section className='mx-auto w-full max-w-7xl  px-5 pt-24 sm:px-10'>
         <div>
-          <h2 className='mb-12 text-center text-4xl font-semibold text-dark'>
+          <h2 className='mb-8 text-4xl font-semibold  text-dark dark:text-light md:mb-12 lg:text-5xl'>
             Featured Blogs
           </h2>
           <div className={cx('grid grid-cols-2 grid-rows-2 gap-6')}>
