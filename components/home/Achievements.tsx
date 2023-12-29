@@ -3,9 +3,12 @@ import React from 'react'
 
 const Achievements = () => {
   return (
-    <section className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'>
+    <section
+      id='achievements'
+      className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'
+    >
       <div>
-        <h2 className='mb-12 text-center text-4xl font-semibold text-dark'>
+        <h2 className='mb-8 text-4xl font-semibold  text-dark dark:text-light md:mb-12 lg:text-5xl'>
           Achievements
         </h2>
         <div className='relative h-24 overflow-x-hidden'>
@@ -13,12 +16,12 @@ const Achievements = () => {
             {achievements.map((achievement, index) => (
               <div
                 key={index}
-                className='flex flex-col items-center justify-center gap-2 text-dark'
+                className='flex flex-col items-center justify-center gap-2 '
               >
-                <span className='text-5xl font-bold capitalize  text-accent'>
+                <span className='dark:text-accent-dark text-5xl font-bold  capitalize text-accent'>
                   {achievement.stat}
                 </span>
-                <span className='text-lg font-semibold capitalize'>
+                <span className='text-lg font-semibold capitalize text-dark dark:text-light'>
                   {achievement.title}
                 </span>
               </div>
@@ -28,9 +31,9 @@ const Achievements = () => {
             {achievements.map((achievement, index) => (
               <div
                 key={index}
-                className='flex flex-col items-center justify-center gap-2 text-dark'
+                className='flex flex-col items-center justify-center gap-2 text-dark dark:text-light'
               >
-                <span className='text-5xl font-bold capitalize text-accent'>
+                <span className='dark:text-accent-dark text-5xl font-bold capitalize text-accent'>
                   {achievement.stat}
                 </span>
                 <span className='text-lg font-semibold capitalize'>
@@ -39,8 +42,8 @@ const Achievements = () => {
               </div>
             ))}
           </div>
-          <div className='absolute bottom-0 left-0 top-0 z-10 h-full w-1/4 bg-gradient-to-r from-bgColor to-transparent' />
-          <div className='absolute bottom-0 right-0 top-0 z-10 h-full w-1/4 bg-gradient-to-l from-bgColor to-transparent' />
+          <div className='from-bglight dark:from-bgdark absolute bottom-0 left-0 top-0 z-10 h-full w-1/4 bg-gradient-to-r to-transparent' />
+          <div className='from-bglight dark:from-bgdark absolute bottom-0 right-0 top-0 z-10 h-full w-1/4 bg-gradient-to-l to-transparent' />
         </div>
       </div>
     </section>
