@@ -24,7 +24,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
     <main className='relative mx-auto max-w-7xl px-5 pt-24 sm:px-10'>
       <article className='mx-auto flex w-full flex-col justify-center gap-4 lg:flex-row'>
         <div className='w-full lg:w-4/6'>
-          <div className='prose prose-lg w-full'>
+          <div className='prose prose-stone dark:prose-invert prose-lg w-full max-w-max'>
             <p className='mb-8 flex items-center gap-2 text-base'>
               <BsFillCalendar2DateFill />
               {post?.publishedAt ? formatDate(post.publishedAt) : 'publishedAt'}
@@ -83,9 +83,9 @@ export default function Blog({ post }: { post: SanityDocument }) {
             </div>
           </div> */}
         </div>
-        <aside className='sticky top-20 flex h-max w-full flex-col gap-4 border p-5 lg:h-screen lg:w-2/6 lg:max-w-[320px]'>
-          <div>
-            <h4 className='my-2 text-xl font-semibold'>Author</h4>
+        <aside className='dark:text-gray dark:border-gray-dark border-gray-light sticky top-20 flex h-max w-full flex-col flex-wrap gap-4 border p-5 sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col'>
+          <div className='sm-w-1/2 lg:w-full'>
+            <h4 className='my-2 text-xl font-semibold '>Author</h4>
             <div className='flex items-center gap-2'>
               <Image
                 className='rounded-full'
@@ -96,38 +96,38 @@ export default function Blog({ post }: { post: SanityDocument }) {
               />
               <div className='flex flex-col gap-2 font-semibold'>
                 <p>{post.author.name}</p>
-                <span className='flex justify-around'>
-                  <a className='hover:bg-gray-light border-gray-light rounded-md border p-1 text-sm'>
+                <span className='dark:text-gray-light flex justify-around'>
+                  <a className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-1 text-sm'>
                     <BsTwitterX />
                   </a>
-                  <a className='hover:bg-gray-light border-gray-light rounded-md border p-1 text-sm'>
+                  <a className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-1 text-sm'>
                     <FaFacebookF />
                   </a>
-                  <a className='hover:bg-gray-light border-gray-light rounded-md border p-1 text-base'>
+                  <a className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-1 text-base'>
                     <MdOutlineMailOutline />
                   </a>
                 </span>
               </div>
             </div>
-            <p className='my-2 text-sm'>
+            <p className='my-2 max-w-sm text-base'>
               {blockContentToPlainText(post.author.bio)}
             </p>
           </div>
 
-          <div>
+          <div className='w-full sm:order-2 lg:order-1'>
             <h4 className='my-2 text-xl font-semibold'>Tags</h4>
             <ul className='flex gap-2'>
               {post.tags.map((tag: any, index: number) => (
                 <li
                   key={tag.title}
-                  className='text-accent-dark/70 dark:bg-gray-dark/20 bg-gray-light/30 whitespace-nowrap rounded px-1.5 py-[1px] text-center text-[8px] font-semibold uppercase shadow-sm dark:text-accent/70 sm:px-3 sm:py-1 sm:text-xs'
+                  className='dark:text-accent-dark dark:bg-gray-dark/20 bg-gray-light whitespace-nowrap rounded px-3 py-1 text-center text-xs font-semibold uppercase text-accent shadow-sm'
                 >
                   {tag.title}
                 </li>
               ))}
             </ul>
           </div>
-          <div>
+          <div className='sm:order-1'>
             <h4 className='my-2 text-xl font-semibold'>Share</h4>
             <div className='flex gap-4 text-xl'>
               <a
@@ -136,7 +136,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 )}%0A%0A${encodeURIComponent(post.url)}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='hover:bg-gray-light border-gray-light rounded-md border p-2'
+                className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-2'
               >
                 <FaWhatsapp />
               </a>
@@ -146,7 +146,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 )}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='hover hover:bg-gray-light border-gray-light rounded-md border p-2'
+                className='hover hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-2'
               >
                 <FaFacebookF />
               </a>
@@ -158,7 +158,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 )}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='hover hover:bg-gray-light border-gray-light rounded-md border p-2'
+                className='hover hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-2'
               >
                 <BsTwitterX />
               </a>
@@ -172,19 +172,19 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 )}&source=${encodeURIComponent(siteMetadata.siteUrl)}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='hover hover:bg-gray-light border-gray-light rounded-md border p-2'
+                className='hover hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-2'
               >
                 <FaLinkedinIn />
               </a>
             </div>
           </div>
-          <div className=''>
+          <div className='w-full sm:order-3 lg:order-1'>
             <h4 className='my-2 text-xl font-semibold'>Related Posts</h4>
             <div className={cx('grid gap-2 sm:grid-cols-2 lg:grid-cols-1')}>
               {recentBlogs.slice(0, 2).map((post: any, index: number) => (
                 <article
                   key={index}
-                  className='border-gray-light/50 relative rounded-xl border p-2'
+                  className='border-gray-light/50 relative rounded-xl border p-2 dark:border-transparent'
                 >
                   <div className='relative flex flex-col gap-4 text-dark'>
                     <Link
@@ -222,7 +222,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                           </span>
                         </h2>
                       </Link>
-                      <p className='text-gray text-gray-light mt-1 flex items-center gap-2 text-xs'>
+                      <p className=' text-gray-light mt-1 flex items-center gap-2 text-xs'>
                         <BsFillCalendar2DateFill />
                         {formatDate(post?.publishedAt)}
                       </p>
