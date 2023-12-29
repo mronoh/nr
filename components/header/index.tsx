@@ -3,31 +3,69 @@
 import Logo from '@/public/icons/ngworocks_logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { Fade as Hamburger } from 'hamburger-react'
+import { useEffect, useState } from 'react'
+import { Fade as Menu } from 'hamburger-react'
 import { cx } from '@/utils'
-import { useScrollPosition } from '../hooks'
 import { usePathname } from 'next/navigation'
 import { mobileNavLinks, navLinks1, navLinks2 } from '@/constants'
+import { PreviewBanner } from '../preview/PreviewBanner'
+import { useThemeSwitch } from '../hooks/useThemeSwitch'
+import { Hamburger, ThemeButton } from '../icons'
 
-const Header = () => {
+const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
+  const [mode, setMode] = useThemeSwitch()
   const [toggled, setToggled] = useState(false)
-  const scrollPosition = useScrollPosition()
   const pathname = usePathname()
+  const [isSticky, setSticky] = useState(false)
+  const [lastScrollTop, setLastScrollTop] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let st = window.pageYOffset || document.documentElement.scrollTop
+      if (st > lastScrollTop) {
+        // downscroll
+        setSticky(false)
+      } else {
+        // upscroll
+        setSticky(true)
+      }
+      setLastScrollTop(st <= 0 ? 0 : st)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [lastScrollTop])
+
+  const handleToggle = () => {
+    document.documentElement.classList.toggle('overflow-hidden')
+    setToggled(prev => {
+      return !prev
+    })
+  }
 
   return (
     <header
       className={cx(
-        scrollPosition > 0 ? 'shadow' : 'shadow-none',
-        'sticky -top-2 z-30 w-full bg-white py-6'
+        isSticky ? 'sticky top-0 shadow ' : 'shadow-none',
+        'dark:bg-bgdark relative z-30 block w-full bg-light transition-all duration-200 ease-in-out'
       )}
     >
-      <nav className='font-semi-bold relative mx-auto flex max-w-7xl items-center justify-between px-5 text-lg font-semibold  capitalize text-dark sm:px-10'>
+      {isDraftMode && <PreviewBanner />}
+      <nav className='mx-auto flex max-w-7xl items-center justify-between px-5 py-6 text-base font-semibold  capitalize text-dark dark:text-light sm:px-10'>
         <Link
           href='/'
-          className='flex h-full justify-center lg:absolute lg:right-1/2 lg:translate-x-1/2'
+          className='z-50 flex h-full w-12 justify-center lg:absolute lg:right-1/2 lg:w-max lg:translate-x-1/2'
         >
-          <Image src={Logo} alt='Christian Onoh' width={60} height={60} />
+          <Image
+            src={Logo}
+            alt='Christian Onoh'
+            width={60}
+            height={60}
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation  */}
@@ -37,8 +75,10 @@ const Header = () => {
               key={index}
               href={link.url}
               className={cx(
-                pathname === link.url ? 'bg-accent/10' : 'text-dark',
-                'rounded-lg px-4 py-1.5 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10'
+                pathname === link.url
+                  ? 'dark:bg-accent-dark/10 bg-accent/10'
+                  : 'text-dark dark:text-light',
+                'rounded-full px-4 py-1.5 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10'
               )}
             >
               {link.name}
@@ -53,8 +93,10 @@ const Header = () => {
               key={index}
               href={link.url}
               className={cx(
-                pathname === link.url ? 'bg-accent/10' : 'text-dark',
-                'rounded-lg px-4 py-1.5 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10'
+                pathname === link.url
+                  ? 'dark:bg-accent-dark/10 bg-accent/10'
+                  : 'text-dark dark:text-light',
+                'rounded-full px-4 py-1.5 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10'
               )}
             >
               {link.name}
@@ -62,40 +104,43 @@ const Header = () => {
           ))}
           <Link
             href='/'
-            className='rounded-lg border border-dark bg-dark px-4 py-2 text-white transition-all duration-200 ease-in-out hover:bg-white hover:text-dark'
+            className='rounded-full border border-dark bg-dark px-4 py-1.5 text-white transition-all duration-200 ease-in-out hover:bg-white hover:text-dark dark:border-light dark:bg-transparent dark:hover:bg-light dark:hover:text-dark'
           >
             get in touch
           </Link>
+          <ThemeButton mode={mode} setMode={setMode} />
         </div>
 
         {/* Mobile Navigation  */}
         <div className='flex items-center gap-6 lg:hidden'>
           <Link
             href='/blog'
-            className='rounded-lg px-4 py-1.5 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10'
+            className='z-50 rounded-full px-4 py-1.5 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10'
           >
             blog
           </Link>
-          <div className='z-50 rounded-full text-dark hover:bg-accent/10'>
-            <Hamburger
+          <ThemeButton mode={mode} setMode={setMode} />
+          <div className='z-50 rounded-full text-dark hover:bg-accent/10 dark:text-light'>
+            <Menu
               toggle={setToggled}
               toggled={toggled}
               size={27}
               label='menu'
             />
           </div>
+          {/* <Hamburger handleToggle={handleToggle} toggled={toggled} /> */}
           <div
             className={cx(
               toggled ? 'origin-top scale-y-100' : 'origin-top scale-y-0',
-              'absolute left-0 top-0 z-30 flex h-[384px] w-full transform flex-col justify-center bg-white shadow-sm transition-transform duration-300 ease-in-out lg:hidden'
+              'dark:bg-bgdark absolute left-0 top-0 z-30 flex h-[384px] w-full transform flex-col justify-center bg-white shadow-sm transition-transform duration-300 ease-in-out lg:hidden'
             )}
           >
-            <div className='mx-auto flex h-full w-full max-w-[287px] flex-col items-center gap-4 px-8 py-32 text-base font-semibold capitalize text-black'>
+            <div className='mx-auto flex h-full w-full max-w-[287px] flex-col items-center gap-4 px-8 py-32 text-base font-semibold capitalize text-dark dark:text-light'>
               {mobileNavLinks.map((link, index) => (
                 <Link
                   key={index}
                   href={link.url}
-                  className='rounded-lg  px-4 py-1.5 text-center transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10'
+                  className='dark:hover:bg-accent-dark/10  rounded-full px-4 py-1.5 text-center transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10 '
                 >
                   {link.name}
                 </Link>

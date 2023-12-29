@@ -1,5 +1,6 @@
 import { cx } from '@/utils'
 import { SVGProps } from 'react'
+import { MoonIcon, SunIcon } from './MoonSun'
 
 export const BackIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -129,3 +130,57 @@ export const NgwoRocksLogo = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 )
+
+export const Hamburger = ({
+  handleToggle,
+  toggled
+}: {
+  handleToggle: Function
+  toggled: boolean
+}) => {
+  return (
+    <button
+      aria-label='Hamburger Menu Toggle Button'
+      className='z-50 rounded-full p-2 transition-all duration-300 ease-in-out hover:bg-accent/10 lg:hidden'
+      onClick={() => handleToggle(toggled)}
+    >
+      <div className='ease flex h-6 w-6 cursor-pointer flex-col justify-center transition-all duration-300'>
+        <div className='flex h-4 flex-col justify-between'>
+          <span
+            style={{
+              transform: toggled ? 'rotate(-45deg) translate(-5px, 5px)' : ''
+            }}
+            className='ease h-0.5 w-full rounded bg-dark transition-all duration-200 dark:bg-light'
+          />
+          <span
+            style={{ opacity: toggled ? 0 : 1 }}
+            className='ease h-0.5 w-full rounded bg-dark transition-all duration-200 dark:bg-light'
+          />
+          <span
+            style={{
+              transform: toggled ? 'rotate(45deg) translate(-5px, -5px)' : ''
+            }}
+            className='ease h-0.5 w-full rounded bg-dark transition-all duration-200 dark:bg-light'
+          />
+        </div>
+      </div>
+    </button>
+  )
+}
+
+export const ThemeButton = ({ setMode, mode }: any) => {
+  return (
+    <button
+      aria-label='Theme Toggle Button'
+      onClick={() => {
+        setMode(mode === 'light' ? 'dark' : 'light')
+      }}
+      className={cx(
+        'z-50 flex h-6 w-6 items-center justify-center rounded-full p-1 transition-all duration-200 ease-in-out',
+        mode === 'light' ? 'bg-dark text-light' : 'bg-light text-dark'
+      )}
+    >
+      {mode === 'light' ? <MoonIcon className='' /> : <SunIcon className='' />}
+    </button>
+  )
+}

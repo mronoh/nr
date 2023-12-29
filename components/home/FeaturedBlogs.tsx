@@ -1,6 +1,9 @@
-import BlogLayoutOne, { Blog } from '../blog/BlogLayoutOne'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import BlogLayoutOne, { Blog, Post } from '../blog/BlogLayoutOne'
 import BlogLayoutTwo from '../blog/BlogLayoutTwo'
 import { cx } from '@/utils'
+import { SanityDocument } from 'next-sanity'
+import { postsQuery } from '@/sanity/lib/queries'
 
 export const dummyBlog: Blog = {
   title: 'Sample Blog Post',
@@ -15,27 +18,29 @@ export const dummyBlog: Blog = {
   }
 }
 
-const FeaturedBlogs = () => {
-  return (
-    <section className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'>
-      <div>
-        <h2 className='mb-12 text-4xl font-semibold text-dark'>
-          Featured Blogs
-        </h2>
-        <div className={cx('grid grid-cols-2 grid-rows-2 gap-6')}>
-          <article className='relative col-span-2 row-span-2 lg:col-span-1'>
-            <BlogLayoutTwo blog={dummyBlog} />
-          </article>
-          <article className='relative col-span-2 row-span-1 sm:col-span-1'>
-            <BlogLayoutOne blog={dummyBlog} />
-          </article>
-          <article className='relative col-span-2 row-span-1 sm:col-span-1'>
-            <BlogLayoutOne blog={dummyBlog} />
-          </article>
+const FeaturedBlogs = async ({ posts = [] }: { posts: Post[] }) => {
+  if (posts.length > 0) {
+    return (
+      <section className='mx-auto w-full max-w-7xl  px-5 pt-24 sm:px-10'>
+        <div>
+          <h2 className='mb-8 text-4xl font-semibold  text-dark dark:text-light md:mb-12 lg:text-5xl'>
+            Featured Blogs
+          </h2>
+          <div className={cx('grid grid-cols-2 grid-rows-2 gap-6')}>
+            <article className='relative col-span-2 row-span-2 lg:col-span-1'>
+              <BlogLayoutTwo post={posts[0]} />
+            </article>
+            <article className='relative col-span-2 row-span-1 sm:col-span-1'>
+              <BlogLayoutOne post={posts[1]} />
+            </article>
+            <article className='relative col-span-2 row-span-1 sm:col-span-1'>
+              <BlogLayoutOne post={posts[2]} />
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    )
+  }
 }
 
 export default FeaturedBlogs

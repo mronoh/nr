@@ -14,7 +14,8 @@ const styles = {
   navPadding: 'pt-[98px]',
 
   // effects
-  underline: 'bg-gradient-to-r from-accent to-accent bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500',
-};
+  underline:
+    'bg-gradient-to-r from-accent to-accent dark:from-accent-dark dark:to-accent-dark bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500'
+}
 
-export default styles;
+export default styles
