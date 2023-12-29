@@ -8,7 +8,7 @@ import { BsFillCalendar2DateFill } from 'react-icons/bs'
 
 const BlogLayoutThree = ({ post }: { post: Post }) => {
   return (
-    <div className='flex flex-col gap-4 text-dark'>
+    <div className='flex flex-col gap-4 text-dark dark:text-light'>
       <Link
         className='col-span-4 h-full overflow-hidden rounded-xl'
         href={`/blog/${post?.slug}`}
@@ -27,12 +27,12 @@ const BlogLayoutThree = ({ post }: { post: Post }) => {
       </Link>
       <div className='mt-4 flex w-full flex-col'>
         {post?.tags && (
-          <span className='text-sm font-semibold uppercase text-accent'>
+          <span className='dark:text-accent-dark text-sm font-semibold uppercase text-accent'>
             {post?.tags[0].title}
           </span>
         )}
         <Link href={`/blog/${post?.slug}`} className='mt-1'>
-          <h2 className='text-lg font-semibold capitalize text-dark'>
+          <h2 className='text-lg font-semibold capitalize text-dark dark:text-light'>
             <span
               className={cx(styles.underline, 'from-accent/50 to-accent/50')}
             >
@@ -40,7 +40,10 @@ const BlogLayoutThree = ({ post }: { post: Post }) => {
             </span>
           </h2>
         </Link>
-        <p className='text-gray text-sm mt-2 flex gap-2 items-center'><BsFillCalendar2DateFill />{formatDate(post?.publishedAt)}</p>
+        <p className='text-gray-dark dark:text-gray-light mt-2 flex items-center gap-2 text-sm'>
+          <BsFillCalendar2DateFill />
+          {formatDate(post?.publishedAt)}
+        </p>
       </div>
     </div>
   )
