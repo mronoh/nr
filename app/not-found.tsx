@@ -10,13 +10,13 @@ export default function NotFound() {
       <Header isDraftMode={false} />
       <main className='relative -mb-24 flex h-screen items-center justify-center lg:max-h-[767px]'>
         <div className='relative flex flex-col items-center'>
-          <h1 className='text-warning text-3xl'> Page not found</h1>
-          <p className='text-accent-dark/40 text-center text-[12rem] font-bold'>
+          <h1 className='text-3xl text-red-500'> Page not found</h1>
+          <p className='dark:text-accent-dark text-center text-[12rem] font-bold text-accent'>
             404
           </p>
           <Link
             href='/blog'
-            className='w-max rounded-full border border-dark px-12 py-2 font-semibold'
+            className='w-max rounded-full border border-dark px-12 py-2 font-semibold dark:border-light dark:text-light dark:hover:bg-light dark:hover:text-dark'
           >
             Return to homepage
           </Link>
@@ -26,7 +26,7 @@ export default function NotFound() {
             width={80}
             height={80}
             alt='Not found'
-            className='absolute -right-20 -top-full lg:-top-20 '
+            className='absolute -right-20 -top-full filter dark:invert lg:-top-20'
           />
         </div>
         <Image
