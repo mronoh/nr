@@ -5,7 +5,9 @@ const Achievements = () => {
   return (
     <section className='mx-auto w-full max-w-7xl px-5 py-24 sm:px-10'>
       <div>
-        <h2 className='mb-12 text-4xl font-semibold text-dark'>Achievements</h2>
+        <h2 className='mb-12 text-center text-4xl font-semibold text-dark'>
+          Achievements
+        </h2>
         <div className='relative h-24 overflow-x-hidden'>
           <div className='absolute bottom-2 top-2 flex  animate-marquee gap-16 whitespace-nowrap pr-8'>
             {achievements.map((achievement, index) => (
