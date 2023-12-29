@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import Tag from '../shared/Tag'
 import Image from 'next/image'
-import { cx } from '@/utils'
+import { cx, formatDate } from '@/utils'
 import styles from '@/styles'
 import { Post } from './BlogLayoutOne'
 import { urlForImage } from '@/sanity/lib/image'
+import { BsFillCalendar2DateFill } from 'react-icons/bs'
 
 const BlogLayoutTwo = ({ post }: { post: Post }) => {
   return (
@@ -35,6 +36,12 @@ const BlogLayoutTwo = ({ post }: { post: Post }) => {
           <h2 className='mt-4 text-2xl font-semibold capitalize text-light'>
             <span className={cx(styles.underline)}>{post?.title}</span>
           </h2>
+          {post?.publishedAt && (
+            <p className='text-gray mt-2 flex items-center gap-2 text-sm'>
+              <BsFillCalendar2DateFill />
+              {formatDate(post.publishedAt)}
+            </p>
+          )}
         </Link>
       </div>
     </div>
