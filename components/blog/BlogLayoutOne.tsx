@@ -66,7 +66,7 @@ const BlogLayoutOne = ({ post }: { post: Post }) => {
         </span>
         {post?.slug && (
           <Link href={`/blog/${post.slug}`}>
-            <h2 className='text-lg font-semibold capitalize text-dark line-clamp-3'>
+            <h2 className='line-clamp-3 text-lg font-semibold capitalize text-dark'>
               <span
                 className={cx(styles.underline, 'from-accent/50 to-accent/50')}
               >
@@ -75,10 +75,12 @@ const BlogLayoutOne = ({ post }: { post: Post }) => {
             </h2>
           </Link>
         )}
-        <p className='text-gray text-sm flex mt-2 gap-2 items-center'>
-        <BsFillCalendar2DateFill />
-        {post?.publishedAt ? formatDate(post.publishedAt) : 'publishedAt'}
-      </p>
+        {post?.publishedAt && (
+          <p className='text-gray mt-2 flex items-center gap-2 text-sm'>
+            <BsFillCalendar2DateFill />
+            {formatDate(post.publishedAt)}
+          </p>
+        )}
       </div>
     </div>
   )
