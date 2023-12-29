@@ -9,13 +9,13 @@
   scroll-behavior: smooth;
 }
 
-.red {
-  border: 1px solid red;
-}
-.blue {
-  border: 1px solid blue;
-}
-
 .transition-background {
   transition: background-image 1s ease-in-out;
+}
+
+#serviceshomepage {
+  background-image: url('../public/images/servicesbg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
