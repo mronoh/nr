@@ -16,9 +16,13 @@ const config: Config = {
         dark: '#062817',
         light: '#fff',
         accent: '#007425',
+        'accent-dark': 'rgb(1 191 98)',
         green: '#15B825',
         grayLight: '#BDBDBD',
-        bgColor: '#f7f7f7'
+        bgColor: '#f7f7f7',
+        warning: '#FF0000',
+        'gray-dark': 'rgb(63 63 70)',
+        'gray-light': 'rgb(228 228 231)'
       },
       fontFamily: {
         mont: ['var(--font-montserrat)']
@@ -42,6 +46,6 @@ const config: Config = {
       }
     }
   },
-  plugins: [require('@tailwindcss/typography'),]
+  plugins: [require('@tailwindcss/typography')]
 }
 export default config
