@@ -3,9 +3,8 @@ import WhoAreWe from '@/components/home/WhoAreWe'
 import FeaturedBlogs from '@/components/home/FeaturedBlogs'
 import Achievements from '@/components/home/Achievements'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { SanityDocument } from 'next-sanity'
-import { featuredAndHomeCoverPostsQuery, postsQuery } from '@/sanity/lib/queries'
-import { Post } from '@/components/blog/BlogLayoutOne'
+import { featuredAndHomeCoverPostsQuery } from '@/sanity/lib/queries'
+import Services from '@/components/home/Services'
 
 export default async function Home() {
   const showCasePosts = await sanityFetch<any>({
@@ -18,6 +17,7 @@ export default async function Home() {
       <HomePageCover />
       <WhoAreWe />
       <FeaturedBlogs posts={showCasePosts.featuredPosts} />
+      <Services />
       <Achievements />
     </main>
   )
