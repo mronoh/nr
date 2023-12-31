@@ -1,9 +1,9 @@
 import { cx } from '@/utils'
 import BlogLayoutThree from '../blog/BlogLayoutThree'
-import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { recentPostsQuery } from '@/sanity/lib/queries'
 import { Post } from './BlogLayoutOne'
+import Button from '../shared/Button'
 
 const RecentBlogs = async () => {
   const recentBlogs = await sanityFetch<any>({
@@ -26,12 +26,7 @@ const RecentBlogs = async () => {
           </article>
         ))}
       </div>
-      <Link
-        href='/tags/all'
-        className='mx-auto mt-8 block w-max rounded-full border border-dark bg-dark px-4 py-1.5 text-white transition-all duration-200 ease-in-out hover:bg-white hover:text-dark dark:border-light dark:bg-transparent dark:hover:bg-light dark:hover:text-dark'
-      >
-        View all blogs
-      </Link>
+      <Button text="View all blogs" href="/tags/all" className='mt-8 sm:mt-12' />
     </section>
   )
 }

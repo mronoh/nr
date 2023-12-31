@@ -22,7 +22,7 @@ const FeaturedBlogs = async ({ posts = [] }: { posts: Post[] }) => {
               <BlogLayoutOne post={posts[2]} />
             </article>
           </div>
-          <Button text="View all blogs" href="/tags/all" className='mt-8' />
+          <Button text="View all blogs" href="/tags/all" className='mt-8 sm:mt-12' />
         </div>
       </section>
     )

@@ -99,7 +99,7 @@ const CategoriesPage = async ({ params }: any) => {
               <h2 className='mt-8 text-center  text-2xl  font-semibold text-dark dark:text-light'>
                 No posts found for this tag.
               </h2>
-              <Button text='View all blogs' href='/tags/all' className='mt-8' />
+              <Button text='View all blogs' href='/tags/all' className='mt-8 sm:mt-12' />
             </div>
           )}
         </div>
