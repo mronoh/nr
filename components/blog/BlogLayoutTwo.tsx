@@ -18,22 +18,22 @@ const BlogLayoutTwo = ({ post }: { post: Post }) => {
             alt={post.mainImage.alt ?? post?.title}
             placeholder='blur'
             blurDataURL={post.mainImage.lqip}
-            layout='fill'
-            objectFit='cover'
-            className='absolute left-0 top-0 h-full w-full rounded-xl'
+            fill
+            className='absolute left-0 top-0 h-full w-full rounded-xl object-cover object-center'
+            sizes='(max-width: 767px) 100vw, 767px'
           />
         </div>
       )}
       <div className='absolute bottom-0 z-20 p-4 text-light'>
         {post?.tags && (
           <Tag
-            link={``}
+            link={`tags/${post.tags[0].slug}`}
             title={post?.tags[0].title || ''}
-            className='!border px-6 py-2 text-sm'
+            className='text-sm'
           />
         )}
         <Link href={`/blog/${post?.slug}`} className='mt-6'>
-          <h2 className='mt-4 text-2xl font-semibold capitalize text-light'>
+          <h2 className='mt-4 text-xl font-semibold capitalize text-light xs:text-2xl md:text-3xl lg:text-2xl'>
             <span className={cx(styles.underline)}>{post?.title}</span>
           </h2>
           {post?.publishedAt && (
