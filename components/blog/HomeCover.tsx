@@ -36,7 +36,7 @@ const HomeCover = async ({ post }: { post: Post }) => {
               title={post.post.tags[0].title}
             />
             <Link href={`/blog/${post.post.slug}`} className='mt-4 md:mt-6'>
-              <h1 className='text-lg font-bold capitalize sm:text-2xl md:text-3xl lg:text-4xl'>
+              <h1 className='text-xl font-bold capitalize xs:text-2xl md:text-3xl lg:text-4xl'>
                 <span className={cx(styles.underline)}>
                   {post.post.title ?? 'Title'}
                 </span>
