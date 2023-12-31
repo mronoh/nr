@@ -8,7 +8,8 @@ import Services from '@/components/home/Services'
 
 export default async function Home() {
   const showCasePosts = await sanityFetch<any>({
-    query: featuredAndHomeCoverPostsQuery
+    query: featuredAndHomeCoverPostsQuery,
+    tags: ['showCasePost'],
   })
   return (
     <main
