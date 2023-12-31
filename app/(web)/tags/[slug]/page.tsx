@@ -23,12 +23,14 @@ const CategoriesPage = async ({ params }: any) => {
 
   // Get all blogs.
   const allBlogs = await sanityFetch<any>({
-    query: postsQuery
+    query: postsQuery,
+    tags: ['post']
   })
 
   // Get all tags.
   const allTags = await sanityFetch<any>({
-    query: tagsQuery
+    query: tagsQuery,
+    tags: ['tag']
   })
 
   /**
