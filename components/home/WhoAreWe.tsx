@@ -17,7 +17,7 @@ const WhoAreWe = () => {
             vibrant tourism hub while inspiring startups across regions.
           </p>
         </div>
-        <div className='flex w-full flex-col items-center md:w-1/2 md:px-8 lg:px-0'>
+        <div className='flex w-full flex-col items-center md:w-1/2 px-10 lg:px-0'>
           <Image
             src={WhoAreWeImg}
             alt='Who are we?'
