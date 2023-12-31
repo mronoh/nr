@@ -11,62 +11,93 @@ import { FaLinkedinIn } from 'react-icons/fa6'
 import { MdOutlineMailOutline } from 'react-icons/md'
 import { FaFacebookF } from 'react-icons/fa'
 import { FaWhatsapp } from 'react-icons/fa'
-import BlogLayoutThree from './BlogLayoutThree'
 import { siteMetadata } from '@/utils/siteMetaData'
-import BlogLayoutOne from './BlogLayoutOne'
-import BlogLayoutTwo from './BlogLayoutTwo'
 import Link from 'next/link'
 import styles from '@/styles'
+import { FiExternalLink } from 'react-icons/fi'
+import { MdAccessTimeFilled } from 'react-icons/md'
+import Tag from '../shared/Tag'
 
 export default function Blog({ post }: { post: SanityDocument }) {
   const recentBlogs = [post, post, post]
   return (
-    <main className='relative mx-auto max-w-7xl px-5 pt-24 sm:px-10'>
-      <article className='mx-auto flex w-full flex-col justify-center gap-4 lg:flex-row'>
-        <div className='w-full lg:w-4/6'>
-          <div className='prose prose-stone dark:prose-invert prose-lg w-full max-w-max'>
-            <p className='mb-8 flex items-center gap-2 text-base'>
-              <BsFillCalendar2DateFill />
-              {post?.publishedAt ? formatDate(post.publishedAt) : 'publishedAt'}
-            </p>
+    <main className='relative mx-auto max-w-7xl !overflow-x-clip px-5 pt-8 sm:px-10 sm:pt-16 md:pt-24'>
+      <article className='dark:border-gray-dark border-gray-light mx-auto flex w-full flex-col justify-center gap-4 border-t lg:flex-row'>
+        <div className=' mb-8 w-full pt-5 lg:w-4/6'>
+          <div className='prose prose-stone dark:prose-invert prose-base sm:prose-lg w-full max-w-max '>
+            <span className='flex gap-6 text-xs xs:text-base'>
+              <p className='flex items-center gap-2'>
+                <BsFillCalendar2DateFill />
+                {post?.publishedAt
+                  ? formatDate(post.publishedAt)
+                  : 'publishedAt'}
+              </p>
+              <p className='flex items-center gap-2'>
+                <MdAccessTimeFilled />
+                {post?.estimatedReadingTime ? (
+                  <>{post.estimatedReadingTime} min read</>
+                ) : (
+                  'publishedAt'
+                )}
+              </p>
+            </span>
 
             {post?.title ? <h1>{post.title}</h1> : <h1>Untitled</h1>}
+            {post?.description && <p>{post.description}</p>}
             {post?.mainImage && (
-              <div className='relative h-20 w-full overflow-clip rounded-xl pt-[56.25%]'>
+              <div className='relative w-full overflow-clip rounded-xl pt-[56.25%]'>
                 <Image
-                  className='z-10 h-full w-full rounded-xl object-cover object-center'
+                  className='my-0 h-full w-full rounded-xl object-cover object-center'
                   src={urlForImage(post.mainImage.image).url()}
                   placeholder='blur'
                   fill
                   alt={`${post?.title} Cover Image`}
                   blurDataURL={post.mainImage.lqip}
+                  sizes='(max-width: 1024px) 100vw, 450px'
                 />
               </div>
             )}
             {post?.body && (
-              <PortableText
-                value={post.body}
-                components={{
-                  types: {
-                    image: ({
-                      value
-                    }: {
-                      value: ImageType & { alt?: string; caption?: string }
-                    }) => {
-                      return (
-                        <div className='mx-auto my-8 w-[80%] space-y-2'>
-                          <ImageBox image={value} />
-                          {value?.alt && (
-                            <div className='text-center font-sans text-sm text-gray-600'>
-                              {value.alt}
-                            </div>
-                          )}
-                        </div>
-                      )
+              <div className='first-letter:text-3xl sm:first-letter:text-5xl'>
+                <PortableText
+                  value={post.body}
+                  components={{
+                    marks: {
+                      link: ({ children, value }) => {
+                        return (
+                          <a
+                            href={value?.href}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className=' text-blue-500 hover:underline'
+                          >
+                            {children}
+                            <FiExternalLink className='ml-1 inline-block text-sm' />
+                          </a>
+                        )
+                      }
+                    },
+                    types: {
+                      image: ({
+                        value
+                      }: {
+                        value: ImageType & { alt?: string; caption?: string }
+                      }) => {
+                        return (
+                          <div className='mx-auto my-8 w-[80%] space-y-2'>
+                            <ImageBox image={value} />
+                            {value?.alt && (
+                              <p className='text-center font-sans text-sm text-gray-600'>
+                                {value.alt}
+                              </p>
+                            )}
+                          </div>
+                        )
+                      }
                     }
-                  }
-                }}
-              />
+                  }}
+                />
+              </div>
             )}
           </div>
           {/* <div className='mt-16'>
@@ -83,10 +114,10 @@ export default function Blog({ post }: { post: SanityDocument }) {
             </div>
           </div> */}
         </div>
-        <aside className='dark:text-gray dark:border-gray-dark border-gray-light sticky top-20 flex h-max w-full flex-col flex-wrap gap-4 border p-5 sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col'>
+        <aside className='dark:text-gray dark:border-gray-dark border-gray-light sticky top-20 flex h-max w-full flex-col flex-wrap gap-8 border-t py-5 sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col lg:gap-4 lg:border lg:p-5'>
           <div className='sm-w-1/2 lg:w-full'>
             <h4 className='my-2 text-xl font-semibold '>Author</h4>
-            <div className='flex items-center gap-2'>
+            <div className='flex h-12 w-12 items-center gap-2'>
               <Image
                 className='rounded-full'
                 src={urlForImage(post.author.image).url()}
@@ -95,7 +126,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 height={50}
               />
               <div className='flex flex-col gap-2 font-semibold'>
-                <p>{post.author.name}</p>
+                <p className='whitespace-nowrap'>{post.author.name}</p>
                 <span className='dark:text-gray-light flex justify-around'>
                   <a className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-1 text-sm'>
                     <BsTwitterX />
@@ -118,12 +149,18 @@ export default function Blog({ post }: { post: SanityDocument }) {
             <h4 className='my-2 text-xl font-semibold'>Tags</h4>
             <ul className='flex gap-2'>
               {post.tags.map((tag: any, index: number) => (
-                <li
-                  key={tag.title}
-                  className='dark:text-accent-dark dark:bg-gray-dark/20 bg-gray-light whitespace-nowrap rounded px-3 py-1 text-center text-xs font-semibold uppercase text-accent shadow-sm'
-                >
-                  {tag.title}
-                </li>
+                // <li
+                //   key={tag.title}
+                //   className='dark:text-accent-dark dark:bg-gray-dark/20 bg-gray-light whitespace-nowrap rounded px-3 py-1 text-center text-xs font-semibold uppercase text-accent shadow-sm'
+                // >
+                //   {tag.title}
+                // </li>
+                <Tag
+                  title={tag.title}
+                  link={`/tags/${tag.slug}`}
+                  key={index}
+                  className='text-xs opacity-80'
+                />
               ))}
             </ul>
           </div>
@@ -136,7 +173,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 )}%0A%0A${encodeURIComponent(post.url)}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-2'
+                className='border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-[#25D366] hover:text-light'
               >
                 <FaWhatsapp />
               </a>
@@ -146,7 +183,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 )}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='hover hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-2'
+                className=' border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-[#4267B2] hover:text-light'
               >
                 <FaFacebookF />
               </a>
@@ -158,7 +195,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 )}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='hover hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-2'
+                className='dark:hover:bg-gray-light/10 border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-black hover:text-light'
               >
                 <BsTwitterX />
               </a>
@@ -172,7 +209,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 )}&source=${encodeURIComponent(siteMetadata.siteUrl)}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='hover hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-2'
+                className='border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-[#0077b5] hover:text-light'
               >
                 <FaLinkedinIn />
               </a>
@@ -203,7 +240,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                         />
                       )}
                     </Link>
-                    <div className='absolute left-0 top-0 z-10 h-full w-full rounded-xl bg-gradient-to-b from-transparent to-dark/90' />
+                    <div className='to-bgdark absolute left-0 top-0 z-10 h-full w-full rounded-xl bg-gradient-to-b from-transparent' />
                     <div className='absolute bottom-0 z-10 mt-1 flex w-full flex-col p-2'>
                       {post?.tags && (
                         <span className='w-max rounded bg-light px-1 py-0.5 text-xs font-semibold uppercase text-accent'>
