@@ -2,6 +2,7 @@ import 'server-only'
 import type { QueryParams } from '@sanity/client'
 import { draftMode } from 'next/headers'
 import { client } from '@/sanity/lib/client'
+import { revalidateSecret } from '../env'
 
 const DEFAULT_PARAMS = {} as QueryParams
 const DEFAULT_TAGS = [] as string[]
@@ -26,7 +27,7 @@ export async function sanityFetch<QueryResponse>({
   const isDevelopment = process.env.NODE_ENV === 'development'
 
   return client.fetch<QueryResponse>(query, params, {
-    cache: isDevelopment || isDraftMode ? 'no-store' : 'force-cache',
+    cache: isDevelopment || isDraftMode || !revalidateSecret ? 'no-store' : 'force-cache',
     ...(isDraftMode && {
       token: token,
       perspective: 'previewDrafts'
