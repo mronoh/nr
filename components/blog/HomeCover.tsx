@@ -10,13 +10,13 @@ import { urlForImage } from '@/sanity/lib/image'
 const HomeCover = async ({ post }: { post: Post }) => {
   if (post) {
     return (
-      <section className='mx-auto mt-8 w-full max-w-7xl'>
+      <section className='mx-auto mt-4 w-full max-w-7xl xs:mt-8'>
         <article
           className={cx(
-            'relative mx-5 flex h-[80vh] max-h-[630px] flex-col items-start justify-end sm:mx-10'
+            'relative mx-5 flex h-[60vh] max-h-[630px] flex-col items-start justify-end sm:mx-10 lg:h-[80vh]'
           )}
         >
-          <div className='dark:to-bgdark absolute left-0 top-0 z-10 h-full w-full rounded-3xl bg-gradient-to-b from-transparent to-dark/90' />
+          <div className='to-bgdark absolute left-0 top-0 z-10 h-full w-full rounded-3xl bg-gradient-to-b from-transparent ' />
           <Image
             src={urlForImage(post.post.mainImage.image).url()}
             alt={post.post.title}
@@ -27,21 +27,26 @@ const HomeCover = async ({ post }: { post: Post }) => {
           />
           <div
             className={cx(
-              styles.paddings,
+              'px-5 py-12 xs:p-8 sm:p-8 md:p-12 lg:p-16',
               'z-10 flex w-full flex-col items-start justify-center text-light md:w-3/4'
             )}
           >
-            <Tag link={`#`} title={post.post.tags[0].title} />
-            <Link href={`/blog/${post.post.slug}`} className='mt-6'>
-              <h1 className='text-4xl font-bold capitalize'>
+            <Tag
+              link={`tags/${post.post.tags[0].slug}`}
+              title={post.post.tags[0].title}
+            />
+            <Link href={`/blog/${post.post.slug}`} className='mt-4 md:mt-6'>
+              <h1 className='text-lg font-bold capitalize sm:text-2xl md:text-3xl lg:text-4xl'>
                 <span className={cx(styles.underline)}>
                   {post.post.title ?? 'Title'}
                 </span>
               </h1>
             </Link>
-            <p className='font-inter mt-4 hidden sm:inline-block md:text-lg lg:text-xl'>
-              {post.post.title}
-            </p>
+            {post?.post.description && (
+              <p className='font-inter mt-4 hidden sm:inline-block md:text-lg lg:text-xl'>
+                {post?.post.description}
+              </p>
+            )}
           </div>
         </article>
       </section>
