@@ -8,7 +8,8 @@ import {
 
 const BlogPage = async () => {
   const showCasePosts = await sanityFetch<any>({
-    query: featuredAndHomeCoverPostsQuery
+    query: featuredAndHomeCoverPostsQuery,
+    tags: ['showCasePost'],
   })
   return (
     <main>
