@@ -51,3 +51,49 @@ h5 {
 .prose li::marker {
   @apply dark:text-accent-dark text-accent;
 }
+
+.fade-left {
+  background-image: linear-gradient(
+    to right,
+    rgba(245, 245, 245, 1) 0%,
+    transparent 100%
+  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  width: 25%;
+}
+
+.fade-right {
+  background-image: linear-gradient(
+    to left,
+    rgba(245, 245, 245, 1) 0%,
+    transparent 100%
+  );
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  width: 25%;
+}
+
+.dark .fade-left {
+  background-image: linear-gradient(
+    to right,
+    rgba(24, 24, 27, 1) 0%,
+    transparent 100%
+  );
+}
+
+.dark .fade-right {
+  background-image: linear-gradient(
+    to left,
+    rgba(24, 24, 27, 1) 0%,
+    transparent 100%
+  );
+}

@@ -18,10 +18,10 @@ const Achievements = () => {
                 key={index}
                 className='flex flex-col items-center justify-center gap-2 '
               >
-                <span className='dark:text-accent-dark text-5xl font-bold  capitalize text-accent'>
+                <span className='dark:text-accent-dark text-3xl font-bold capitalize  text-accent sm:text-5xl'>
                   {achievement.stat}
                 </span>
-                <span className='text-lg font-semibold capitalize text-dark dark:text-light'>
+                <span className='text-base font-semibold capitalize text-dark dark:text-light xs:text-lg'>
                   {achievement.title}
                 </span>
               </div>
@@ -33,17 +33,17 @@ const Achievements = () => {
                 key={index}
                 className='flex flex-col items-center justify-center gap-2 text-dark dark:text-light'
               >
-                <span className='dark:text-accent-dark text-5xl font-bold capitalize text-accent'>
+                <span className='dark:text-accent-dark text-3xl font-bold capitalize text-accent sm:text-5xl'>
                   {achievement.stat}
                 </span>
-                <span className='text-lg font-semibold capitalize'>
+                <span className='text-base font-semibold capitalize xs:text-lg'>
                   {achievement.title}
                 </span>
               </div>
             ))}
           </div>
-          <div className='from-bglight dark:from-bgdark absolute bottom-0 left-0 top-0 z-10 h-full w-1/4 bg-gradient-to-r to-transparent' />
-          <div className='from-bglight dark:from-bgdark absolute bottom-0 right-0 top-0 z-10 h-full w-1/4 bg-gradient-to-l to-transparent' />
+          <div className='fade-left' />
+          <div className='fade-right' />
         </div>
       </div>
     </section>
