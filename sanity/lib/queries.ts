@@ -14,6 +14,20 @@ export const postsQuery = groq`*[_type == "post" && defined(slug.current)]{
   },
   } | order(publishedAt desc)`
 
+// Get the latest 6 posts
+export const recentPostsQuery = groq`*[_type == "post" && defined(slug.current)]{
+  ...,
+  "slug": slug.current,
+  author->,
+  tags[]->{..., "slug": slug.current},
+  mainImage {
+    "image": asset,
+    "lqip": asset->metadata.lqip,
+    "dimensions": asset->metadata.dimensions,
+    alt,
+  },
+  } | order(publishedAt desc)[0...6]`
+
 // Get a single post by its slug
 export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{ 
   ...,
