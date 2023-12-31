@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {PublishIcon} from '@sanity/icons'
+import { PublishIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'post',
@@ -20,6 +20,14 @@ export default defineType({
         source: 'title',
         maxLength: 96
       }
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      description: 'Description of the post',
+      validation: Rule =>
+        Rule.required().max(160).warning('Should be under 160 characters')
     }),
     defineField({
       name: 'author',
