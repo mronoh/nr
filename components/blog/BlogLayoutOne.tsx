@@ -20,7 +20,7 @@ export interface Blog {
     height: number
   }
 }
-type Tag = {
+export type Tag = {
   title: string
   slug: string
 }
@@ -31,6 +31,7 @@ export interface Post extends SanityDocument {
   author: any
   tags: Tag[]
   body?: any
+  description: string
   mainImage: {
     image: any
     lqip: string
