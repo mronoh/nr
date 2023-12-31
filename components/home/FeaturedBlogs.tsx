@@ -1,8 +1,6 @@
-import { sanityFetch } from '@/sanity/lib/fetch'
 import BlogLayoutOne, { Blog, Post } from '../blog/BlogLayoutOne'
 import BlogLayoutTwo from '../blog/BlogLayoutTwo'
 import { cx } from '@/utils'
-import Link from 'next/link'
 import Button from '../shared/Button'
 
 const FeaturedBlogs = async ({ posts = [] }: { posts: Post[] }) => {
