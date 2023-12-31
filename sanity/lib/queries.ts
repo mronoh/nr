@@ -18,6 +18,7 @@ export const postsQuery = groq`*[_type == "post" && defined(slug.current)]{
 export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{ 
   ...,
   "slug": slug.current,
+  "estimatedReadingTime": round(length(pt::text(body)) / 5 / 150 ),
   author->,
   tags[]->{..., "slug": slug.current},
   mainImage {
@@ -31,6 +32,10 @@ export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{
 export const postPathsQuery = groq`*[_type == "post" && defined(slug.current)][]{
     "params": { "slug": slug.current }
   }`
+export const tagsQuery = groq`*[_type=="tag"]{
+  title,
+  "slug": slug.current
+}`
 
 // Get blog featured posts and blog home cover post
 export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0] {
@@ -52,6 +57,7 @@ export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0]
       "slug": slug.current,
       author->,
       tags[]->{..., "slug": slug.current},
+      description,
       mainImage {
         "image": asset->url,
         "lqip": asset->metadata.lqip,
