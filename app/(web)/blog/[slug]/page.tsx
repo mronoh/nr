@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPage({ params }: { params: any }) {
-  const post = await sanityFetch<SanityDocument>({ query: postQuery, params })
+  const post = await sanityFetch<SanityDocument>({ query: postQuery, params, tags: [`post:${params.slug}`], })
   const isDraftMode = draftMode().isEnabled
 
   if (!post) {
