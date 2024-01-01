@@ -10,7 +10,7 @@ import { BsFillCalendar2DateFill } from 'react-icons/bs'
 const BlogLayoutTwo = ({ post }: { post: Post }) => {
   return (
     <div className=''>
-      <div className='dark:to-bgdark absolute left-0 top-0 z-10 h-full w-full rounded-xl bg-gradient-to-b from-transparent to-dark/90' />
+      <div className='dark:to-bgdark to-bgdark/90 absolute left-0 top-0 z-10 h-full w-full rounded-xl bg-gradient-to-b from-transparent' />
       {post?.mainImage && (
         <div className='relative min-h-[320px] w-full overflow-hidden rounded-xl pt-[56.25%] lg:static lg:h-auto'>
           <Image
