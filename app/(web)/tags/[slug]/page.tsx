@@ -58,10 +58,12 @@ const CategoriesPage = async ({ params }: any) => {
       <div className='mx-5 mt-5 flex flex-col sm:mx-10 sm:mt-10'>
         <div className='md:px-10 lg:px-20'>
           <h1 className='mt-6 text-2xl font-semibold capitalize text-dark dark:text-light md:text-4xl lg:text-5xl'>
-            {slug}
+            {slug == 'all' ? 'All Blogs' : slug.replace('-', ' ')}
           </h1>
           <p className='mt-2 text-dark dark:text-light'>
-            Discover more tags and expand your knowledge!
+            {allTags.find((tag: TagType) => {
+              return tag.slug === slug
+            })?.description ?? 'Discover more tags and expand your knowledge!'}
           </p>
         </div>
 
@@ -99,7 +101,11 @@ const CategoriesPage = async ({ params }: any) => {
               <h2 className='mt-8 text-center  text-2xl  font-semibold text-dark dark:text-light'>
                 No posts found for this tag.
               </h2>
-              <Button text='View all blogs' href='/tags/all' className='mt-8 sm:mt-12' />
+              <Button
+                text='View all blogs'
+                href='/tags/all'
+                className='mt-8 sm:mt-12'
+              />
             </div>
           )}
         </div>
