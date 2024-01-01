@@ -10,7 +10,13 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
+      validation: Rule => [
+        Rule.required()
+          .min(10)
+          .error('A title of min. 10 characters is required'),
+        Rule.max(80).warning('Shorter titles are usually better')
+      ]
     }),
     defineField({
       name: 'slug',
@@ -25,9 +31,13 @@ export default defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
+      rows: 3,
       description: 'Description of the post',
       validation: Rule =>
-        Rule.required().max(160).warning('Should be under 160 characters')
+        Rule.required()
+          .min(50)
+          .max(140)
+          .warning('Should be under 140 characters')
     }),
     defineField({
       name: 'author',
