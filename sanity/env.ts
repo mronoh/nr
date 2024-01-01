@@ -13,6 +13,9 @@ export const projectId = assertValue(
 
 export const previewSecretId = process.env.NEXT_PUBLIC_SANITY_PREVIEW_SECRET;
 
+// See the app/api/revalidate/route.ts for how this is used
+export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET
+
 export const useCdn = false
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
