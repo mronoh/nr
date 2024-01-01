@@ -19,7 +19,8 @@ import { MdAccessTimeFilled } from 'react-icons/md'
 import Tag from '../shared/Tag'
 
 export default function Blog({ post }: { post: SanityDocument }) {
-  const recentBlogs = [post, post, post]
+  const feauredPosts = [...post?.related, ...post?.recent]
+
   return (
     <main className='relative mx-auto max-w-7xl !overflow-x-clip px-5 pt-8 sm:px-10 sm:pt-16 md:pt-24'>
       <article className='dark:border-gray-dark border-gray-light mx-auto flex w-full flex-col justify-center gap-4 border-t lg:flex-row'>
@@ -114,7 +115,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
             </div>
           </div> */}
         </div>
-        <aside className='dark:text-gray dark:border-gray-dark border-gray-light sticky top-20 flex h-max w-full flex-col flex-wrap gap-8 border-t py-5 sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col lg:gap-4 lg:border lg:p-5'>
+        <aside className='dark:text-gray dark:border-gray-dark border-gray-light sticky top-20 flex h-max w-full flex-col flex-wrap gap-8 border-t py-5 sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col lg:gap-4 lg:border-l lg:p-5'>
           <div className='sm-w-1/2 lg:w-full'>
             <h4 className='my-2 text-xl font-semibold '>Author</h4>
             <div className='flex h-12 w-12 items-center gap-2'>
@@ -149,12 +150,6 @@ export default function Blog({ post }: { post: SanityDocument }) {
             <h4 className='my-2 text-xl font-semibold'>Tags</h4>
             <ul className='flex gap-2'>
               {post.tags.map((tag: any, index: number) => (
-                // <li
-                //   key={tag.title}
-                //   className='dark:text-accent-dark dark:bg-gray-dark/20 bg-gray-light whitespace-nowrap rounded px-3 py-1 text-center text-xs font-semibold uppercase text-accent shadow-sm'
-                // >
-                //   {tag.title}
-                // </li>
                 <Tag
                   title={tag.title}
                   link={`/tags/${tag.slug}`}
@@ -216,9 +211,11 @@ export default function Blog({ post }: { post: SanityDocument }) {
             </div>
           </div>
           <div className='w-full sm:order-3 lg:order-1'>
-            <h4 className='my-2 text-xl font-semibold'>Related Posts</h4>
+            <h4 className='my-2 text-xl font-semibold'>
+              {post?.related.length > 0 ? 'Related Posts' : 'Recent Posts'}
+            </h4>
             <div className={cx('grid gap-2 sm:grid-cols-2 lg:grid-cols-1')}>
-              {recentBlogs.slice(0, 2).map((post: any, index: number) => (
+              {feauredPosts.slice(0, 2).map((post: any, index: number) => (
                 <article
                   key={index}
                   className='border-gray-light/50 relative rounded-xl border p-2 dark:border-transparent'
