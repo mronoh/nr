@@ -97,3 +97,17 @@ h5 {
     transparent 100%
   );
 }
+
+@media (max-width: 320px) {
+  .home__birds {
+    @apply -top-[50%];
+  }
+
+  .home__header {
+    @apply mt-16;
+  }
+
+  .homecover__container {
+    @apply min-h-[400px];
+  }
+}
