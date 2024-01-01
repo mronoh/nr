@@ -8,7 +8,7 @@ export const siteMetadata = {
   theme: 'system',
   siteUrl: 'https://nr-kappa.vercel.app/',
   siteLogo: '/favicon/icon-192x192.png',
-  socialBanner: '/images/socialCover.webp', // add social banner in the public folder
+  socialBanner: '/images/socialCover.webp',
   email: 'chibyk5000@gmail.com',
   github: 'https://github.com/christianonoh',
   facebook: 'https://web.facebook.com/NgwoROCK',
