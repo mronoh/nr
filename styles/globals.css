@@ -19,3 +19,95 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.prose h1 {
+  @apply text-3xl font-bold sm:text-4xl;
+}
+.prose h2 {
+  @apply text-2xl font-bold sm:text-3xl;
+}
+.prose h3 {
+  @apply text-xl font-bold sm:text-2xl;
+}
+.prose h4 {
+  @apply text-lg font-semibold sm:text-xl;
+}
+.prose h5 {
+  @apply text-base font-semibold sm:text-lg;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply font-mont;
+}
+
+.prose blockquote {
+  @apply dark:border-accent-dark dark:bg-accent-dark/20 rounded-r-lg border-accent bg-accent/20 py-6 pr-2 md:pl-6;
+}
+
+.prose li::marker {
+  @apply dark:text-accent-dark text-accent;
+}
+
+.fade-left {
+  background-image: linear-gradient(
+    to right,
+    rgba(245, 245, 245, 1) 0%,
+    transparent 100%
+  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  width: 25%;
+}
+
+.fade-right {
+  background-image: linear-gradient(
+    to left,
+    rgba(245, 245, 245, 1) 0%,
+    transparent 100%
+  );
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  width: 25%;
+}
+
+.dark .fade-left {
+  background-image: linear-gradient(
+    to right,
+    rgba(24, 24, 27, 1) 0%,
+    transparent 100%
+  );
+}
+
+.dark .fade-right {
+  background-image: linear-gradient(
+    to left,
+    rgba(24, 24, 27, 1) 0%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 320px) {
+  .home__birds {
+    @apply -top-[50%];
+  }
+
+  .home__header {
+    @apply mt-16;
+  }
+
+  .homecover__container {
+    @apply min-h-[400px];
+  }
+}

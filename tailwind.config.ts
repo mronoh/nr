@@ -27,7 +27,8 @@ const config: Config = {
         'gray-light': 'rgb(228 228 231)'
       },
       fontFamily: {
-        mont: ['var(--font-montserrat)']
+        mont: ['var(--font-montserrat)'],
+        poppins: ['var(--font-poppins)']
       },
       animation: {
         marquee: 'marquee 25s linear infinite',

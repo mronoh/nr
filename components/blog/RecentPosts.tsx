@@ -1,26 +1,20 @@
 import { cx } from '@/utils'
 import BlogLayoutThree from '../blog/BlogLayoutThree'
-import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { postsQuery } from '@/sanity/lib/queries'
+import { recentPostsQuery } from '@/sanity/lib/queries'
 import { Post } from './BlogLayoutOne'
+import Button from '../shared/Button'
 
 const RecentBlogs = async () => {
-  const posts = await sanityFetch<any>({ query: postsQuery })
-  const recentBlogs = posts.slice(0, 6)
+  const recentBlogs = await sanityFetch<any>({
+    query: recentPostsQuery,
+    tags: ['posts']
+  })
   return (
     <section className='mx-auto w-full max-w-7xl px-5 pt-24 sm:px-10'>
-      <div className='flex w-full items-center justify-between'>
-        <h2 className='mb-8 text-4xl font-semibold  text-dark dark:text-light md:mb-12 lg:text-5xl'>
-          Recent Blogs
-        </h2>
-        <Link
-          href='/catergories/all'
-          className='dark:text-accent-dark rounded-full bg-accent/20 px-4 py-2 capitalize text-accent hover:text-light'
-        >
-          view all
-        </Link>
-      </div>
+      <h2 className='mb-8 text-3xl font-semibold text-dark  dark:text-light xs:text-4xl md:mb-12 lg:text-5xl'>
+        Recent Blogs
+      </h2>
       <div
         className={cx(
           'grid grid-rows-3 gap-16 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2'
@@ -32,6 +26,7 @@ const RecentBlogs = async () => {
           </article>
         ))}
       </div>
+      <Button text="View all blogs" href="/tags/all" className='mt-8 sm:mt-12' />
     </section>
   )
 }

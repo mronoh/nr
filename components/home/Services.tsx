@@ -11,6 +11,7 @@ const Service = (service: any) => {
         fill
         placeholder='blur'
         className='rounded-xl object-cover transition-all duration-300 ease-in-out hover:scale-105'
+        sizes='(max-width: 768px) 280px, (max-width: 1200px) 280px, 280px'
       />
       <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-50' />
       <h3 className='z-10 p-6 text-center text-3xl font-bold text-white'>
