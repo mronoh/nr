@@ -69,7 +69,7 @@ export async function generateMetadata({
       openGraph: {
         title: blog.title,
         description: blog.description,
-        url: siteMetadata.siteUrl + blog.url,
+        url: siteMetadata.siteUrl + blog.slug,
         siteName: siteMetadata.title,
         type: 'article',
         locale: 'en_US',
