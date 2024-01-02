@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import { Montserrat, Poppins } from 'next/font/google'
 import { siteMetadata } from '@/utils/siteMetaData'
 import { Metadata } from 'next'
+import { setThemeBeforeLoad } from '@/utils/setThemeOnLoad'
 
 type MyMetadata = Metadata & {
   url: string
@@ -80,6 +81,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: setThemeBeforeLoad }} />
+      </head>
       <body
         className={cx(
           mont.variable,
