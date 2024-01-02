@@ -40,7 +40,7 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
   }, [lastScrollTop])
 
   const handleToggle = () => {
-    document.documentElement.classList.toggle('overflow-hidden')
+    document.body.classList.toggle('overflow-clip')
     setToggled(prev => {
       return !prev
     })
@@ -105,12 +105,6 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
               {link.name}
             </Link>
           ))}
-          {/* <Link
-            href='/'
-            className='rounded-full border border-dark bg-dark px-4 py-1.5 text-white transition-all duration-200 ease-in-out hover:bg-white hover:text-dark dark:border-light dark:bg-transparent dark:hover:bg-light dark:hover:text-dark'
-          >
-            get in touch
-          </Link> */}
           <Button text='get in touch' href='/contact' />
           <ThemeButton mode={mode} setMode={setMode} />
         </div>
@@ -127,7 +121,7 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
           <ThemeButton mode={mode} setMode={setMode} />
           <Hamburger handleToggle={handleToggle} toggled={toggled} />
           {toggled && (
-            <div className='absolute inset-0 h-screen w-full bg-light/50 dark:bg-black/50' />
+            <div className='absolute inset-0 h-screen w-full bg-light/50 dark:bg-black/50 lg:hidden' />
           )}
           <div
             className={cx(
