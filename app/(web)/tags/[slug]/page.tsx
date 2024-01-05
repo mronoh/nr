@@ -5,6 +5,7 @@ import Tag from '@/components/shared/Tag'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { postsQuery, tagsQuery } from '@/sanity/lib/queries'
 import { cx } from '@/utils'
+import { notFound } from 'next/navigation'
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }: any) {
@@ -20,6 +21,11 @@ export async function generateMetadata({ params }: any) {
 
 const CategoriesPage = async ({ params }: any) => {
   let slug = params.slug
+
+  // Add this condition at the beginning of your component or function
+  if (!/^[a-z0-9-]+$/i.test(slug)) {
+    notFound()
+  }
 
   // Get all blogs.
   const allBlogs = await sanityFetch<any>({

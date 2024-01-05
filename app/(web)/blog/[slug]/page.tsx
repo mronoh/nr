@@ -51,13 +51,6 @@ export async function generateMetadata({
       ]
     }
 
-    const ogImages = imageList.map(img => {
-      return {
-        url: img.includes('http') ? img : siteMetadata.siteUrl + img,
-        alt: blog.title
-      }
-    })
-
     const authors = blog?.author ? [blog.author.name] : siteMetadata.author
 
     return {
@@ -66,23 +59,24 @@ export async function generateMetadata({
       alternates: {
         canonical: `blog/${blog.slug}`
       },
+      publisher: siteMetadata.title,
       openGraph: {
         title: blog.title,
         description: blog.description,
-        url: siteMetadata.siteUrl + blog.slug,
+        url: `/blog/${blog.slug}`,
         siteName: siteMetadata.title,
         type: 'article',
         locale: 'en_US',
         publishedTime: publishedAt,
         modifiedTime: updatedAt,
-        images: ogImages,
+        images: `/og-image/${slug}`,
         authors: authors.length > 0 ? authors : [siteMetadata.author]
       },
       twitter: {
         card: 'summary_large_image',
         title: blog.title,
         description: blog.description,
-        images: ogImages
+        images: `/og-image/${slug}`
       }
     }
   } catch (err) {
