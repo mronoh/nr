@@ -75,6 +75,11 @@ export const tagsQuery = groq`*[_type=="tag"]{
   "slug": slug.current,
   description
 }`
+export const tagQuery = groq`*[_type=="tag" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  description
+}`
 
 // Get blog featured posts and blog home cover post
 export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0] {
