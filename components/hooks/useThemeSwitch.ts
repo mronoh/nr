@@ -16,12 +16,21 @@ const useThemeSwitch = (): [Theme, Dispatch<SetStateAction<Theme>>] => {
   }
 
   const getUserPreference = (): Theme => {
-    const userPreference = window.localStorage.getItem(storageKey)
-    if (userPreference) {
-      return userPreference as Theme
+    if (typeof window !== 'undefined') {
+      const userPreference = window.localStorage.getItem(storageKey)
+
+      if (userPreference) {
+        return userPreference as Theme
+      }
+
+      // Check if window.matchMedia is supported
+      if (window.matchMedia) {
+        return window.matchMedia(prefersDarkQuery).matches ? 'dark' : 'light'
+      }
     }
 
-    return window.matchMedia(prefersDarkQuery).matches ? 'dark' : 'light'
+    // Provide a default value or handle the absence of localStorage data and matchMedia
+    return 'light'
   }
 
   const [mode, setMode] = useState<Theme>(() => getUserPreference())
