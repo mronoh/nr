@@ -17,13 +17,14 @@ import styles from '@/styles'
 import { FiExternalLink } from 'react-icons/fi'
 import { MdAccessTimeFilled } from 'react-icons/md'
 import Tag from '../shared/Tag'
+import ShareOnSocials from '../shared/ShareOnSocials'
 
 export default function Blog({ post }: { post: SanityDocument }) {
   const feauredPosts = [...post?.related, ...post?.recent]
 
   return (
     <main className='relative mx-auto max-w-7xl !overflow-x-clip px-5 pt-8 sm:px-10 sm:pt-16 md:pt-24'>
-      <article className='dark:border-gray-dark border-gray-light mx-auto flex w-full flex-col justify-center gap-4 border-t lg:flex-row'>
+      <article className='dark:border-gray-dark border-gray-light mx-auto flex w-full flex-col justify-center gap-4 lg:flex-row lg:border-t'>
         <div className=' mb-8 w-full pt-5 lg:w-4/6'>
           <div className='prose prose-stone dark:prose-invert prose-base sm:prose-lg w-full max-w-max '>
             <span className='flex gap-6 text-xs xs:text-base'>
@@ -117,37 +118,41 @@ export default function Blog({ post }: { post: SanityDocument }) {
         </div>
         <aside className='dark:text-gray dark:border-gray-dark border-gray-light sticky top-20 flex h-max w-full flex-col flex-wrap gap-8 border-t py-5 sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col lg:gap-4 lg:border-l lg:p-5'>
           <div className='sm-w-1/2 lg:w-full'>
-            <h4 className='my-2 text-xl font-semibold '>Author</h4>
+            <p className='mb-4 text-sm '>Written by</p>
             <div className='flex h-12 w-12 items-center gap-2'>
               <Image
                 className='rounded-full'
                 src={urlForImage(post.author.image).url()}
                 alt={post.author.name}
-                width={50}
-                height={50}
+                width={48}
+                height={48}
               />
               <div className='flex flex-col gap-2 font-semibold'>
-                <p className='whitespace-nowrap'>{post.author.name}</p>
+                <h3 className='whitespace-nowrap dark:text-light'>
+                  {post.author.name}
+                </h3>
                 <span className='dark:text-gray-light flex justify-around'>
-                  <a className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-1 text-sm'>
+                  <a className='dark:hover:text-accent-dark text-xs hover:text-accent'>
                     <BsTwitterX />
                   </a>
-                  <a className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-1 text-sm'>
+                  <a className='dark:hover:text-accent-dark text-xs hover:text-accent'>
                     <FaFacebookF />
                   </a>
-                  <a className='hover:bg-gray-light border-gray-light dark:border-gray-dark rounded-md border p-1 text-base'>
+                  <a className='dark:hover:text-accent-dark text-base hover:text-accent'>
                     <MdOutlineMailOutline />
                   </a>
                 </span>
               </div>
             </div>
-            <p className='my-2 max-w-sm text-base'>
+            <p className='my-2 max-w-sm text-sm'>
               {blockContentToPlainText(post.author.bio)}
             </p>
           </div>
 
           <div className='w-full sm:order-2 lg:order-1'>
-            <h4 className='my-2 text-xl font-semibold'>Tags</h4>
+            <h4 className='mb-4 text-base font-semibold dark:text-light sm:text-xl'>
+              Tags
+            </h4>
             <ul className='flex gap-2'>
               {post.tags.map((tag: any, index: number) => (
                 <Tag
@@ -160,58 +165,17 @@ export default function Blog({ post }: { post: SanityDocument }) {
             </ul>
           </div>
           <div className='sm:order-1'>
-            <h4 className='my-2 text-xl font-semibold'>Share</h4>
-            <div className='flex gap-4 text-xl'>
-              <a
-                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
-                  post.title
-                )}%0A%0A${encodeURIComponent(post.url)}`}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-[#25D366] hover:text-light'
-              >
-                <FaWhatsapp />
-              </a>
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                  post.url
-                )}`}
-                target='_blank'
-                rel='noopener noreferrer'
-                className=' border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-[#4267B2] hover:text-light'
-              >
-                <FaFacebookF />
-              </a>
-              <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                  post.title
-                )}&url=${encodeURIComponent(
-                  `https://ngworocks.vercel.app/blog/${post.slug.current}`
-                )}`}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='dark:hover:bg-gray-light/10 border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-black hover:text-light'
-              >
-                <BsTwitterX />
-              </a>
-              <a
-                href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
-                  `${siteMetadata.siteUrl}/blog/${post.slug}`
-                )}&title=${encodeURIComponent(
-                  post.title
-                )}&summary=${encodeURIComponent(
-                  post.summary
-                )}&source=${encodeURIComponent(siteMetadata.siteUrl)}`}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-[#0077b5] hover:text-light'
-              >
-                <FaLinkedinIn />
-              </a>
-            </div>
+            <h4 className='mb-4 text-base font-semibold dark:text-light sm:text-xl'>
+              Share
+            </h4>
+            <ShareOnSocials
+              shareUrl={`${siteMetadata.siteUrl}/blog/${post.slug}`}
+              title={post.title}
+              description={post.description}
+            />
           </div>
           <div className='w-full sm:order-3 lg:order-1'>
-            <h4 className='my-2 text-xl font-semibold'>
+            <h4 className='my-2 text-base font-semibold dark:text-light sm:text-xl'>
               {post?.related.length > 0 ? 'Related Posts' : 'Recent Posts'}
             </h4>
             <div className={cx('grid gap-2 sm:grid-cols-2 lg:grid-cols-1')}>

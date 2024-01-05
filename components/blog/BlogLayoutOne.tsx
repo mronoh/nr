@@ -23,6 +23,7 @@ export interface Blog {
 export type Tag = {
   title: string
   slug: string
+  description: string
 }
 export interface Post extends SanityDocument {
   title: string
