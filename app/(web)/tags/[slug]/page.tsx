@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: any) {
     openGraph: {
       title: tag.title,
       description: tag.description,
-      url: `/tag/${tag.slug}`,
+      url: `/tags/${tag.slug}`,
       siteName: siteMetadata.title,
       locale: 'en_US',
       images: ogUrl.toString()
