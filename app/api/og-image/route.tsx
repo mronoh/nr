@@ -42,7 +42,11 @@ export async function GET(request: Request) {
       ? searchParams.get('contentType')
       : undefined
     const hasTitle = searchParams.has('title')
-    const title = hasTitle ? searchParams.get('title') : siteMetadata.title
+    const title = hasTitle
+      ? contentType === 'tag'
+        ? `${searchParams.get('title')} blogs`
+        : searchParams.get('title')
+      : siteMetadata.title
     const hasTag = searchParams.has('tag')
     const tag = hasTag ? searchParams.get('tag') : siteMetadata.title
     const hasDescription = searchParams.has('description')
@@ -64,13 +68,11 @@ export async function GET(request: Request) {
       // not a blog post
       return new ImageResponse(
         (
-          <div
-            className='border-l-4 border-yellow-500 bg-yellow-100 p-4 text-yellow-700'
-            role='alert'
-          >
-            <p className='font-bold'>Notice</p>
-            <p>Sorry, the page you're looking for does not exist.</p>
-          </div>
+          <TagOgImage
+            bgImage={bgImage}
+            title={siteMetadata.title}
+            description={siteMetadata.description}
+          />
         )
       )
     }

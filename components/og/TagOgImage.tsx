@@ -12,7 +12,7 @@ const TagOgImage = ({ bgImage, title, description }: TagOgImageProps) => {
       {/* Content */}
       <div tw='flex flex-col text-white w-[80%] mx-auto'>
         {/* Title */}
-        <div tw='text-7xl font-bold  text-center'>{title + ' ' + 'blogs'}</div>
+        <div tw='text-7xl font-bold  text-center'>{title}</div>
         {/* Tags */}
         <div tw='flex mt-6 items-center text-4xl text-white'>
           <div tw='font-semibold text-[#91E3A9]'>{description}</div>
