@@ -137,3 +137,23 @@ export const serviceQuery = groq`*[_type=="service" && slug.current == $slug][0]
 export const servicePathsQuery = groq`*[_type == "service" && defined(slug.current)][]{
   "params": { "slug": slug.current }
 }`
+
+// Get about page data
+export const aboutPageQuery = groq`*[_type == "about"][0]{
+  vision,
+  overview,
+  history,
+}`
+
+// Get Team data
+
+export const teamQuery = groq`*[_type == "team"]{
+  name,
+  image {
+        "image": asset->url,
+        "lqip": asset->metadata.lqip,
+        "dimensions": asset->metadata.dimensions,
+        alt,
+      },
+  socialLinks
+}`
