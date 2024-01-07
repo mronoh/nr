@@ -1,4 +1,5 @@
 import BlogOgImage from '@/components/og/BlogOgImage'
+import ServiceOgImage from '@/components/og/ServiceOgImage'
 import TagOgImage from '@/components/og/TagOgImage'
 import { client } from '@/sanity/lib/client'
 import { postPathsQuery, postQuery } from '@/sanity/lib/queries'
@@ -93,8 +94,14 @@ export async function GET(request: Request) {
           title={title!}
           description={description!}
         />
+      ) : contentType === 'service' ? (
+        <ServiceOgImage
+          title={title!}
+          image={image}
+          description={description!}
+        />
       ) : (
-        <div>Hi</div>
+        <div className='text-red-500'>Error</div>
       ),
       // ImageResponse options
       {
