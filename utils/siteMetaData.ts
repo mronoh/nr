@@ -7,7 +7,7 @@ export const siteMetadata = {
   author: 'NgwoRocks',
   headerTitle: 'Ngworocks',
   description:
-    'Ngworocks is a platform that promotes Tourism, unharnessed tourism potentials, culture & values.',
+    'Your platform for promoting untapped tourism potential, culture, and values.',
   language: 'en-us',
   theme: 'system',
   siteUrl: siteUrl,
