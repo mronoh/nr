@@ -43,11 +43,7 @@ export async function GET(request: Request) {
       ? searchParams.get('contentType')
       : undefined
     const hasTitle = searchParams.has('title')
-    const title = hasTitle
-      ? contentType === 'tag'
-        ? `${searchParams.get('title')} blogs`
-        : searchParams.get('title')
-      : siteMetadata.title
+    const title = hasTitle ? searchParams.get('title') : siteMetadata.title
     const hasTag = searchParams.has('tag')
     const tag = hasTag ? searchParams.get('tag') : siteMetadata.title
     const hasDescription = searchParams.has('description')
