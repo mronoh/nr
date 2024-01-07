@@ -110,3 +110,30 @@ export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0]
     }
   }
    }`
+
+export const serviceQuery = groq`*[_type=="service" && slug.current == $slug][0]{
+  body,
+  title,
+  "slug": slug.current,
+  description,
+  mainImage {
+    "image": asset->url,
+    "lqip": asset->metadata.lqip,
+    "dimensions": asset->metadata.dimensions,
+    alt,
+  },
+  gallery {
+    ...,
+    images []{
+      "image": asset->url,
+    "lqip": asset->metadata.lqip,
+    "dimensions": asset->metadata.dimensions,
+    alt,
+      }
+  }
+}`
+
+// Get all service slugs
+export const servicePathsQuery = groq`*[_type == "service" && defined(slug.current)][]{
+  "params": { "slug": slug.current }
+}`
