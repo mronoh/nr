@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: any) {
   const ogUrl = new URL(`${siteMetadata.siteUrl}/api/og-image`)
   // contentType is required
   ogUrl.searchParams.set('contentType', 'tag')
-  ogUrl.searchParams.set('title', tag.title)
+  ogUrl.searchParams.set('title', `${tag.title} blogs`)
   ogUrl.searchParams.set('description', tag?.description)
 
   return {
