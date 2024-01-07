@@ -9,6 +9,8 @@ import featuredPost from './schemas/featuredPost'
 import homeCoverPost from './schemas/homeCoverPost'
 import gallery from './schemas/gallery'
 import service from './schemas/service'
+import about from './schemas/about'
+import team from './schemas/team'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -20,6 +22,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     featuredPost,
     homeCoverPost,
     gallery,
-    service
+    service,
+    team,
+    about
   ]
 }
