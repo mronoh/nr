@@ -1,11 +1,11 @@
 import { defineField, defineType } from 'sanity'
-import { PublishIcon } from '@sanity/icons'
+import { FaHandshake } from 'react-icons/fa'
 
 export default defineType({
   name: 'service',
   title: 'Service',
   type: 'document',
-  icon: PublishIcon,
+  icon: FaHandshake,
   fields: [
     defineField({
       name: 'title',

@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { MdLabel } from 'react-icons/md'
 
 export default defineType({
   name: 'tag',
   title: 'Tag',
   type: 'document',
+  icon: MdLabel,
   fields: [
     defineField({
       name: 'title',
