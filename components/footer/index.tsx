@@ -1,6 +1,3 @@
-import React from 'react'
-import { FacebookIcon, InstagramIcon, MailIcon } from '../icons'
-
 import { FaFacebookF } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'
 import { MdOutlineMailOutline } from 'react-icons/md'

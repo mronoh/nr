@@ -80,7 +80,7 @@ export const navLinks1 = [
   },
   {
     name: 'About',
-    url: '/#about'
+    url: '/about'
   },
   {
     name: 'Services',
@@ -102,7 +102,7 @@ export const navLinks2 = [
 export const mobileNavLinks = [
   {
     name: 'About',
-    url: '/#about'
+    url: '/about'
   },
   {
     name: 'Services',
@@ -113,36 +113,41 @@ export const mobileNavLinks = [
     url: '/contact'
   }
 ]
-
-export const services = [
+export type ServiceType = {
+  title: string
+  img: any
+  slug: string
+  alt: string
+}
+export const services: ServiceType[] = [
   {
     title: 'Hiking',
     img: hiking,
-    link: '/services#hiking',
+    slug: 'hiking',
     alt: 'Man hiking'
   },
   {
     title: 'Event Streaming',
     img: streaming,
     alt: 'Man smiling when videographing an event',
-    link: '/services#event-streaming'
+    slug: 'event-streaming'
   },
   {
     title: 'Bonfire',
     img: bonfire,
     alt: 'Bonfire at night',
-    link: '/services#bonfire'
+    slug: 'bonfire'
   },
   {
     title: 'Unity Walk Carnival',
     img: carnival,
     alt: 'Ladies in green costumes at carnival',
-    link: '/services#unity-walk-carnival'
+    slug: 'unity-walk-carnival'
   },
   {
     title: 'Tours',
     img: tours,
     alt: 'Lady sitting in car trunk reading a map',
-    link: '/services#tours'
+    slug: 'tours'
   }
 ]

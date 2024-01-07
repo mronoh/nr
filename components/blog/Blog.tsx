@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import { SanityDocument } from '@sanity/client'
-import { PortableText } from '@portabletext/react'
 import { urlForImage } from '@/sanity/lib/image'
-import { Image as ImageType } from 'sanity'
 import { ImageBox } from '../shared/ImageBox'
 import { cx, formatDate } from '@/utils'
 import { BsFillCalendar2DateFill, BsTwitterX } from 'react-icons/bs'
@@ -14,10 +12,10 @@ import { FaWhatsapp } from 'react-icons/fa'
 import { siteMetadata } from '@/utils/siteMetaData'
 import Link from 'next/link'
 import styles from '@/styles'
-import { FiExternalLink } from 'react-icons/fi'
 import { MdAccessTimeFilled } from 'react-icons/md'
 import Tag from '../shared/Tag'
 import ShareOnSocials from '../shared/ShareOnSocials'
+import CustomPortableText from '../shared/CustomPortableText'
 
 export default function Blog({ post }: { post: SanityDocument }) {
   const feauredPosts = [...post?.related, ...post?.recent]
@@ -61,44 +59,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
             )}
             {post?.body && (
               <div className='first-letter:text-3xl sm:first-letter:text-5xl'>
-                <PortableText
-                  value={post.body}
-                  components={{
-                    marks: {
-                      link: ({ children, value }) => {
-                        return (
-                          <a
-                            href={value?.href}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className=' text-blue-500 hover:underline'
-                          >
-                            {children}
-                            <FiExternalLink className='ml-1 inline-block text-sm' />
-                          </a>
-                        )
-                      }
-                    },
-                    types: {
-                      image: ({
-                        value
-                      }: {
-                        value: ImageType & { alt?: string; caption?: string }
-                      }) => {
-                        return (
-                          <div className='mx-auto my-8 w-[80%] space-y-2'>
-                            <ImageBox image={value} />
-                            {value?.alt && (
-                              <p className='text-center font-sans text-sm text-gray-600'>
-                                {value.alt}
-                              </p>
-                            )}
-                          </div>
-                        )
-                      }
-                    }
-                  }}
-                />
+                <CustomPortableText body={post.body} />
               </div>
             )}
           </div>

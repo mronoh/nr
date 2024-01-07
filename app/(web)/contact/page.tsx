@@ -1,7 +1,5 @@
 import ContactForm from '@/components/contact/ContactForm'
 import { ContactImageStroke } from '@/components/icons'
-import contactImage from '@/public/images/contactImage.webp'
-import Image from 'next/image'
 
 const ContactPage = () => {
   return (
