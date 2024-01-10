@@ -10,12 +10,13 @@ import { BsFillCalendar2DateFill } from 'react-icons/bs'
 const BlogLayoutTwo = ({ post }: { post: Post }) => {
   return (
     <div className=''>
-      <div className='dark:to-bgdark to-bgdark/90 absolute left-0 top-0 z-10 h-full w-full rounded-xl bg-gradient-to-b from-transparent' />
+      <div className='absolute left-0 top-0 z-10 h-full w-full rounded-xl bg-gradient-to-b from-transparent to-bgdark/90 dark:to-bgdark' />
       {post?.mainImage && (
         <div className='relative min-h-[320px] w-full overflow-hidden rounded-xl pt-[56.25%] lg:static lg:h-auto'>
           <Image
             src={urlForImage(post.mainImage.image).url()}
-            alt={post.mainImage.alt ?? post?.title}
+            alt={post.mainImage.alt ?? `${post?.title} cover image`}
+            title={post.mainImage.alt ?? `${post?.title} cover image`}
             placeholder='blur'
             blurDataURL={post.mainImage.lqip}
             fill
@@ -32,12 +33,16 @@ const BlogLayoutTwo = ({ post }: { post: Post }) => {
             className='text-sm'
           />
         )}
-        <Link href={`/blog/${post?.slug}`} className='mt-6'>
+        <Link
+          href={`/blog/${post?.slug}`}
+          title={`${post.title} blog link`}
+          className='mt-6'
+        >
           <h2 className='mt-4 text-xl font-semibold capitalize text-light xs:text-2xl md:text-3xl lg:text-2xl'>
             <span className={cx(styles.underline)}>{post?.title}</span>
           </h2>
           {post?.publishedAt && (
-            <p className='text-gray-light mt-2 flex items-center gap-2 text-sm'>
+            <p className='mt-2 flex items-center gap-2 text-sm text-gray-light'>
               <BsFillCalendar2DateFill />
               {formatDate(post.publishedAt)}
             </p>

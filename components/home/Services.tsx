@@ -6,11 +6,13 @@ const Service = (service: any) => {
   return (
     <Link
       href={`/services/${service.slug}`}
+      title={`Link to ${service.title}`}
       className='relative flex aspect-square w-1/2 max-w-[280px] flex-auto cursor-pointer items-center justify-center overflow-clip rounded-xl md:w-1/3'
     >
       <Image
         src={service.img}
-        alt={service.alt}
+        alt={service.alt ?? `${service?.title} cover image`}
+        title={service.alt ?? `${service?.title} cover image`}
         fill
         placeholder='blur'
         className='rounded-xl object-cover transition-all duration-300 ease-in-out hover:scale-105'

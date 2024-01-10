@@ -24,10 +24,11 @@ export const ImageBox = ({ image }: any): ReactElement => {
         <Image
           src={urlForImage(image).url()}
           alt={alt}
+          title={alt}
           width={dimensions.width}
           height={dimensions.height}
           placeholder='blur'
-          blurDataURL={urlForImage(image).width(24).height(24).blur(10).url()}
+          blurDataURL={urlForImage(image).width(8).height(8).blur(10).url()}
           sizes='
             (max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,

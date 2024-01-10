@@ -3,7 +3,7 @@ import homeBgImg from '@/public/images/homeBgImg.png'
 
 const HomePageCover = () => {
   return (
-    <section className='dark:bg-bgdark bg-light px-5 sm:px-10'>
+    <section className='bg-light px-5 dark:bg-bgdark sm:px-10'>
       <div className='homecover__container relative mx-auto flex h-[60vh] min-h-[500px] w-full max-w-7xl flex-col items-center justify-start sm:min-h-[500px] md:max-h-[800px] md:min-h-[700px] lg:h-[90vh]'>
         <h1 className='home__header relative mx-auto mt-36 text-center text-4xl font-bold text-dark dark:text-light md:max-w-2xl md:text-5xl md:leading-[4rem] lg:mt-48 lg:max-w-3xl lg:text-6xl'>
           Embark on a Journey of Culture, Heritage, and Adventure with Ngworocks
@@ -12,7 +12,8 @@ const HomePageCover = () => {
               src='/images/birds.svg'
               width={100}
               height={100}
-              alt='Birds flying silloutte'
+              alt='Silloutte illustration of birds flying'
+              title='Silloutte illustration of birds flying'
               className='filter dark:invert'
             />
           </div>
@@ -23,6 +24,7 @@ const HomePageCover = () => {
             placeholder='blur'
             priority
             alt='Home background image'
+            title='Home background image'
             className='h-full w-full object-contain'
           />
         </div>
@@ -31,7 +33,8 @@ const HomePageCover = () => {
             src='/images/leaves.svg'
             width={300}
             height={300}
-            alt='shape'
+            alt='Silloutte illustration of leaves'
+            title='Silloutte illustration of leaves'
             className='hidden filter dark:invert md:block'
           />
         </div>

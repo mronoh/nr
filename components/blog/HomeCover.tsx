@@ -16,13 +16,15 @@ const HomeCover = async ({ post }: { post: Post }) => {
             'relative mx-5 flex h-[60vh] max-h-[630px] flex-col items-start justify-end sm:mx-10 lg:h-[80vh]'
           )}
         >
-          <div className='to-bgdark absolute left-0 top-0 z-10 h-full w-full rounded-3xl bg-gradient-to-b from-transparent ' />
+          <div className='absolute left-0 top-0 z-10 h-full w-full rounded-3xl bg-gradient-to-b from-transparent to-bgdark ' />
           <Image
             src={urlForImage(post.post.mainImage.image).url()}
-            alt={post.post.title}
+            alt={post.post.mainImage.alt ?? `${post?.title} cover image`}
+            title={post.post.mainImage.alt ?? `${post?.title} cover image`}
             placeholder='blur'
             blurDataURL={post.post.mainImage.lqip}
             fill
+            sizes='(max-width: 1200px) 100vw, 1200px'
             className='z-0 h-full w-full rounded-3xl object-cover object-center'
           />
           <div
@@ -35,7 +37,11 @@ const HomeCover = async ({ post }: { post: Post }) => {
               link={`tags/${post.post.tags[0].slug}`}
               title={post.post.tags[0].title}
             />
-            <Link href={`/blog/${post.post.slug}`} className='mt-4 md:mt-6'>
+            <Link
+              href={`/blog/${post.post.slug}`}
+              title={`${post.post.title} blog link`}
+              className='mt-4 md:mt-6'
+            >
               <h1 className='text-xl font-bold capitalize xs:text-2xl md:text-3xl lg:text-4xl'>
                 <span className={cx(styles.underline)}>
                   {post.post.title ?? 'Title'}

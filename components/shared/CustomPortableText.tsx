@@ -5,7 +5,6 @@ import { ImageBox } from './ImageBox'
 import { Image as ImageType } from 'sanity'
 
 const CustomPortableText = ({ body }: { body: any }) => {
-  console.log(body)
   return (
     <PortableText
       value={body}
@@ -35,7 +34,7 @@ const CustomPortableText = ({ body }: { body: any }) => {
               <div className='mx-auto my-8 w-[80%] space-y-2'>
                 <ImageBox image={value} />
                 {value?.alt && (
-                  <p className='text-center font-sans text-sm text-gray-600'>
+                  <p className='text-gray-600 text-center font-sans text-sm'>
                     {value.alt}
                   </p>
                 )}
