@@ -1,3 +1,4 @@
+import Gallery from '@/components/services/Gallery'
 import CustomPortableText from '@/components/shared/CustomPortableText'
 import { client } from '@/sanity/lib/client'
 import { sanityFetch } from '@/sanity/lib/fetch'
@@ -97,8 +98,8 @@ const ServicePage = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <main className='relative mx-auto max-w-7xl !overflow-x-clip px-5 pt-8 sm:px-10 sm:pt-16 md:pt-24'>
-      <div className=' mb-8 w-full pt-5'>
-        <div className='prose prose-stone dark:prose-invert prose-base sm:prose-xl mx-auto w-full'>
+      <section className=' mb-8 w-full pt-5'>
+        <div className='prose prose-base prose-stone mx-auto w-full dark:prose-invert sm:prose-xl'>
           <h1 className='lg:text-5x mx-auto mb-6 max-w-4xl text-2xl font-semibold capitalize text-dark dark:text-light md:text-4xl'>
             {service?.title ? service.title : 'Untitled'}
           </h1>
@@ -110,7 +111,8 @@ const ServicePage = async ({ params }: { params: { slug: string } }) => {
                 src={urlForImage(service.mainImage.image).url()}
                 placeholder='blur'
                 fill
-                alt={`${service?.title} Cover Image`}
+                alt={service.mainImage.alt ?? `${service?.title} Cover Image`}
+                title={service.mainImage.alt ?? `${service?.title} Cover Image`}
                 blurDataURL={service.mainImage.lqip}
                 sizes='(max-width: 1024px) 100vw, 450px'
               />
@@ -122,7 +124,8 @@ const ServicePage = async ({ params }: { params: { slug: string } }) => {
             </div>
           )}
         </div>
-      </div>
+      </section>
+      <Gallery gallery={service.gallery} title={service?.title ?? ''} />
     </main>
   )
 }
