@@ -20,7 +20,7 @@ const WantATour = () => {
           </h2>
           <p className='mb-8 w-[80vw] max-w-xs text-center text-base md:max-w-lg md:text-xl'>
             Reach out for tours, hikes, streaming events, or any questions.
-            Let's plan your next great experience together!
+            Let&apos;s plan your next great experience together!
           </p>
           <Link
             href='/contact'
