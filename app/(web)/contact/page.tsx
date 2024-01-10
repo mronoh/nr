@@ -38,8 +38,8 @@ const ContactPage = () => {
     <main className='mx-auto w-full max-w-7xl px-5 pt-16 sm:px-10 md:pt-24'>
       <div className='border-b-2 border-dark dark:border-light'>
         <h1 className='lg:text-5x mx-auto mb-6 max-w-4xl text-2xl font-semibold capitalize text-dark dark:text-light md:text-4xl'>
-          We'd love to hear your questions about our services, feel free to get
-          in touch.
+          We&apos;d love to hear your questions about our services, feel free to
+          get in touch.
         </h1>
       </div>
 
