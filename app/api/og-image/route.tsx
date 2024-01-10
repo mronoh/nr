@@ -2,7 +2,7 @@ import BlogOgImage from '@/components/og/BlogOgImage'
 import ServiceOgImage from '@/components/og/ServiceOgImage'
 import TagOgImage from '@/components/og/TagOgImage'
 import { client } from '@/sanity/lib/client'
-import { postPathsQuery, postQuery } from '@/sanity/lib/queries'
+import { postPathsQuery } from '@/sanity/lib/queries'
 import { siteMetadata } from '@/utils/siteMetaData'
 import { ImageResponse } from 'next/og'
 
