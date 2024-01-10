@@ -1,5 +1,5 @@
+import OurTeam from '@/components/about/OurTeam'
 import CustomPortableText from '@/components/shared/CustomPortableText'
-import Team from '@/components/shared/Team'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { aboutPageQuery, teamQuery } from '@/sanity/lib/queries'
 import { siteMetadata } from '@/utils/siteMetaData'
@@ -38,18 +38,13 @@ const AboutPage = async () => {
     tags: ['about']
   })
 
-  const theTeam = await sanityFetch<any>({
-    query: teamQuery,
-    tags: ['team']
-  })
-
   return (
     <main className='mx-auto w-full max-w-7xl px-5 pt-16 sm:px-10 md:pt-24'>
       <h1 className='mx-auto mb-6 max-w-4xl text-center text-2xl font-semibold capitalize text-dark dark:text-light md:text-4xl lg:text-5xl'>
         About us
       </h1>
       <div className='w-full  border-b-2 border-dark pb-16 dark:border-light'>
-        <article className='prose prose-stone dark:prose-invert prose-base sm:prose-lg mx-auto flex w-full flex-col'>
+        <article className='prose prose-base prose-stone mx-auto flex w-full flex-col dark:prose-invert sm:prose-lg'>
           {about?.overview && (
             <section className=''>
               <h2>Overview</h2>
@@ -69,9 +64,8 @@ const AboutPage = async () => {
             </section>
           )} */}
         </article>
-
-        {theTeam && theTeam.map((team: any) => <Team />)}
       </div>
+      <OurTeam />
     </main>
   )
 }
