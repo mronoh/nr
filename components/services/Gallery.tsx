@@ -21,8 +21,8 @@ const Gallery = ({
         </h2>
         <div className={cx('grid gap-1 sm:grid-cols-2 lg:grid-cols-3')}>
           {gallery.images &&
-            gallery.images.map((image: any) => (
-              <GalleryImage title={title} image={image} />
+            gallery.images.map((image: any, index: number) => (
+              <GalleryImage title={title} key={index} image={image} />
             ))}
         </div>
       </section>
