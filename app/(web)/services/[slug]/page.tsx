@@ -125,7 +125,9 @@ const ServicePage = async ({ params }: { params: { slug: string } }) => {
           )}
         </div>
       </section>
-      <Gallery gallery={service.gallery} title={service?.title ?? ''} />
+      {service.gallery && (
+        <Gallery gallery={service.gallery} title={service?.title ?? ''} />
+      )}
     </main>
   )
 }
