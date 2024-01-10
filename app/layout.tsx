@@ -18,6 +18,11 @@ export const metadata: MyMetadata = {
   description: siteMetadata.description,
   authors: { name: siteMetadata.author },
   url: siteMetadata.siteUrl,
+  keywords: siteMetadata.keywords,
+  publisher: siteMetadata.author,
+  alternates: {
+    canonical: siteMetadata.siteUrl
+  },
 
   openGraph: {
     title: siteMetadata.title,
@@ -89,7 +94,7 @@ export default function RootLayout({
         className={cx(
           mont.variable,
           poppins.variable,
-          'bg-bglight dark:bg-bgdark font-poppins relative min-h-screen'
+          'relative min-h-screen bg-bglight font-poppins dark:bg-bgdark'
         )}
       >
         {children}
