@@ -14,7 +14,7 @@ const Gallery = ({
   title: string
 }) => {
   return (
-    gallery.images.length > 0 && (
+    gallery.images?.length > 0 && (
       <section className='w-full py-24'>
         <h2 className='mb-8 text-center text-3xl font-semibold text-dark  dark:text-light xs:text-4xl md:mb-12 lg:text-5xl'>
           Gallery
