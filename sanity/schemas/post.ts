@@ -72,6 +72,19 @@ export default defineType({
       type: 'datetime'
     }),
     defineField({
+      name: 'keywords',
+      title: 'Keywords',
+      type: 'text',
+      rows: 3,
+      description:
+        "Boost your post's visibility on Google! Enter comma separated keywords that best represent your content. EG: Culture, Odo, Igbo",
+      validation: Rule =>
+        Rule.required()
+          .min(10)
+          .max(140)
+          .warning('Should be under 140 characters')
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent'
