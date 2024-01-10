@@ -13,7 +13,7 @@
   transition: background-image 1s ease-in-out;
 }
 
-#serviceshomepage {
+.serviceshomepage {
   background-image: url('../public/images/servicesbg.webp');
   background-size: cover;
   background-position: center;

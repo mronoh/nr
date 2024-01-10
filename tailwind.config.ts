@@ -21,7 +21,7 @@ const config: Config = {
         grayLight: '#BDBDBD',
         bglight: '#f7f7f7',
         bgdark: 'rgb(24 24 27)',
-        warning: '#FF0000',
+        warning: 'rgb(239 68 68)',
         gray: 'rgb(161 161 170)',
         'gray-dark': 'rgb(63 63 70)',
         'gray-light': 'rgb(228 228 231)'

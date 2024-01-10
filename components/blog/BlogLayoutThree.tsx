@@ -12,11 +12,13 @@ const BlogLayoutThree = ({ post }: { post: Post }) => {
       <Link
         className='col-span-4 h-full overflow-hidden rounded-xl'
         href={`/blog/${post?.slug}`}
+        title={`${post.title} blog link`}
       >
         {post?.mainImage && (
           <Image
             src={urlForImage(post.mainImage.image).url()}
-            alt={post.mainImage.alt ?? post?.title}
+            alt={post.mainImage.alt ?? `${post?.title} cover image`}
+            title={post.mainImage.alt ?? `${post?.title} cover image`}
             placeholder='blur'
             blurDataURL={post.mainImage.lqip}
             width={post.mainImage.dimensions?.width ?? 1200}
@@ -27,11 +29,15 @@ const BlogLayoutThree = ({ post }: { post: Post }) => {
       </Link>
       <div className='mt-4 flex w-full flex-col'>
         {post?.tags && (
-          <span className='dark:text-accent-dark text-sm font-semibold uppercase text-accent'>
+          <span className='text-sm font-semibold uppercase text-accent dark:text-accent-dark'>
             {post?.tags[0].title}
           </span>
         )}
-        <Link href={`/blog/${post?.slug}`} className='mt-1'>
+        <Link
+          href={`/blog/${post?.slug}`}
+          className='mt-1'
+          title={`${post.title} blog link`}
+        >
           <h2 className='text-lg font-semibold capitalize text-dark dark:text-light'>
             <span
               className={cx(styles.underline, 'from-accent/50 to-accent/50')}
@@ -40,7 +46,7 @@ const BlogLayoutThree = ({ post }: { post: Post }) => {
             </span>
           </h2>
         </Link>
-        <p className='text-gray-dark dark:text-gray-light mt-2 flex items-center gap-2 text-sm'>
+        <p className='mt-2 flex items-center gap-2 text-sm text-gray-dark dark:text-gray-light'>
           <BsFillCalendar2DateFill />
           {formatDate(post?.publishedAt)}
         </p>

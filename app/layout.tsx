@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import { Montserrat, Poppins } from 'next/font/google'
 import { siteMetadata } from '@/utils/siteMetaData'
 import { Metadata } from 'next'
+import { setThemeBeforeLoad } from '@/utils/setThemeOnLoad'
 
 type MyMetadata = Metadata & {
   url: string
@@ -17,6 +18,11 @@ export const metadata: MyMetadata = {
   description: siteMetadata.description,
   authors: { name: siteMetadata.author },
   url: siteMetadata.siteUrl,
+  keywords: siteMetadata.keywords,
+  publisher: siteMetadata.author,
+  alternates: {
+    canonical: siteMetadata.siteUrl
+  },
 
   openGraph: {
     title: siteMetadata.title,
@@ -56,6 +62,7 @@ export const metadata: MyMetadata = {
   twitter: {
     card: 'summary_large_image',
     title: siteMetadata.title,
+    description: siteMetadata.description,
     images: [siteMetadata.socialBanner]
   }
 }
@@ -80,11 +87,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: setThemeBeforeLoad }} />
+      </head>
       <body
         className={cx(
           mont.variable,
           poppins.variable,
-          'bg-bglight dark:bg-bgdark font-poppins relative min-h-screen'
+          'relative min-h-screen bg-bglight font-poppins dark:bg-bgdark'
         )}
       >
         {children}
