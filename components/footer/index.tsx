@@ -1,4 +1,4 @@
-import { FaFacebookF } from 'react-icons/fa'
+import { FaFacebookF, FaTiktok } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'
 import { MdOutlineMailOutline } from 'react-icons/md'
 import Link from 'next/link'
@@ -8,6 +8,7 @@ import getOnAppStore from '@/public/icons/app-store-badge.svg'
 import getOnPlayStore from '@/public/icons/google-play-badge.svg'
 import { footerPages } from '@/constants'
 import { siteMetadata } from '@/utils/siteMetaData'
+import { BsTwitterX } from 'react-icons/bs'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -56,6 +57,28 @@ const Footer = () => {
                   className='flex items-center'
                 >
                   <FaInstagram className='mr-2' />
+                  @ngworocks
+                </a>
+                <a
+                  aria-label='NgwoRocks Tiktok profile link'
+                  title='NgwoRocks Tiktok profile link'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  href={`mailto:${siteMetadata.social.tiktok}`}
+                  className='flex items-center'
+                >
+                  <FaTiktok className='mr-2 text-base' />
+                  @ngworocks
+                </a>
+                <a
+                  aria-label='NgwoRocks Twitter profile link'
+                  title='NgwoRocks Twitter profile link'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  href={`mailto:${siteMetadata.social.twitter}`}
+                  className='flex items-center'
+                >
+                  <BsTwitterX className='mr-2 text-base' />
                   @ngworocks
                 </a>
                 <a
