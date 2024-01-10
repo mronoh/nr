@@ -16,7 +16,10 @@ const OurTeam = async () => {
           Our Team
         </h2>
         <div className={cx('grid gap-16 py-8 sm:grid-cols-2 lg:grid-cols-3')}>
-          {theTeam && theTeam.map((team: any) => <Team team={team} />)}
+          {theTeam &&
+            theTeam.map((team: any, index: number) => (
+              <Team team={team} key={index} />
+            ))}
         </div>
       </section>
     )
