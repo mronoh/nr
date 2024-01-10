@@ -48,7 +48,37 @@ export default defineType({
           lists: []
         }
       ]
-    })
+    }),
+    {
+      name: 'socialLinks',
+      title: 'Social Links',
+      type: 'object',
+      fields: [
+        {
+          name: 'linkedin',
+          title: 'LinkedIn',
+          type: 'url',
+          initialValue: 'https://www.linkedin.com/in/'
+        },
+        {
+          name: 'twitter',
+          title: 'Twitter',
+          type: 'url',
+          initialValue: 'https://twitter.com/'
+        },
+        {
+          name: 'facebook',
+          title: 'Facebook',
+          type: 'url',
+          initialValue: 'https://facebook.com/'
+        }
+      ],
+      options: {
+        collapsed: false,
+        collapsible: true,
+        columns: 2
+      }
+    }
   ],
   preview: {
     select: {
