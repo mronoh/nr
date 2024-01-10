@@ -1,4 +1,4 @@
-const remoteUrl = `https://ngworocks.com`
+const remoteUrl = `https://nr-kappa.vercel.app`
 const localUrl = `http://localhost:3000`
 const isDevelopment = process.env.NODE_ENV === 'development'
 const siteUrl = isDevelopment ? localUrl : remoteUrl
@@ -29,7 +29,7 @@ export const siteMetadata = {
   siteUrl: siteUrl,
   keywords: seoKeywords,
   siteLogo: '/favicon/icon-192x192.png',
-  socialBanner: '/images/socialCover.webp', // add social banner in the public folder
+  socialBanner: '/images/socialCover.webp',
   email: 'chibyk5000@gmail.com',
   social: {
     instagram: 'https://instagram.com/ngworocks',
