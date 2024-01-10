@@ -75,6 +75,11 @@ export const tagsQuery = groq`*[_type=="tag"]{
   "slug": slug.current,
   description
 }`
+export const tagQuery = groq`*[_type=="tag" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  description
+}`
 
 // Get blog featured posts and blog home cover post
 export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0] {
@@ -105,3 +110,50 @@ export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0]
     }
   }
    }`
+
+export const serviceQuery = groq`*[_type=="service" && slug.current == $slug][0]{
+  body,
+  title,
+  "slug": slug.current,
+  description,
+  mainImage {
+    "image": asset->url,
+    "lqip": asset->metadata.lqip,
+    "dimensions": asset->metadata.dimensions,
+    alt,
+  },
+  gallery {
+    ...,
+    images []{
+      "image": asset->url,
+    "lqip": asset->metadata.lqip,
+    "dimensions": asset->metadata.dimensions,
+    alt,
+      }
+  }
+}`
+
+// Get all service slugs
+export const servicePathsQuery = groq`*[_type == "service" && defined(slug.current)][]{
+  "params": { "slug": slug.current }
+}`
+
+// Get about page data
+export const aboutPageQuery = groq`*[_type == "about"][0]{
+  vision,
+  overview,
+  history,
+}`
+
+// Get Team data
+
+export const teamQuery = groq`*[_type == "team"]{
+  name,
+  image {
+        "image": asset->url,
+        "lqip": asset->metadata.lqip,
+        "dimensions": asset->metadata.dimensions,
+        alt,
+      },
+  socialLinks
+}`

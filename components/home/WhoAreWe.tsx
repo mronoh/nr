@@ -9,18 +9,19 @@ const WhoAreWe = () => {
           <h2 className='mb-8 text-4xl font-semibold  text-dark dark:text-light md:mb-12 lg:text-5xl'>
             Who we are?
           </h2>
-          <p className='text-gray-dark dark:text-gray-light text-base leading-relaxed lg:text-xl'>
-            <span className='dark:text-accent-dark text-accent'>Ngworocks</span>
+          <p className='text-base leading-relaxed text-gray-dark dark:text-gray-light lg:text-xl'>
+            <span className='text-accent dark:text-accent-dark'>Ngworocks</span>
             , a dynamic endeavor driven by young creative minds, celebrating
             culture and tourism through vibrant events, guided exploration, and
             community engagement. Embracing heritage, we aspire to make Ngwo a
             vibrant tourism hub while inspiring startups across regions.
           </p>
         </div>
-        <div className='flex w-full flex-col items-center md:w-1/2 px-10 lg:px-0'>
+        <div className='flex w-full flex-col items-center px-10 md:w-1/2 lg:px-0'>
           <Image
             src={WhoAreWeImg}
-            alt='Who are we?'
+            alt='About us illustration'
+            title='About us illustration'
             priority
             className='h-full w-full max-w-md object-contain'
             sizes='(max-width: 768px) 100vw, 768px'

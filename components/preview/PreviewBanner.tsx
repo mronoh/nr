@@ -2,11 +2,12 @@
 
 export function PreviewBanner() {
   return (
-    <div className="p-3 text-center text-white bg-black">
+    <div className='bg-black p-3 text-center text-white'>
       {'Previewing drafts. '}
       <a
-        className="underline transition hover:opacity-50"
-        href="/api/exit-preview"
+        className='underline transition hover:opacity-50'
+        href='/api/exit-preview'
+        title='Back to published button'
       >
         Back to published
       </a>

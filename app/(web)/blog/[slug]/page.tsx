@@ -41,6 +41,15 @@ export async function generateMetadata({
         description: "The page you're looking for doesn't exist"
       }
 
+    const ogUrl = new URL(`${siteMetadata.siteUrl}/api/og-image`)
+    ogUrl.searchParams.set('contentType', 'blog')
+    ogUrl.searchParams.set('title', blog.title)
+    ogUrl.searchParams.set('tag', blog?.tags[0].title)
+    ogUrl.searchParams.set('image', blog?.mainImage?.image)
+    ogUrl.searchParams.set('author', blog?.author?.name)
+    ogUrl.searchParams.set('estimatedReadingTime', blog?.estimatedReadingTime)
+    ogUrl.searchParams.set('publishedAt', blog?.publishedAt)
+
     const publishedAt = new Date(blog.publishedAt).toISOString()
     const updatedAt = new Date(blog.updatedAt || blog.publishedAt).toISOString()
     let imageList = [siteMetadata.socialBanner]
@@ -51,38 +60,32 @@ export async function generateMetadata({
       ]
     }
 
-    const ogImages = imageList.map(img => {
-      return {
-        url: img.includes('http') ? img : siteMetadata.siteUrl + img,
-        alt: blog.title
-      }
-    })
-
     const authors = blog?.author ? [blog.author.name] : siteMetadata.author
 
     return {
       title: blog.title,
       description: blog.description,
       alternates: {
-        canonical: `blog/${blog.slug}`
+        canonical: `/blog/${blog.slug}`
       },
+      publisher: siteMetadata.title,
       openGraph: {
         title: blog.title,
         description: blog.description,
-        url: siteMetadata.siteUrl + blog.url,
+        url: `/blog/${blog.slug}`,
         siteName: siteMetadata.title,
         type: 'article',
         locale: 'en_US',
         publishedTime: publishedAt,
         modifiedTime: updatedAt,
-        // images: ogImages,
+        images: ogUrl.toString(),
         authors: authors.length > 0 ? authors : [siteMetadata.author]
       },
       twitter: {
         card: 'summary_large_image',
         title: blog.title,
         description: blog.description,
-        // images: ogImages
+        images: ogUrl.toString()
       }
     }
   } catch (err) {
@@ -99,34 +102,36 @@ export default async function BlogPage({
 }: {
   params: { slug: string }
 }) {
+  const isDraftMode = draftMode().isEnabled
+
   const post = await sanityFetch<SanityDocument>({
     query: postQuery,
     params,
     tags: [`post:${params.slug}`]
   })
-  const isDraftMode = draftMode().isEnabled
 
   if (!post) {
     notFound()
   }
 
-  let imageList = [siteMetadata.socialBanner]
-
-  if (post?.mainImage) {
-    imageList = [
-      urlForImage(post.mainImage.image).width(1200).height(630).url()
-    ]
-  }
+  const ogUrl = new URL(`${siteMetadata.siteUrl}/api/og-image`)
+  ogUrl.searchParams.set('contentType', 'blog')
+  ogUrl.searchParams.set('title', post.title)
+  ogUrl.searchParams.set('tag', post?.tags[0].title)
+  ogUrl.searchParams.set('image', post?.mainImage?.image)
+  ogUrl.searchParams.set('author', post?.author?.name)
+  ogUrl.searchParams.set('estimatedReadingTime', post?.estimatedReadingTime)
+  ogUrl.searchParams.set('publishedAt', post?.publishedAt)
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': post.url
+      '@id': `${siteMetadata.siteUrl}/blog/${post.slug}`
     },
     headline: post.title,
-    image: imageList,
+    image: [ogUrl.toString()],
     datePublished: new Date(post.publishedAt).toISOString(),
     dateModified: new Date(post.updatedAt || post.publishedAt).toISOString(),
     author: [

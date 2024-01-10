@@ -1,11 +1,11 @@
 import { defineField, defineType } from 'sanity'
-import { PublishIcon } from '@sanity/icons'
+import { TfiWrite } from 'react-icons/tfi'
 
 export default defineType({
   name: 'post',
   title: 'Post',
   type: 'document',
-  icon: PublishIcon,
+  icon: TfiWrite,
   fields: [
     defineField({
       name: 'title',
@@ -70,6 +70,19 @@ export default defineType({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime'
+    }),
+    defineField({
+      name: 'keywords',
+      title: 'Keywords',
+      type: 'text',
+      rows: 3,
+      description:
+        "Boost your post's visibility on Google! Enter comma separated keywords that best represent your content. EG: Culture, Odo, Igbo",
+      validation: Rule =>
+        Rule.required()
+          .min(10)
+          .max(140)
+          .warning('Should be under 140 characters')
     }),
     defineField({
       name: 'body',

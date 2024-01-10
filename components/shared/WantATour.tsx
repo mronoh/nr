@@ -10,19 +10,21 @@ const WantATour = () => {
         <div className='absolute left-0 top-0 z-10 h-full w-full rounded-3xl bg-gradient-to-b from-dark/50 to-dark/90' />
         <Image
           src={wantToTour}
-          alt='Want to tour?'
+          alt='Background image'
+          title='Background image'
           className='absolute right-0 top-0 h-full w-full rounded-3xl object-cover'
         />
         <div className='z-10 flex w-max flex-col items-center justify-center px-5 text-white'>
-          <h2 className='mb-4 text-3xl font-bold sm:text-6xl md:text-7xl'>
-            Want to tour?
+          <h2 className='mb-4 text-center text-2xl font-bold xs:text-3xl sm:text-4xl md:text-5xl'>
+            Adventure awaits. Ready?
           </h2>
           <p className='mb-8 w-[80vw] max-w-xs text-center text-base md:max-w-lg md:text-xl'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            voluptatum.
+            Reach out for tours, hikes, streaming events, or any questions.
+            Let&apos;s plan your next great experience together!
           </p>
           <Link
             href='/contact'
+            title='Link to Contact Us page'
             className='rounded-full border border-dark bg-dark px-4 py-2 font-semibold text-white transition-all duration-200 ease-in-out hover:bg-light hover:text-dark'
           >
             Get in touch

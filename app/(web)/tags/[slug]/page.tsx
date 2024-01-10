@@ -3,23 +3,72 @@ import BlogLayoutThree from '@/components/blog/BlogLayoutThree'
 import Button from '@/components/shared/Button'
 import Tag from '@/components/shared/Tag'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { postsQuery, tagsQuery } from '@/sanity/lib/queries'
+import { postsQuery, tagQuery, tagsQuery } from '@/sanity/lib/queries'
 import { cx } from '@/utils'
+import { siteMetadata } from '@/utils/siteMetaData'
+import { notFound } from 'next/navigation'
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }: any) {
   const slug = params.slug
 
+  let tag: TagType = {
+    title: '',
+    description: '',
+    slug: ''
+  }
+
+  if (slug === 'all') {
+    tag = {
+      title: 'All',
+      slug: 'all',
+      description:
+        "Unlock the world's stories with Ngworocks Blogs. Dive into captivating tales of travel, culture, and values. Let the exploration begin!"
+    }
+  } else {
+    tag = await sanityFetch<any>({
+      query: tagQuery,
+      params,
+      tags: ['tag']
+    })
+  }
+
+  const ogUrl = new URL(`${siteMetadata.siteUrl}/api/og-image`)
+  // contentType is required
+  ogUrl.searchParams.set('contentType', 'tag')
+  ogUrl.searchParams.set('title', `${tag.title} blogs`)
+  ogUrl.searchParams.set('description', tag?.description)
+
   return {
-    title: `${slug.replace('-', ' ')} Blogs`,
+    title: `${tag?.title} Blogs`,
     description: `Discover more blogs about ${
       slug === 'all' ? 'tourism, culture and wellness' : slug
-    } and expand your knowledge!`
+    } and expand your knowledge!`,
+    publisher: siteMetadata.title,
+    openGraph: {
+      title: tag.title,
+      description: tag.description,
+      url: `/tags/${tag.slug}`,
+      siteName: siteMetadata.title,
+      locale: 'en_US',
+      images: ogUrl.toString()
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: tag.title,
+      description: tag.description,
+      images: ogUrl.toString()
+    }
   }
 }
 
 const CategoriesPage = async ({ params }: any) => {
   let slug = params.slug
+
+  // Add this condition at the beginning of your component or function
+  if (!/^[a-z0-9-]+$/i.test(slug)) {
+    notFound()
+  }
 
   // Get all blogs.
   const allBlogs = await sanityFetch<any>({
