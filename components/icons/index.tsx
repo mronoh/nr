@@ -95,6 +95,7 @@ export const ThemeButton = ({ setMode, mode }: any) => {
   return (
     <button
       aria-label='Theme Toggle Button'
+      title='Toggle dark or light mode button'
       onClick={() => {
         setMode(mode === 'light' ? 'dark' : 'light')
       }}
@@ -122,7 +123,7 @@ export const ContactImageStroke = (props: SVGProps<SVGSVGElement>) => {
     >
       <path fill='url(#a)' d='M.5 0h443v443H.5z' />
       <path
-        className='dark:stroke-accent-dark stroke-dark'
+        className='stroke-dark dark:stroke-accent-dark'
         // stroke='#062817'
         strokeLinecap='round'
         strokeWidth={53}
