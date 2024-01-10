@@ -34,6 +34,8 @@ export const siteMetadata = {
   social: {
     instagram: 'https://instagram.com/ngworocks',
     facebook: 'https://web.facebook.com/NgwoROCK',
+    twitter: 'https://twitter.com/ngworocks',
+    tiktok: 'https://www.tiktok.com/@ngworocks',
     mail: 'ngworocks@gmail.com'
   },
   locale: 'en-US'
