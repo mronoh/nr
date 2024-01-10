@@ -92,10 +92,6 @@ export const navLinks2 = [
   {
     name: 'Blog',
     url: '/blog'
-  },
-  {
-    name: 'Contact',
-    url: '/contact'
   }
 ]
 
