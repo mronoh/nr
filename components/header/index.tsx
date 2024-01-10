@@ -12,7 +12,7 @@ import { useThemeSwitch } from '../hooks/useThemeSwitch'
 import { Hamburger, ThemeButton } from '../icons'
 import Button from '../shared/Button'
 import { siteMetadata } from '@/utils/siteMetaData'
-import { FaFacebookF, FaInstagram } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa'
 
 const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
   const [mode, setMode] = useThemeSwitch()
@@ -132,6 +132,16 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
               className='text-xl text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
             >
               <FaInstagram />
+            </a>
+            <a
+              aria-label='NgwoRocks Tiktok profile link'
+              title='NgwoRocks Tiktok profile link'
+              target='_blank'
+              rel='noopener noreferrer'
+              href={`mailto:${siteMetadata.social.tiktok}`}
+              className='text-xl text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
+            >
+              <FaTiktok />
             </a>
           </span>
           <ThemeButton mode={mode} setMode={setMode} />
