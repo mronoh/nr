@@ -1,15 +1,12 @@
-import Image from 'next/image'
-
 type TagOgImageProps = { bgImage: any; title: string; description: string }
 
 const TagOgImage = ({ bgImage, title, description }: TagOgImageProps) => {
   return (
     <div tw='relative flex w-full h-full flex items-center justify-center '>
       {/* Background */}
-      <Image
+      <img
         tw='absolute left-0 top-0 bottom-0 w-full'
         src={bgImage}
-        placeholder='blur'
         alt={title}
       />
       {/* Content */}
