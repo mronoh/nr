@@ -8,7 +8,7 @@ import Button from '../shared/Button'
 const RecentBlogs = async () => {
   const recentBlogs = await sanityFetch<any>({
     query: recentPostsQuery,
-    tags: ['posts']
+    tags: ['post']
   })
   return (
     <section className='mx-auto w-full max-w-7xl px-5 pt-24 sm:px-10'>
@@ -26,7 +26,11 @@ const RecentBlogs = async () => {
           </article>
         ))}
       </div>
-      <Button text="View all blogs" href="/tags/all" className='mt-8 sm:mt-12' />
+      <Button
+        text='View all blogs'
+        href='/tags/all'
+        className='mt-8 sm:mt-12'
+      />
     </section>
   )
 }

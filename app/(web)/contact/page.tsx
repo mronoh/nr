@@ -6,18 +6,18 @@ export async function generateMetadata() {
   const ogUrl = new URL(`${siteMetadata.siteUrl}/api/og-image`)
   // contentType is required
   ogUrl.searchParams.set('contentType', 'tag')
-  ogUrl.searchParams.set('title', 'About Us')
+  ogUrl.searchParams.set('title', 'Contact Us')
   ogUrl.searchParams.set('description', siteMetadata.description)
 
   return {
     title: 'Contact Us',
     description:
-      "Contact us for all your tourism, cultural, and value-driven inquiries. Reach out through our contact form or via social media. We're here to enhance your Ngworocks experience!",
+      'Contact us for all your tourism, cultural, and value-driven inquiries. Reach out through our contact form or via social media.',
     publisher: siteMetadata.title,
     openGraph: {
       title: 'Contact Us',
       description:
-        "Contact us for all your tourism, cultural, and value-driven inquiries. Reach out through our contact form or via social media. We're here to enhance your Ngworocks experience!",
+        'Contact us for all your tourism, cultural, and value-driven inquiries. Reach out through our contact form or via social media.',
       url: `/about`,
       siteName: 'NgwoRocks',
       locale: 'en_US',
