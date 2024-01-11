@@ -16,7 +16,7 @@ const WantATour = () => {
         />
         <div className='z-10 flex w-max flex-col items-center justify-center px-5 text-white'>
           <h2 className='mb-4 text-center text-2xl font-bold xs:text-3xl sm:text-4xl md:text-5xl'>
-            Adventure awaits. <br className='xs:hidden' /> Ready?
+            Adventure awaits. <br className='sm:hidden' /> Ready?
           </h2>
           <p className='mb-8 w-[80vw] max-w-xs text-center text-base md:max-w-lg md:text-xl'>
             Reach out for tours, hikes, streaming events, or any questions.
