@@ -1,5 +1,6 @@
 import { urlForImage } from '@/sanity/lib/image'
 import { formatDate } from '@/utils'
+import Image from 'next/image'
 
 type BlogProps = {
   title: string
@@ -22,9 +23,13 @@ const BlogOgImage = ({
     <div tw='relative flex w-full h-full flex items-center justify-center '>
       {/* Background */}
       <div tw='absolute flex inset-0'>
-        <img
+        <Image
           tw='flex flex-1'
           src={urlForImage(image).width(1200).height(630).url()}
+          width={1200}
+          height={630}
+          placeholder='blur'
+          blurDataURL={urlForImage(image).width(20).height(11).blur(10).url()}
           alt={title}
         />
         {/* Overlay */}
