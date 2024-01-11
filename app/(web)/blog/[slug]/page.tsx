@@ -33,7 +33,7 @@ export async function generateMetadata({
     const blog = await sanityFetch<SanityDocument>({
       query: postQuery,
       params,
-      tags: [`post:${params.slug}`]
+      tags: ['post']
     })
     if (!blog)
       return {
@@ -104,10 +104,10 @@ export default async function BlogPage({
 }) {
   const isDraftMode = draftMode().isEnabled
 
-  const post = await sanityFetch<SanityDocument>({
+  const post = await sanityFetch<any>({
     query: postQuery,
     params,
-    tags: [`post:${params.slug}`]
+    tags: ['post']
   })
 
   if (!post) {

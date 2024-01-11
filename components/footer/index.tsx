@@ -49,7 +49,7 @@ const Footer = () => {
                   @ngworocks
                 </a>
                 <a
-                  aria-label='NgwoRocks instagram profile link'
+                  aria-label='@ngworocks'
                   title='NgwoRocks instagram profile link'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -60,7 +60,7 @@ const Footer = () => {
                   @ngworocks
                 </a>
                 <a
-                  aria-label='NgwoRocks Tiktok profile link'
+                  aria-label='@ngworocks'
                   title='NgwoRocks Tiktok profile link'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -82,7 +82,7 @@ const Footer = () => {
                   @ngworocks
                 </a>
                 <a
-                  aria-label='NgwoRocks email link'
+                  aria-label='@ngworocks'
                   title='NgwoRocks email link'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -130,7 +130,7 @@ const Footer = () => {
                 height={64}
               />
             </Link>
-            <span className='-mt-6 ml-[2%] flex gap-4 xs:ml-[30%] sm:ml-0 sm:mt-0'>
+            <span className='ml-[2%] mt-4 flex gap-4 xs:ml-[30%] sm:ml-0 sm:mt-0'>
               <Image
                 src={getOnAppStore}
                 alt='Get on app store badge'

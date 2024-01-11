@@ -1,6 +1,3 @@
-// import siteMetadata from "@/utils/siteMetaData";
-
-import { client } from '@/sanity/lib/client'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   postPathsQuery,
@@ -11,13 +8,22 @@ import { siteMetadata } from '@/utils/siteMetaData'
 
 export default async function sitemap() {
   // Get all posts.
-  const postPaths = await client.fetch(postPathsQuery)
+  const postPaths = await sanityFetch<any>({
+    query: postPathsQuery,
+    tags: ['post']
+  })
 
   // Get all services paths.
-  const servicesPaths = await client.fetch(servicePathsQuery)
+  const servicesPaths = await sanityFetch<any>({
+    query: servicePathsQuery,
+    tags: ['service']
+  })
 
   // Get all tags.
-  const allTags = await client.fetch(tagsQuery)
+  const allTags = await sanityFetch<any>({
+    query: tagsQuery,
+    tags: ['tag']
+  })
 
   const postMaps = postPaths.map((post: any) => ({
     url: `${siteMetadata.siteUrl}/blog/${post.params.slug}`,
@@ -40,7 +46,7 @@ export default async function sitemap() {
     priority: 0.8
   }))
 
-  const routes = ['', '/about', '/blog', '/contact'].map(route => ({
+  const routes = ['/', '/about', '/blog', '/contact'].map(route => ({
     url: `${siteMetadata.siteUrl}${route}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'monthly',

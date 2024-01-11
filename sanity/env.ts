@@ -11,7 +11,7 @@ export const projectId = assertValue(
   'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID'
 )
 
-export const previewSecretId = process.env.NEXT_PUBLIC_SANITY_PREVIEW_SECRET;
+export const previewSecretId = process.env.NEXT_PUBLIC_SANITY_PREVIEW_SECRET
 
 // See the app/api/revalidate/route.ts for how this is used
 export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET

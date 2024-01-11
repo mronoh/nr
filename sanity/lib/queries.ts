@@ -70,6 +70,11 @@ export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{
 export const postPathsQuery = groq`*[_type == "post" && defined(slug.current)][]{
     "params": { "slug": slug.current }
   }`
+
+// Get all tag slugs
+export const tagPathsQuery = groq`*[_type == "tag" && defined(slug.current)][]{
+    "params": { "slug": slug.current }
+  }`
 export const tagsQuery = groq`*[_type=="tag"]{
   title,
   "slug": slug.current,

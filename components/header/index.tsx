@@ -138,7 +138,7 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
               title='NgwoRocks Tiktok profile link'
               target='_blank'
               rel='noopener noreferrer'
-              href={`mailto:${siteMetadata.social.tiktok}`}
+              href={siteMetadata.social.tiktok}
               className='text-xl text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
             >
               <FaTiktok />
