@@ -104,7 +104,7 @@ export default async function BlogPage({
 }) {
   const isDraftMode = draftMode().isEnabled
 
-  const post = await sanityFetch<SanityDocument>({
+  const post = await sanityFetch<any>({
     query: postQuery,
     params,
     tags: ['post']
