@@ -23,7 +23,7 @@ export const siteMetadata = {
   author: 'NgwoRocks',
   headerTitle: 'Ngworocks',
   description:
-    'Discover Ngworocks: A vibrant cultural and tourism hub. Join us on our dynamic journey, embracing heritage and inspiring startups. Your platform for promoting untapped tourism potential, culture, and values.',
+    'A vibrant cultural and tourism hub. Join us on our dynamic journey, embracing heritage and inspiring startups. Your platform for promoting untapped tourism potential, culture, and values.',
   language: 'en-us',
   theme: 'system',
   siteUrl: siteUrl,
