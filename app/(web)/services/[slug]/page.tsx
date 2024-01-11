@@ -32,7 +32,7 @@ export async function generateMetadata({
     const service = await sanityFetch<SanityDocument>({
       query: serviceQuery,
       params,
-      tags: [`service:${params.slug}`]
+      tags: ['service']
     })
 
     if (!service)
@@ -89,7 +89,7 @@ const ServicePage = async ({ params }: { params: { slug: string } }) => {
   const service = await sanityFetch<SanityDocument>({
     query: serviceQuery,
     params,
-    tags: [`service:${params.slug}`]
+    tags: ['service']
   })
 
   if (!service) {
