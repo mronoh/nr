@@ -2,11 +2,27 @@ import { Post, Tag as TagType } from '@/components/blog/BlogLayoutOne'
 import BlogLayoutThree from '@/components/blog/BlogLayoutThree'
 import Button from '@/components/shared/Button'
 import Tag from '@/components/shared/Tag'
+import { client } from '@/sanity/lib/client'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { postsQuery, tagQuery, tagsQuery } from '@/sanity/lib/queries'
+import {
+  postsQuery,
+  tagPathsQuery,
+  tagQuery,
+  tagsQuery
+} from '@/sanity/lib/queries'
 import { cx } from '@/utils'
 import { siteMetadata } from '@/utils/siteMetaData'
 import { notFound } from 'next/navigation'
+
+// Prepare Next.js to know which routes already exist
+export async function generateStaticParams() {
+  // Important, use the plain Sanity Client here
+  const tags = await client.fetch(tagPathsQuery)
+
+  return tags.map((tag: any) => ({
+    slug: tag.params.slug
+  }))
+}
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }: any) {
@@ -126,7 +142,7 @@ const CategoriesPage = async ({ params }: any) => {
               scroll={false}
               className={`!border-dark !lowercase dark:!border-light ${
                 slug == tag.slug
-                  ? 'dark:bg-accent-dark text-text-accent-dark bg-dark dark:text-dark'
+                  ? 'text-text-accent-dark bg-dark dark:bg-accent-dark dark:text-dark'
                   : 'bg-dark/20 text-dark dark:bg-light/10 dark:text-light'
               }`}
             />
