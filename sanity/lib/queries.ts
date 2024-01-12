@@ -32,7 +32,9 @@ export const recentPostsQuery = groq`*[_type == "post" && defined(slug.current)]
 export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{ 
   ...,
   "slug": slug.current,
-  "estimatedReadingTime": round(length(pt::text(body)) / 5 / 150 ),
+  // Average chars per word: 6
+  // Words per minute: 180
+  "estimatedReadingTime": round(length(pt::text(body)) / 6 / 180 ),
   author->,
   tags[]->{..., "slug": slug.current},
   mainImage {
