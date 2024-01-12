@@ -64,79 +64,82 @@ export default function Blog({ post }: { post: SanityDocument }) {
           </div>
         </div>
         <aside className='sticky top-20 flex h-max w-full flex-col flex-wrap gap-8 border-t border-gray-light py-5 dark:border-gray-dark dark:text-gray sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col lg:gap-4 lg:border-l lg:p-5'>
-          <div className='sm-w-1/2 lg:w-full'>
-            <p className='mb-4 text-sm '>Written by</p>
-            <div className='flex h-12 w-12 items-center gap-2'>
-              <Image
-                className='rounded-full'
-                src={urlForImage(post.author.image).url()}
-                alt={`Portrait image of ${post.author.name}`}
-                title={`Portrait image of ${post.author.name}`}
-                width={48}
-                height={48}
-              />
-              <div className='flex flex-col gap-2 font-semibold'>
-                <h3 className='whitespace-nowrap dark:text-light'>
-                  {post.author.name}
-                </h3>
-                <span className='flex gap-x-4 dark:text-gray-light'>
-                  {post.author?.socialLinks?.twitter && (
-                    <a
-                      aria-label={`${post.author.name} Twitter Profile`}
-                      target='_blank'
-                      title={`Link to ${post.author.name} Twitter Profile`}
-                      rel='noopener noreferrer'
-                      href={post.author?.socialLinks.twitter}
-                      className='text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
-                    >
-                      <BsTwitterX />
-                    </a>
-                  )}
-                  {post.author?.socialLinks?.linkedin && (
-                    <a
-                      aria-label={`${post.author.name} LinkedIn Profile`}
-                      title={`Link to ${post.author.name} LinkedIn Profile`}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      href={post.author.socialLinks.linkedin}
-                      className='text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
-                    >
-                      <FaLinkedinIn />
-                    </a>
-                  )}
-                  {post.author?.socialLinks?.facebook && (
-                    <a
-                      aria-label={`${post.author.name} Facebook Profile`}
-                      title={`Link to ${post.author.name} Facebook Profile`}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      href={post.author.socialLinks.facebook}
-                      className='text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
-                    >
-                      <FaFacebookF />
-                    </a>
-                  )}
-                </span>
+          {post.author && (
+            <div className='sm-w-1/2 lg:w-full'>
+              <p className='mb-4 text-sm '>Written by</p>
+              <div className='flex h-12 w-12 items-center gap-2'>
+                <Image
+                  className='rounded-full'
+                  src={urlForImage(post.author.image).url()}
+                  alt={`Portrait image of ${post.author.name}`}
+                  title={`Portrait image of ${post.author.name}`}
+                  width={48}
+                  height={48}
+                />
+                <div className='flex flex-col gap-2 font-semibold'>
+                  <h3 className='whitespace-nowrap dark:text-light'>
+                    {post.author.name}
+                  </h3>
+                  <span className='flex gap-x-4 dark:text-gray-light'>
+                    {post.author?.socialLinks?.twitter && (
+                      <a
+                        aria-label={`${post.author.name} Twitter Profile`}
+                        target='_blank'
+                        title={`Link to ${post.author.name} Twitter Profile`}
+                        rel='noopener noreferrer'
+                        href={post.author?.socialLinks.twitter}
+                        className='text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
+                      >
+                        <BsTwitterX />
+                      </a>
+                    )}
+                    {post.author?.socialLinks?.linkedin && (
+                      <a
+                        aria-label={`${post.author.name} LinkedIn Profile`}
+                        title={`Link to ${post.author.name} LinkedIn Profile`}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        href={post.author.socialLinks.linkedin}
+                        className='text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
+                      >
+                        <FaLinkedinIn />
+                      </a>
+                    )}
+                    {post.author?.socialLinks?.facebook && (
+                      <a
+                        aria-label={`${post.author.name} Facebook Profile`}
+                        title={`Link to ${post.author.name} Facebook Profile`}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        href={post.author.socialLinks.facebook}
+                        className='text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
+                      >
+                        <FaFacebookF />
+                      </a>
+                    )}
+                  </span>
+                </div>
               </div>
+              <p className='my-2 max-w-sm text-sm'>
+                {blockContentToPlainText(post.author.bio)}
+              </p>
             </div>
-            <p className='my-2 max-w-sm text-sm'>
-              {blockContentToPlainText(post.author.bio)}
-            </p>
-          </div>
+          )}
 
           <div className='w-full sm:order-2 lg:order-1'>
             <h4 className='mb-4 text-base font-semibold dark:text-light sm:text-xl'>
               Tags
             </h4>
             <ul className='flex gap-2'>
-              {post.tags.map((tag: any, index: number) => (
-                <Tag
-                  title={tag.title}
-                  link={`/tags/${tag.slug}`}
-                  key={index}
-                  className='text-xs opacity-80'
-                />
-              ))}
+              {post.tags &&
+                post.tags.map((tag: any, index: number) => (
+                  <Tag
+                    title={tag.title}
+                    link={`/tags/${tag.slug}`}
+                    key={index}
+                    className='text-xs opacity-80'
+                  />
+                ))}
             </ul>
           </div>
           <div className='sm:order-1'>
