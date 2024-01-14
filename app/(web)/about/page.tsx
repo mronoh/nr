@@ -1,4 +1,5 @@
-import OurTeam from '@/components/about/OurTeam'
+// import OurTeam from '@/components/about/OurTeam'
+import Partners from '@/components/about/Partners'
 import CustomPortableText from '@/components/shared/CustomPortableText'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { aboutPageQuery, teamQuery } from '@/sanity/lib/queries'
@@ -40,7 +41,7 @@ const AboutPage = async () => {
 
   return (
     <main className='mx-auto w-full max-w-7xl px-5 pt-16 sm:px-10 md:pt-24'>
-      <h1 className='mx-auto mb-6 max-w-4xl text-center text-2xl font-semibold capitalize text-dark dark:text-light md:text-4xl lg:text-5xl'>
+      <h1 className='mx-auto max-w-4xl text-center text-3xl font-bold capitalize text-dark dark:text-light md:text-4xl lg:text-5xl'>
         About us
       </h1>
       <div className='w-full  border-b-2 border-dark pb-16 dark:border-light'>
@@ -65,7 +66,8 @@ const AboutPage = async () => {
           )} */}
         </article>
       </div>
-      <OurTeam />
+      {/* <OurTeam /> */}
+      <Partners />
     </main>
   )
 }

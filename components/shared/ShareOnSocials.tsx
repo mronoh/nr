@@ -13,6 +13,9 @@ import {
   WhatsappShareButton,
   XIcon
 } from 'react-share'
+import { FaCheck } from 'react-icons/fa'
+import { FaCopy } from 'react-icons/fa6'
+import { useState } from 'react'
 
 const ShareOnSocials = ({
   shareUrl,
@@ -25,12 +28,23 @@ const ShareOnSocials = ({
   description?: string
   classNames?: string
 }) => {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(shareUrl)
+    setCopied(true)
+
+    setTimeout(() => {
+      setCopied(false)
+    }, 2000)
+  }
+
   return (
     <div className='flex gap-4'>
       <div className='Demo__some-network'>
         <FacebookShareButton
           url={shareUrl}
-          className=' border-gray-light dark:border-gray-dark rounded-md border p-2 hover:bg-[#4267B2] hover:text-light'
+          className=' rounded-md border border-gray-light p-2 hover:bg-[#4267B2] hover:text-light dark:border-gray-dark'
         >
           <FacebookIcon size={32} round />
         </FacebookShareButton>
@@ -74,6 +88,16 @@ const ShareOnSocials = ({
         >
           <LinkedinIcon size={32} round />
         </LinkedinShareButton>
+      </div>
+      <div
+        className='flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-black/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur dark:bg-white/10'
+        onClick={handleCopy}
+      >
+        {copied ? (
+          <FaCheck className='text-green' />
+        ) : (
+          <FaCopy className='text-bgdark dark:text-gray-light' />
+        )}
       </div>
     </div>
   )

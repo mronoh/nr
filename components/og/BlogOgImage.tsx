@@ -42,7 +42,7 @@ const BlogOgImage = ({
           <div tw='w-4 h-4 mx-6 rounded-full bg-neutral-300' />
           <div>{`${estimatedReadingTime} min read`}</div>
           <div tw='w-4 h-4 mx-6 rounded-full bg-neutral-300' />
-          <div>{formatDate(publishedAt, 'MMM dd, yyyy')}</div>
+          <div>{formatDate(publishedAt, 'short')}</div>
         </div>
       </div>
     </div>

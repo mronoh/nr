@@ -117,10 +117,16 @@ export default async function BlogPage({
   const ogUrl = new URL(`${siteMetadata.siteUrl}/api/og-image`)
   ogUrl.searchParams.set('contentType', 'blog')
   ogUrl.searchParams.set('title', post.title)
-  ogUrl.searchParams.set('tag', post?.tags[0].title)
+  ogUrl.searchParams.set(
+    'tag',
+    post?.tags?.length > 0 ? post?.tags[0].title : ''
+  )
   ogUrl.searchParams.set('image', post?.mainImage?.image)
   ogUrl.searchParams.set('author', post?.author?.name)
-  ogUrl.searchParams.set('estimatedReadingTime', post?.estimatedReadingTime)
+  ogUrl.searchParams.set(
+    'estimatedReadingTime',
+    post?.estimatedReadingTime ?? 'undefined'
+  )
   ogUrl.searchParams.set('publishedAt', post?.publishedAt)
 
   const jsonLd = {
@@ -132,8 +138,12 @@ export default async function BlogPage({
     },
     headline: post.title,
     image: [ogUrl.toString()],
-    datePublished: new Date(post.publishedAt).toISOString(),
-    dateModified: new Date(post.updatedAt || post.publishedAt).toISOString(),
+    datePublished: post.publishedAt
+      ? new Date(post.publishedAt).toISOString()
+      : '',
+    dateModified: post.publishedAt
+      ? new Date(post.updatedAt || post.publishedAt).toISOString()
+      : '',
     author: [
       {
         '@type': 'Person',
