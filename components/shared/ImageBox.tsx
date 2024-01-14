@@ -15,6 +15,7 @@ interface ImageBoxProps {
 
 export const ImageBox = ({ image }: any): ReactElement => {
   const alt = image?.alt ?? 'image broke'
+  const blurDataURL = urlForImage(image).width(8).height(8).url()
   const dimensions = image.asset
     ? getImageDimensions(image)
     : { width: 1200, height: 680 }
@@ -28,7 +29,7 @@ export const ImageBox = ({ image }: any): ReactElement => {
           width={dimensions.width}
           height={dimensions.height}
           placeholder='blur'
-          blurDataURL={urlForImage(image).width(8).height(8).blur(10).url()}
+          blurDataURL={blurDataURL}
           sizes='
             (max-width: 768px) 100vw,
             (max-width: 1200px) 50vw,

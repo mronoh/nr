@@ -19,9 +19,9 @@ export default function Blog({ post }: { post: SanityDocument }) {
   const feauredPosts = [...post?.related, ...post?.recent]
 
   return (
-    <main className='relative mx-auto max-w-7xl !overflow-x-clip px-5 pt-8 sm:px-10 sm:pt-16 md:pt-24'>
+    <main className='relative mx-auto max-w-7xl !overflow-x-clip px-5 pt-4 sm:px-10 sm:pt-8 md:pt-12'>
       <article className='mx-auto flex w-full flex-col justify-center gap-4 border-gray-light dark:border-gray-dark lg:flex-row lg:border-t'>
-        <div className=' mb-8 w-full pt-5 lg:w-4/6'>
+        <div className=' mb-8 w-full lg:w-4/6'>
           <div className='prose prose-base prose-stone w-full max-w-max dark:prose-invert sm:prose-lg '>
             <span className='flex gap-6 text-xs xs:text-base'>
               <p className='flex items-center gap-2'>
