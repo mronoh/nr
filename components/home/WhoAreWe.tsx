@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import WhoAreWeImg from '@/public/images/whoarewe.svg'
+import Button from '../shared/Button'
 
 const WhoAreWe = () => {
   return (
     <section className='mx-auto w-full max-w-7xl px-5 pt-64 sm:px-10'>
       <div className='flex flex-col gap-8 md:flex-row'>
-        <div className='flex w-full max-w-xl flex-col justify-center md:w-1/2'>
+        <div className='flex w-full max-w-3xl flex-col justify-center md:w-1/2'>
           <h2 className='mb-8 text-4xl font-semibold  text-dark dark:text-light md:mb-12 lg:text-5xl'>
             Who we are?
           </h2>
@@ -16,6 +17,9 @@ const WhoAreWe = () => {
             community engagement. Embracing heritage, we aspire to make Ngwo a
             vibrant tourism hub while inspiring startups across regions.
           </p>
+          <div className='w-full'>
+            <Button href='/about' text='Learn more' className=' ml-0 mt-8' />
+          </div>
         </div>
         <div className='flex w-full flex-col items-center px-10 md:w-1/2 lg:px-0'>
           <Image

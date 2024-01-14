@@ -2,7 +2,7 @@ import { urlForImage } from '@/sanity/lib/image'
 import Image from 'next/image'
 import { BsTwitterX } from 'react-icons/bs'
 import { FaLinkedinIn } from 'react-icons/fa6'
-import { FaFacebookF } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 
 const Team = ({ team }: any) => {
   return (
@@ -43,6 +43,18 @@ const Team = ({ team }: any) => {
               className='text-white hover:text-accent dark:text-gray dark:hover:text-accent-dark'
             >
               <FaLinkedinIn />
+            </a>
+          )}
+          {team?.socialLinks?.instagram && (
+            <a
+              aria-label={`${team.name} Instagram Profile`}
+              title={`Link to ${team.name} Instagram Profile`}
+              target='_blank'
+              rel='noopener noreferrer'
+              href={team.socialLinks.instagram}
+              className='text-lg text-white hover:text-accent dark:text-gray dark:hover:text-accent-dark'
+            >
+              <FaInstagram />
             </a>
           )}
           {team?.socialLinks?.facebook && (

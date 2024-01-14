@@ -36,19 +36,25 @@ export default defineType({
           name: 'linkedin',
           title: 'LinkedIn',
           type: 'url',
-          initialValue: 'https://www.linkedin.com/in/'
+          placeholder: 'Link to your LinkedIn profile'
+        },
+        {
+          name: 'instagram',
+          title: 'Instagram',
+          type: 'url',
+          placeholder: 'Link to your Instagram profile'
         },
         {
           name: 'twitter',
           title: 'Twitter',
           type: 'url',
-          initialValue: 'https://twitter.com/'
+          placeholder: 'Link to your Twitter account'
         },
         {
           name: 'facebook',
           title: 'Facebook',
           type: 'url',
-          initialValue: 'https://facebook.com/'
+          placeholder: 'Link to your Facebook account'
         }
       ],
       options: {

@@ -43,7 +43,10 @@ export default defineType({
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: { type: 'author' }
+      to: { type: 'author' },
+      initialValue: {
+        _ref: '7d51a1a8-6b30-4ff7-9cf1-06c7be45f68f'
+      }
     }),
     defineField({
       name: 'mainImage',
@@ -64,7 +67,26 @@ export default defineType({
       name: 'tags',
       title: 'Tags',
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'tag' } }]
+      of: [
+        {
+          type: 'reference',
+          to: { type: 'tag' },
+          options: {
+            filter: ({ document }: { document: { tags: any } }) => {
+              const existingTags = (document.tags as any)
+                .map((tag: { _ref: any }) => tag._ref)
+                .filter(Boolean)
+              return {
+                filter: '!(_id in $existingTags)',
+                params: {
+                  existingTags
+                }
+              }
+            }
+          }
+        }
+      ],
+      validation: Rule => Rule.unique()
     }),
     defineField({
       name: 'publishedAt',

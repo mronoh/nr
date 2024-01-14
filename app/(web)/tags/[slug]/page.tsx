@@ -133,7 +133,7 @@ const CategoriesPage = async ({ params }: any) => {
         </div>
 
         {/* Categories */}
-        <div className='mt-10 flex flex-wrap gap-2 border-y-2 px-0 py-6 dark:border-light sm:gap-6 md:px-10 lg:px-20'>
+        <div className='mt-5 flex flex-wrap gap-2 border-y-2 px-0 py-6 dark:border-light sm:gap-6 md:px-10 lg:px-20'>
           {allTags.map((tag: TagType) => (
             <Tag
               link={`/tags/${tag.slug}`}
@@ -152,7 +152,7 @@ const CategoriesPage = async ({ params }: any) => {
         {/* Blogs */}
         <div
           className={cx(
-            'mt-5 grid gap-16  sm:mt-10 sm:grid-cols-2 md:mt-24 md:px-10 lg:mt-32 lg:grid-cols-3 lg:px-20'
+            'mt-4 grid gap-16  sm:mt-8 sm:grid-cols-2 md:mt-12 md:px-10 lg:grid-cols-3 lg:px-20'
           )}
         >
           {blogs.length > 0 ? (
