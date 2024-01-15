@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -18,24 +19,51 @@ const contactSchema = z.object({
 type contactSchemaType = z.infer<typeof contactSchema>
 
 const ContactForm = () => {
+  const [isDirty, setDirty] = useState(false)
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset
   } = useForm<contactSchemaType>({
-    resolver: zodResolver(contactSchema)
+    resolver: zodResolver(contactSchema),
+    mode: 'onChange'
   })
+
   const onSubmit = async (data: contactSchemaType) => {
     console.log(data)
     await new Promise(resolve => {
       setTimeout(resolve, 3000)
     })
     reset()
+    setDirty(false)
   }
+
+  useEffect(() => {
+    const handleUnload = (event: BeforeUnloadEvent) => {
+      if (isDirty) {
+        console.log(`Warning ${event.type}`)
+        event.preventDefault()
+        event.returnValue = ''
+      } else {
+        console.log(`No warning ${event.type}`)
+      }
+    }
+
+    if (isDirty) {
+      window.addEventListener('beforeunload', handleUnload)
+    }
+
+    return () => {
+      if (isDirty) {
+        window.removeEventListener('beforeunload', handleUnload)
+      }
+    }
+  }, [isDirty])
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
+      onChange={() => setDirty(true)} // set isDirty to true when form changes
       className='flex w-full max-w-3xl flex-col gap-2 py-6'
     >
       <div className='mb-4'>
@@ -50,10 +78,10 @@ const ContactForm = () => {
           id='name'
           placeholder='Your full name...'
           {...register('name')}
-          className='dark:focus:border-accent-dark w-full border-b border-dark bg-transparent px-5 py-4 text-dark transition-all duration-200 focus:border-accent focus:outline-none dark:border-light dark:text-light'
+          className='w-full border-b border-dark bg-transparent px-5 py-4 text-dark transition-all duration-200 focus:border-accent focus:outline-none dark:border-light dark:text-light dark:focus:border-accent-dark'
         />
         {errors.name && (
-          <span className='text-warning text-sm font-semibold'>
+          <span className='text-sm font-semibold text-warning'>
             {`${errors.name.message}`}
           </span>
         )}
@@ -71,10 +99,10 @@ const ContactForm = () => {
           id='email'
           placeholder='Your email address...'
           {...register('email')}
-          className='dark:focus:border-accent-dark w-full border-b border-dark bg-transparent px-5 py-4 text-dark transition-all duration-200 focus:border-accent focus:outline-none dark:border-light dark:text-light'
+          className='w-full border-b border-dark bg-transparent px-5 py-4 text-dark transition-all duration-200 focus:border-accent focus:outline-none dark:border-light dark:text-light dark:focus:border-accent-dark'
         />
         {errors.email && (
-          <span className='text-warning text-sm font-semibold'>
+          <span className='text-sm font-semibold text-warning'>
             {`${errors.email.message}`}
           </span>
         )}
@@ -92,7 +120,7 @@ const ContactForm = () => {
           id='company'
           placeholder='Name of company you represent...'
           {...register('company')}
-          className='dark:focus:border-accent-dark w-full border-b border-dark bg-transparent px-5 py-4 text-dark transition-all duration-200 focus:border-accent focus:outline-none dark:border-light dark:text-light'
+          className='w-full border-b border-dark bg-transparent px-5 py-4 text-dark transition-all duration-200 focus:border-accent focus:outline-none dark:border-light dark:text-light dark:focus:border-accent-dark'
         />
       </div>
 
@@ -107,10 +135,10 @@ const ContactForm = () => {
           id='message'
           {...register('message')}
           placeholder='Write your message here...'
-          className='dark:focus:border-accent-dark w-full border-b border-dark bg-transparent px-5 py-4 text-dark transition-all duration-200 focus:border-accent focus:outline-none dark:border-light dark:text-light'
+          className='w-full border-b border-dark bg-transparent px-5 py-4 text-dark transition-all duration-200 focus:border-accent focus:outline-none dark:border-light dark:text-light dark:focus:border-accent-dark'
         />
         {errors.message && (
-          <span className='text-warning text-sm font-semibold'>
+          <span className='text-sm font-semibold text-warning'>
             {`${errors.message.message}`}
           </span>
         )}
