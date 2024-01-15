@@ -9,6 +9,9 @@ import { siteMetadata } from '@/utils/siteMetaData'
 import { SanityDocument } from 'next-sanity'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
+import Loading from './loading'
+import Transition from '@/components/shared/Transition'
 
 // Prepare Next.js to know which routes already exist
 export async function generateStaticParams() {
@@ -165,7 +168,11 @@ export default async function BlogPage({
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Blog post={post} />
+      <Suspense fallback={<Loading />}>
+        <Transition key={post._id}>
+          <Blog post={post} />
+        </Transition>
+      </Suspense>
     </>
   )
 }
