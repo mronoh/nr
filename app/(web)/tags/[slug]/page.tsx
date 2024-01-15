@@ -2,6 +2,7 @@ import { Post, Tag as TagType } from '@/components/blog/BlogLayoutOne'
 import BlogLayoutThree from '@/components/blog/BlogLayoutThree'
 import Button from '@/components/shared/Button'
 import Tag from '@/components/shared/Tag'
+import Transition from '@/components/shared/Transition'
 import { client } from '@/sanity/lib/client'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
@@ -150,30 +151,32 @@ const CategoriesPage = async ({ params }: any) => {
         </div>
 
         {/* Blogs */}
-        <div
-          className={cx(
-            'mt-4 grid gap-16  sm:mt-8 sm:grid-cols-2 md:mt-12 md:px-10 lg:grid-cols-3 lg:px-20'
-          )}
-        >
-          {blogs.length > 0 ? (
-            blogs.map((blog: Post, index: number) => (
-              <article key={index}>
-                <BlogLayoutThree post={blog} />
-              </article>
-            ))
-          ) : (
-            <div className='col-span-1 flex h-32 flex-col items-center justify-center gap-6 sm:col-span-2 lg:col-span-3'>
-              <h2 className='mt-8 text-center  text-2xl  font-semibold text-dark dark:text-light'>
-                No posts found for this tag.
-              </h2>
-              <Button
-                text='View all blogs'
-                href='/tags/all'
-                className='mt-8 sm:mt-12'
-              />
-            </div>
-          )}
-        </div>
+        <Transition key={slug}>
+          <div
+            className={cx(
+              'mt-4 grid gap-16  sm:mt-8 sm:grid-cols-2 md:mt-12 md:px-10 lg:grid-cols-3 lg:px-20'
+            )}
+          >
+            {blogs.length > 0 ? (
+              blogs.map((blog: Post, index: number) => (
+                <article key={index}>
+                  <BlogLayoutThree post={blog} />
+                </article>
+              ))
+            ) : (
+              <div className='col-span-1 flex h-32 flex-col items-center justify-center gap-6 sm:col-span-2 lg:col-span-3'>
+                <h2 className='mt-8 text-center  text-2xl  font-semibold text-dark dark:text-light'>
+                  No posts found for this tag.
+                </h2>
+                <Button
+                  text='View all blogs'
+                  href='/tags/all'
+                  className='mt-8 sm:mt-12'
+                />
+              </div>
+            )}
+          </div>
+        </Transition>
       </div>
     </article>
   )
