@@ -49,7 +49,7 @@ const HomeCover = async ({ post }: { post: Post }) => {
               </h1>
             </Link>
             {post?.post.description && (
-              <p className='font-inter mt-4 hidden sm:inline-block md:text-lg lg:text-xl'>
+              <p className='font-inter mt-4 hidden xs:inline-block md:text-lg lg:text-xl'>
                 {post?.post.description}
               </p>
             )}
