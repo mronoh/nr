@@ -27,14 +27,14 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 <BsFillCalendar2DateFill />
                 {post?.publishedAt
                   ? formatDate(post.publishedAt)
-                  : 'publishedAt'}
+                  : 'published date is not available'}
               </p>
               <p className='flex items-center gap-2'>
                 <MdAccessTimeFilled />
                 {post?.estimatedReadingTime ? (
                   <>{post.estimatedReadingTime} min read</>
                 ) : (
-                  'publishedAt'
+                  'Reading time is not available'
                 )}
               </p>
             </span>
@@ -146,7 +146,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
               Share
             </h4>
             <ShareOnSocials
-              shareUrl={`${siteMetadata.siteUrl}/blog/${post.slug}`}
+              shareUrl={`${siteMetadata.siteUrl}/blog/${post.slug}/`}
               title={post.title}
               description={post.description}
             />
