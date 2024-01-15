@@ -42,7 +42,7 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
   }, [lastScrollTop])
 
   const handleToggle = () => {
-    // document.body.classList.toggle('overflow-clip')
+    document.body.classList.toggle('overflow-clip')
     setToggled(prev => {
       return !prev
     })

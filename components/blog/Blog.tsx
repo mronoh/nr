@@ -4,7 +4,6 @@ import { urlForImage } from '@/sanity/lib/image'
 import { cx, formatDate } from '@/utils'
 import { BsFillCalendar2DateFill, BsTwitterX } from 'react-icons/bs'
 import { blockContentToPlainText } from 'react-portable-text'
-import { MdOutlineMailOutline } from 'react-icons/md'
 import { FaFacebookF } from 'react-icons/fa'
 import { siteMetadata } from '@/utils/siteMetaData'
 import Link from 'next/link'
@@ -65,7 +64,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
         </div>
         <aside className='sticky top-20 flex h-max w-full flex-col flex-wrap gap-8 border-t border-gray-light py-5 dark:border-gray-dark dark:text-gray sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col lg:gap-4 lg:border-l lg:p-5'>
           {post.author && (
-            <div className='sm-w-1/2 lg:w-full'>
+            <div className='w-full sm:w-1/2 lg:w-full'>
               <p className='mb-4 text-sm '>Written by</p>
               <div className='flex h-12 w-12 items-center gap-2'>
                 <Image
@@ -120,7 +119,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                   </span>
                 </div>
               </div>
-              <p className='my-2 max-w-sm text-sm'>
+              <p className='my-2 max-w-md text-sm'>
                 {blockContentToPlainText(post.author.bio)}
               </p>
             </div>
