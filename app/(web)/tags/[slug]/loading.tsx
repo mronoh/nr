@@ -3,8 +3,8 @@ import React from 'react'
 export const BlogLoading = () => {
   return (
     <div className='mt-4 grid gap-16  sm:mt-8 sm:grid-cols-2 md:mt-12 md:px-10 lg:grid-cols-3 lg:px-20'>
-      {[1, 2, 3].map(() => (
-        <div className='flex w-full flex-col'>
+      {[1, 2, 3].map(index => (
+        <div key={index} className='flex w-full flex-col'>
           <div className='skeleton-element aspect-[4/3] w-full' />
           <div className='mt-4 flex w-full flex-col'>
             <div className='skeleton-element mb-2 h-4 w-1/2 animate-pulse rounded' />
