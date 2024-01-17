@@ -29,7 +29,7 @@ export const recentPostsQuery = groq`*[_type == "post" && defined(slug.current)]
   } | order(publishedAt desc)[0...6]`
 
 // Get a single post by its slug
-export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{ 
+export const postQuery = groq`*[_type == "post" && defined(slug.current) && slug.current == $slug][0]{ 
   ...,
   "slug": slug.current,
   // Average chars per word: 6

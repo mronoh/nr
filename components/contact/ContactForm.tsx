@@ -42,11 +42,8 @@ const ContactForm = () => {
   useEffect(() => {
     const handleUnload = (event: BeforeUnloadEvent) => {
       if (isDirty) {
-        console.log(`Warning ${event.type}`)
         event.preventDefault()
         event.returnValue = ''
-      } else {
-        console.log(`No warning ${event.type}`)
       }
     }
 
