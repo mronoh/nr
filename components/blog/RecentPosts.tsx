@@ -4,6 +4,8 @@ import { sanityFetch } from '@/sanity/lib/fetch'
 import { recentPostsQuery } from '@/sanity/lib/queries'
 import { Post } from './BlogLayoutOne'
 import Button from '../shared/Button'
+import { Suspense } from 'react'
+import { BlogLoading } from '@/app/(web)/tags/[slug]/loading'
 
 const RecentBlogs = async () => {
   const recentBlogs = await sanityFetch<any>({
@@ -15,17 +17,19 @@ const RecentBlogs = async () => {
       <h2 className='mb-8 text-3xl font-semibold text-dark  dark:text-light xs:text-4xl md:mb-12 lg:text-5xl'>
         Recent Blogs
       </h2>
-      <div
-        className={cx(
-          'grid grid-rows-3 gap-16 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2'
-        )}
-      >
-        {recentBlogs.map((post: Post, index: number) => (
-          <article key={index}>
-            <BlogLayoutThree post={post} />
-          </article>
-        ))}
-      </div>
+      <Suspense fallback={<BlogLoading />}>
+        <div
+          className={cx(
+            'grid grid-rows-3 gap-16 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2'
+          )}
+        >
+          {recentBlogs.map((post: Post, index: number) => (
+            <article key={index}>
+              <BlogLayoutThree post={post} />
+            </article>
+          ))}
+        </div>
+      </Suspense>
       <Button
         text='View all blogs'
         href='/tags/all'
