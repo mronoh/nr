@@ -106,6 +106,9 @@ h5 {
 .skeleton-element {
   @apply rounded-xl bg-zinc-300 dark:bg-zinc-700;
 }
+.skeleton-element2 {
+  @apply rounded-xl bg-zinc-200 dark:bg-zinc-600;
+}
 
 @media (max-width: 320px) {
   .home__birds {
