@@ -87,6 +87,23 @@ export const tagQuery = groq`*[_type=="tag" && slug.current == $slug][0]{
   "slug": slug.current,
   description
 }`
+export const tagWithPostsQuery = groq`*[_type=="tag" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  description,
+  "blogs": *[_type == "post" && defined(slug.current) && references(^._id)]{
+    ...,
+  "slug": slug.current,
+  author->,
+  tags[]->{..., "slug": slug.current},
+  mainImage {
+    "image": asset,
+    "lqip": asset->metadata.lqip,
+    "dimensions": asset->metadata.dimensions,
+    alt,
+  },
+  } | order(publishedAt desc)
+}`
 
 // Get blog featured posts and blog home cover post
 export const featuredAndHomeCoverPostsQuery = groq`*[_type == 'showCasePost'][0] {
