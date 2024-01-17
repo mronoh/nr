@@ -13,6 +13,7 @@ import { Hamburger, ThemeButton } from '../icons'
 import Button from '../shared/Button'
 import { siteMetadata } from '@/utils/siteMetaData'
 import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa'
+import { BsTwitterX } from 'react-icons/bs'
 
 const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
   const [mode, setMode] = useThemeSwitch()
@@ -42,10 +43,10 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
   }, [lastScrollTop])
 
   const handleToggle = () => {
-    document.body.classList.toggle('overflow-clip')
     setToggled(prev => {
       return !prev
     })
+    document.body.classList.toggle('overflow-clip')
   }
 
   return (
@@ -144,7 +145,11 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
               <FaTiktok />
             </a>
           </span>
-          <ThemeButton mode={mode} setMode={setMode} />
+          <ThemeButton
+            mode={mode}
+            setMode={setMode}
+            suppressHydrationWarning={true}
+          />
         </div>
 
         {/* Mobile Navigation  */}
@@ -165,21 +170,70 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
           <div
             className={cx(
               toggled ? 'origin-top scale-y-100' : 'origin-top scale-y-0',
-              'absolute left-0 top-0 z-30 flex h-[384px] w-full transform flex-col justify-center bg-white shadow-sm transition-transform duration-300 ease-in-out dark:bg-bgdark lg:hidden'
+              'height__screen absolute left-0 top-0 z-30 flex w-full transform flex-col justify-center bg-white shadow-sm transition-transform duration-300 ease-in-out dark:bg-bgdark lg:hidden'
             )}
           >
-            <div className='mx-auto flex h-full w-full max-w-[287px] flex-col items-center gap-4 px-8 py-32 text-base font-semibold capitalize text-dark dark:text-light'>
-              {mobileNavLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.url}
-                  title={`Link to ${link.name}`}
-                  onClick={handleToggle}
-                  className='rounded-full  px-4 py-1.5 text-center transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10 dark:hover:bg-accent-dark/10 '
-                >
-                  {link.name}
-                </Link>
-              ))}
+            <div className='mx-auto flex h-full w-full flex-col items-center justify-between gap-8 px-8 py-32 font-semibold capitalize text-dark dark:text-light'>
+              <div className='flex flex-col gap-4 pt-10 text-xl sm:text-2xl'>
+                {mobileNavLinks.map((link, index) => (
+                  <Link
+                    key={index}
+                    href={link.url}
+                    title={`Link to ${link.name}`}
+                    onClick={handleToggle}
+                    className='rounded-full  px-4 py-1.5 text-center transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent/10 dark:hover:bg-accent-dark/10 '
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+              <div>
+                <h4 className='mb-4 text-center text-base xs:text-xl'>
+                  Follow our socials:
+                </h4>
+                <span className='flex gap-4 text-xl xs:text-3xl'>
+                  <a
+                    aria-label='NgwoRocks facebook profile link'
+                    title='NgwoRocks facebook profile link'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    href={siteMetadata.social.facebook}
+                    className=' text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark '
+                  >
+                    <FaFacebookF />
+                  </a>
+                  <a
+                    aria-label='NgwoRocks instagram profile link'
+                    title='NgwoRocks instagram profile link'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    href={siteMetadata.social.instagram}
+                    className=' text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
+                  >
+                    <FaInstagram />
+                  </a>
+                  <a
+                    aria-label='NgwoRocks Tiktok profile link'
+                    title='NgwoRocks Tiktok profile link'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    href={siteMetadata.social.tiktok}
+                    className=' text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
+                  >
+                    <FaTiktok />
+                  </a>
+                  <a
+                    aria-label='NgwoRocks Twitter profile link'
+                    title='NgwoRocks Twitter profile link'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    href={`mailto:${siteMetadata.social.twitter}`}
+                    className='text-gray-dark hover:text-accent dark:text-gray dark:hover:text-accent-dark'
+                  >
+                    <BsTwitterX />
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
