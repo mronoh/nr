@@ -33,7 +33,7 @@ const HomeCover = async ({ post }: { post: Post }) => {
               title={post.post.tags[0].title}
             />
             <Link
-              href={`/blog/${post.post.slug}`}
+              href={`/blog/${post.post.slug}/`}
               title={`${post.post.title} blog link`}
               className='mt-4 md:mt-6'
             >
