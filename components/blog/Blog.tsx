@@ -164,7 +164,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                   <div className='relative flex flex-col gap-4 text-dark'>
                     <Link
                       className='col-span-4 h-full overflow-hidden rounded-xl'
-                      href={`/blog/${post?.slug}`}
+                      href={`/blog/${post?.slug}/`}
                       title={`${post.title} blog link`}
                     >
                       {post?.mainImage && (
@@ -192,7 +192,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                         </span>
                       )}
                       <Link
-                        href={`/blog/${post?.slug}`}
+                        href={`/blog/${post?.slug}/`}
                         title={`${post.title} blog link`}
                         className='mt-1'
                       >

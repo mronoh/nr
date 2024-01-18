@@ -3,7 +3,6 @@ import PreviewBlog from '@/components/blog/PreviewBlog'
 import PreviewProvider from '@/components/preview/PreviewProvider'
 import { client } from '@/sanity/lib/client'
 import { sanityFetch, token } from '@/sanity/lib/fetch'
-import { urlForImage } from '@/sanity/lib/image'
 import { postPathsQuery, postQuery } from '@/sanity/lib/queries'
 import { siteMetadata } from '@/utils/siteMetaData'
 import { SanityDocument } from 'next-sanity'
@@ -55,13 +54,6 @@ export async function generateMetadata({
 
     const publishedAt = new Date(blog.publishedAt).toISOString()
     const updatedAt = new Date(blog.updatedAt || blog.publishedAt).toISOString()
-    let imageList = [siteMetadata.socialBanner]
-
-    if (blog?.mainImage) {
-      imageList = [
-        urlForImage(blog.mainImage.image).width(1200).height(630).url()
-      ]
-    }
 
     const authors = blog?.author ? [blog.author.name] : siteMetadata.author
 
@@ -71,11 +63,12 @@ export async function generateMetadata({
       alternates: {
         canonical: `/blog/${blog.slug}`
       },
+      keywords: blog.keywords ?? siteMetadata.keywords,
       publisher: siteMetadata.title,
       openGraph: {
         title: blog.title,
         description: blog.description,
-        url: `/blog/${blog.slug}`,
+        url: `/blog/${blog.slug}/`,
         siteName: siteMetadata.title,
         type: 'article',
         locale: 'en_US',

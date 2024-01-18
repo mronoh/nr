@@ -50,7 +50,7 @@ const BlogLayoutOne = ({ post }: { post: Post }) => {
         <Link
           className='col-span-12 h-full overflow-hidden rounded-xl border border-dark lg:col-span-4'
           title={`${post.title} blog link`}
-          href={`/blog/${post.slug}`}
+          href={`/blog/${post.slug}/`}
         >
           <Image
             src={urlForImage(post.mainImage.image).url()}
@@ -69,7 +69,7 @@ const BlogLayoutOne = ({ post }: { post: Post }) => {
           {post?.tags && post.tags[0].title}
         </span>
         {post?.slug && (
-          <Link href={`/blog/${post.slug}`} title={`${post.title} blog link`}>
+          <Link href={`/blog/${post.slug}/`} title={`${post.title} blog link`}>
             <h2 className='line-clamp-3 text-lg font-semibold capitalize text-dark dark:text-light'>
               <span
                 className={cx(styles.underline, 'from-accent/50 to-accent/50')}

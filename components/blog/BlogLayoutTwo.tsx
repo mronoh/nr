@@ -34,7 +34,7 @@ const BlogLayoutTwo = ({ post }: { post: Post }) => {
           />
         )}
         <Link
-          href={`/blog/${post?.slug}`}
+          href={`/blog/${post?.slug}/`}
           title={`${post.title} blog link`}
           className='mt-6'
         >
