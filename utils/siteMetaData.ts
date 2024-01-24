@@ -1,4 +1,4 @@
-const remoteUrl = `https://ngworocks.com`
+const remoteUrl = process.env.NEXT_PUBLIC_VERCEL_URL || 'https://ngworocks.com'
 const localUrl = `http://localhost:3000`
 const isDevelopment = process.env.NODE_ENV === 'development'
 const siteUrl = isDevelopment ? localUrl : remoteUrl
@@ -30,7 +30,6 @@ export const siteMetadata = {
   keywords: seoKeywords,
   siteLogo: '/favicon/icon-192x192.png',
   socialBanner: '/images/socialCover.webp', // add social banner in the public folder
-  email: 'chibyk5000@gmail.com',
   social: {
     instagram: 'https://instagram.com/ngworocks',
     facebook: 'https://web.facebook.com/NgwoROCK',
