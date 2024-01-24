@@ -8,10 +8,10 @@ import { BsFillCalendar2DateFill } from 'react-icons/bs'
 
 const BlogLayoutThree = ({ post }: { post: Post }) => {
   return (
-    <div className='flex flex-col gap-4 text-dark dark:text-light'>
+    <div className='flex flex-col text-dark dark:text-light'>
       <Link
         className='col-span-4 h-full overflow-hidden rounded-xl'
-        href={`/blog/${post?.slug}`}
+        href={`/blog/${post?.slug}/`}
         title={`${post.title} blog link`}
       >
         {post?.mainImage && (
@@ -34,7 +34,7 @@ const BlogLayoutThree = ({ post }: { post: Post }) => {
           </span>
         )}
         <Link
-          href={`/blog/${post?.slug}`}
+          href={`/blog/${post?.slug}/`}
           className='mt-1'
           title={`${post.title} blog link`}
         >

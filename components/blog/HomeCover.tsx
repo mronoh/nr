@@ -27,18 +27,13 @@ const HomeCover = async ({ post }: { post: Post }) => {
             sizes='(max-width: 1200px) 100vw, 1200px'
             className='z-0 h-full w-full rounded-3xl object-cover object-center'
           />
-          <div
-            className={cx(
-              'px-5 py-12 xs:p-8 sm:p-8 md:p-12 lg:p-16',
-              'z-10 flex w-full flex-col items-start justify-center text-light md:w-3/4'
-            )}
-          >
+          <div className='z-10 flex w-full flex-col items-start justify-center px-5 py-12 text-light xs:p-8 sm:p-8 md:w-3/4 md:p-12 lg:p-16'>
             <Tag
               link={`tags/${post.post.tags[0].slug}`}
               title={post.post.tags[0].title}
             />
             <Link
-              href={`/blog/${post.post.slug}`}
+              href={`/blog/${post.post.slug}/`}
               title={`${post.post.title} blog link`}
               className='mt-4 md:mt-6'
             >
@@ -49,7 +44,7 @@ const HomeCover = async ({ post }: { post: Post }) => {
               </h1>
             </Link>
             {post?.post.description && (
-              <p className='font-inter mt-4 hidden sm:inline-block md:text-lg lg:text-xl'>
+              <p className='font-inter mt-4 hidden xs:inline-block md:text-lg lg:text-xl'>
                 {post?.post.description}
               </p>
             )}

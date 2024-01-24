@@ -94,6 +94,7 @@ export const Hamburger = ({
 export const ThemeButton = ({ setMode, mode }: any) => {
   return (
     <button
+      suppressHydrationWarning
       aria-label='Theme Toggle Button'
       title='Toggle dark or light mode button'
       onClick={() => {

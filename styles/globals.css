@@ -20,6 +20,11 @@
   background-repeat: no-repeat;
 }
 
+.height__screen {
+  height: 100vh;
+  height: 100svh;
+}
+
 .prose h1 {
   @apply text-3xl font-bold sm:text-4xl;
 }
@@ -45,11 +50,11 @@ h5 {
 }
 
 .prose blockquote {
-  @apply dark:border-accent-dark dark:bg-accent-dark/20 rounded-r-lg border-accent bg-accent/20 py-6 pr-2 md:pl-6;
+  @apply rounded-r-lg border-accent bg-accent/20 py-6 pr-2 dark:border-accent-dark dark:bg-accent-dark/20 md:pl-6;
 }
 
 .prose li::marker {
-  @apply dark:text-accent-dark text-accent;
+  @apply text-accent dark:text-accent-dark;
 }
 
 .fade-left {
@@ -96,6 +101,13 @@ h5 {
     rgba(24, 24, 27, 1) 0%,
     transparent 100%
   );
+}
+
+.skeleton-element {
+  @apply rounded-xl bg-zinc-300 dark:bg-zinc-700;
+}
+.skeleton-element2 {
+  @apply rounded-xl bg-zinc-200 dark:bg-zinc-600;
 }
 
 @media (max-width: 320px) {

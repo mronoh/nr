@@ -2,17 +2,20 @@ import { Post, Tag as TagType } from '@/components/blog/BlogLayoutOne'
 import BlogLayoutThree from '@/components/blog/BlogLayoutThree'
 import Button from '@/components/shared/Button'
 import Tag from '@/components/shared/Tag'
+import Transition from '@/components/shared/Transition'
 import { client } from '@/sanity/lib/client'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   postsQuery,
   tagPathsQuery,
   tagQuery,
+  tagWithPostsQuery,
   tagsQuery
 } from '@/sanity/lib/queries'
-import { cx } from '@/utils'
 import { siteMetadata } from '@/utils/siteMetaData'
 import { notFound } from 'next/navigation'
+import { BlogLoading } from './loading'
+import { Suspense } from 'react'
 
 // Prepare Next.js to know which routes already exist
 export async function generateStaticParams() {
@@ -85,32 +88,38 @@ const CategoriesPage = async ({ params }: any) => {
   if (!/^[a-z0-9-]+$/i.test(slug)) {
     notFound()
   }
-
-  // Get all blogs.
-  const allBlogs = await sanityFetch<any>({
-    query: postsQuery,
-    tags: ['post']
-  })
-
   // Get all tags.
   const allTags = await sanityFetch<any>({
     query: tagsQuery,
     tags: ['tag']
   })
 
-  /**
-   * Filtered list of blogs based on the provided slug.
-   *
-   * @param {string} slug - The slug to filter the blogs by.
-   * @returns {Array} - Filtered list of blogs.
-   */
-  const blogs = allBlogs.filter((blog: Post) => {
-    return blog.tags.some((tag: TagType) => {
-      if (slug === 'all') return true
+  let tag = {
+    title: 'All',
+    slug: 'all',
+    description:
+      "Unlock the world's stories with Ngworocks Blogs. Dive into captivating tales of travel, culture, and values. Let the exploration begin!",
+    blogs: []
+  }
 
-      return tag.slug === slug
+  if (slug === 'all') {
+    tag = {
+      title: 'All Blogs',
+      slug: 'all',
+      description:
+        "Unlock the world's stories with Ngworocks Blogs. Dive into captivating tales of travel, culture, and values. Let the exploration begin!",
+      blogs: await sanityFetch<any>({
+        query: postsQuery,
+        tags: ['post']
+      })
+    }
+  } else {
+    tag = await sanityFetch<any>({
+      query: tagWithPostsQuery,
+      params,
+      tags: ['tag', 'post']
     })
-  })
+  }
 
   // Sort all categories then prepend 'all' to the list.
   allTags
@@ -119,63 +128,59 @@ const CategoriesPage = async ({ params }: any) => {
   // 404 if the blog does not exist.
   // if (!blogs) notFound()
   return (
-    <article>
+    <main className='mx-auto max-w-7xl'>
       <div className='mx-5 mt-5 flex flex-col sm:mx-10 sm:mt-10'>
-        <div className='md:px-10 lg:px-20'>
+        <section className='md:px-10 lg:px-20'>
           <h1 className='mt-6 text-2xl font-semibold capitalize text-dark dark:text-light md:text-4xl lg:text-5xl'>
-            {slug == 'all' ? 'All Blogs' : slug.replace('-', ' ')}
+            {tag.title}
           </h1>
-          <p className='mt-2 text-dark dark:text-light'>
-            {allTags.find((tag: TagType) => {
-              return tag.slug === slug
-            })?.description ?? 'Discover more tags and expand your knowledge!'}
-          </p>
-        </div>
+          <p className='mt-2 text-dark dark:text-light'>{tag.description}</p>
+        </section>
 
         {/* Categories */}
-        <div className='mt-5 flex flex-wrap gap-2 border-y-2 px-0 py-6 dark:border-light sm:gap-6 md:px-10 lg:px-20'>
+        <section className='mt-5 flex flex-wrap gap-2 border-y-2 px-0 py-2 dark:border-light sm:gap-4 sm:py-4 md:px-10 lg:px-20'>
           {allTags.map((tag: TagType) => (
             <Tag
               link={`/tags/${tag.slug}`}
               title={tag.title}
               key={tag.slug}
               scroll={false}
-              className={`!border-dark !lowercase dark:!border-light ${
+              className={`!sm:px-4 !sm:py-1 !border-dark !px-2 !py-0.5 text-sm !lowercase dark:!border-light sm:text-base ${
                 slug == tag.slug
-                  ? 'text-text-accent-dark bg-dark dark:bg-accent-dark dark:text-dark'
+                  ? 'bg-dark text-accent-dark dark:bg-accent-dark dark:text-dark'
                   : 'bg-dark/20 text-dark dark:bg-light/10 dark:text-light'
               }`}
             />
           ))}
-        </div>
+        </section>
 
         {/* Blogs */}
-        <div
-          className={cx(
-            'mt-4 grid gap-16  sm:mt-8 sm:grid-cols-2 md:mt-12 md:px-10 lg:grid-cols-3 lg:px-20'
-          )}
-        >
-          {blogs.length > 0 ? (
-            blogs.map((blog: Post, index: number) => (
-              <article key={index}>
-                <BlogLayoutThree post={blog} />
-              </article>
-            ))
-          ) : (
-            <div className='col-span-1 flex h-32 flex-col items-center justify-center gap-6 sm:col-span-2 lg:col-span-3'>
-              <h2 className='mt-8 text-center  text-2xl  font-semibold text-dark dark:text-light'>
-                No posts found for this tag.
-              </h2>
-              <Button
-                text='View all blogs'
-                href='/tags/all'
-                className='mt-8 sm:mt-12'
-              />
+        <Suspense fallback={<BlogLoading />}>
+          <Transition key={slug}>
+            <div className='mt-4 grid gap-16  sm:mt-8 sm:grid-cols-2 md:mt-12 md:px-10 lg:grid-cols-3 lg:px-20'>
+              {tag.blogs.length > 0 ? (
+                tag.blogs.map((blog: Post, index: number) => (
+                  <article key={index}>
+                    <BlogLayoutThree post={blog} />
+                  </article>
+                ))
+              ) : (
+                <div className='col-span-1 flex h-32 flex-col items-center justify-center gap-6 sm:col-span-2 lg:col-span-3'>
+                  <h2 className='mt-8 text-center  text-2xl  font-semibold text-dark dark:text-light'>
+                    No posts found for this tag.
+                  </h2>
+                  <Button
+                    text='View all blogs'
+                    href='/tags/all'
+                    className='mt-8 sm:mt-12'
+                  />
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </Transition>
+        </Suspense>
       </div>
-    </article>
+    </main>
   )
 }
 

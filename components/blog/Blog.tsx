@@ -4,7 +4,6 @@ import { urlForImage } from '@/sanity/lib/image'
 import { cx, formatDate } from '@/utils'
 import { BsFillCalendar2DateFill, BsTwitterX } from 'react-icons/bs'
 import { blockContentToPlainText } from 'react-portable-text'
-import { MdOutlineMailOutline } from 'react-icons/md'
 import { FaFacebookF } from 'react-icons/fa'
 import { siteMetadata } from '@/utils/siteMetaData'
 import Link from 'next/link'
@@ -28,14 +27,14 @@ export default function Blog({ post }: { post: SanityDocument }) {
                 <BsFillCalendar2DateFill />
                 {post?.publishedAt
                   ? formatDate(post.publishedAt)
-                  : 'publishedAt'}
+                  : 'published date is not available'}
               </p>
               <p className='flex items-center gap-2'>
                 <MdAccessTimeFilled />
                 {post?.estimatedReadingTime ? (
                   <>{post.estimatedReadingTime} min read</>
                 ) : (
-                  'publishedAt'
+                  'Reading time is not available'
                 )}
               </p>
             </span>
@@ -65,7 +64,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
         </div>
         <aside className='sticky top-20 flex h-max w-full flex-col flex-wrap gap-8 border-t border-gray-light py-5 dark:border-gray-dark dark:text-gray sm:flex-row lg:min-h-screen lg:w-2/6 lg:max-w-[320px] lg:flex-col lg:gap-4 lg:border-l lg:p-5'>
           {post.author && (
-            <div className='sm-w-1/2 lg:w-full'>
+            <div className='w-full sm:w-1/2 lg:w-full'>
               <p className='mb-4 text-sm '>Written by</p>
               <div className='flex h-12 w-12 items-center gap-2'>
                 <Image
@@ -120,7 +119,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                   </span>
                 </div>
               </div>
-              <p className='my-2 max-w-sm text-sm'>
+              <p className='my-2 max-w-md text-sm'>
                 {blockContentToPlainText(post.author.bio)}
               </p>
             </div>
@@ -147,7 +146,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
               Share
             </h4>
             <ShareOnSocials
-              shareUrl={`${siteMetadata.siteUrl}/blog/${post.slug}`}
+              shareUrl={`${siteMetadata.siteUrl}/blog/${post.slug}/`}
               title={post.title}
               description={post.description}
             />
@@ -165,7 +164,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                   <div className='relative flex flex-col gap-4 text-dark'>
                     <Link
                       className='col-span-4 h-full overflow-hidden rounded-xl'
-                      href={`/blog/${post?.slug}`}
+                      href={`/blog/${post?.slug}/`}
                       title={`${post.title} blog link`}
                     >
                       {post?.mainImage && (
@@ -193,7 +192,7 @@ export default function Blog({ post }: { post: SanityDocument }) {
                         </span>
                       )}
                       <Link
-                        href={`/blog/${post?.slug}`}
+                        href={`/blog/${post?.slug}/`}
                         title={`${post.title} blog link`}
                         className='mt-1'
                       >

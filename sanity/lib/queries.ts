@@ -29,7 +29,7 @@ export const recentPostsQuery = groq`*[_type == "post" && defined(slug.current)]
   } | order(publishedAt desc)[0...6]`
 
 // Get a single post by its slug
-export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{ 
+export const postQuery = groq`*[_type == "post" && defined(slug.current) && slug.current == $slug][0]{ 
   ...,
   "slug": slug.current,
   // Average chars per word: 6
@@ -86,6 +86,23 @@ export const tagQuery = groq`*[_type=="tag" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
   description
+}`
+export const tagWithPostsQuery = groq`*[_type=="tag" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  description,
+  "blogs": *[_type == "post" && defined(slug.current) && references(^._id)]{
+    ...,
+  "slug": slug.current,
+  author->,
+  tags[]->{..., "slug": slug.current},
+  mainImage {
+    "image": asset,
+    "lqip": asset->metadata.lqip,
+    "dimensions": asset->metadata.dimensions,
+    alt,
+  },
+  } | order(publishedAt desc)
 }`
 
 // Get blog featured posts and blog home cover post

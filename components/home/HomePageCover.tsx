@@ -15,6 +15,7 @@ const HomePageCover = () => {
               alt='Silloutte illustration of birds flying'
               title='Silloutte illustration of birds flying'
               className='filter dark:invert'
+              priority
             />
           </div>
         </h1>
@@ -36,6 +37,7 @@ const HomePageCover = () => {
             alt='Silloutte illustration of leaves'
             title='Silloutte illustration of leaves'
             className='hidden filter dark:invert md:block'
+            priority
           />
         </div>
       </div>
