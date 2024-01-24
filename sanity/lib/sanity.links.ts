@@ -5,11 +5,12 @@ const remoteUrl = `ngworocks.vercel.app`
 const localUrl = `http://localhost:3000`
 
 export function resolveProductionUrl(doc: SanityDocument) {
-  // const baseUrl =
-  //   window.location.hostname === 'localhost' ? localUrl : remoteUrl
-  const previewUrl = new URL('/api/preview')
+  const baseUrl =
+    window.location.hostname === 'localhost' ? localUrl : remoteUrl
+  const previewUrl = new URL(baseUrl)
   const slug: { current: string } = doc.slug as { current: string }
-  // previewUrl.pathname = `/api/preview`
+
+  previewUrl.pathname = `/api/preview`
   previewUrl.searchParams.append(`type`, doc._type.toLowerCase())
   previewUrl.searchParams.append(`secret`, previewSecretId!)
   slug &&
