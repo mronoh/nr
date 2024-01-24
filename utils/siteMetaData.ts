@@ -1,4 +1,4 @@
-const remoteUrl = process.env.NEXT_PUBLIC_VERCEL_URL || 'https://ngworocks.com'
+const remoteUrl = 'https://nr-kappa.vercel.app'
 const localUrl = `http://localhost:3000`
 const isDevelopment = process.env.NODE_ENV === 'development'
 const siteUrl = isDevelopment ? localUrl : remoteUrl

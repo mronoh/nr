@@ -3,6 +3,7 @@ import { previewSecretId } from '../env'
 import { siteMetadata } from '@/utils/siteMetaData'
 
 const remoteUrl = process.env.NEXT_PUBLIC_VERCEL_URL || siteMetadata.siteUrl
+
 const localUrl = `http://localhost:3000`
 
 export function resolveProductionUrl(doc: SanityDocument) {
