@@ -1,7 +1,7 @@
 import { SanityDocument } from 'sanity'
 import { previewSecretId } from '../env'
 
-const remoteUrl = `ngworocks.vercel.app`
+const remoteUrl = `https://nr-kappa.vercel.app/`
 const localUrl = `http://localhost:3000`
 
 export function resolveProductionUrl(doc: SanityDocument) {
