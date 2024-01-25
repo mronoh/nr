@@ -15,8 +15,8 @@ import team from './schemas/team'
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     post,
-    author,
     tag,
+    author,
     blockContent,
     showCasePost,
     featuredPost,
