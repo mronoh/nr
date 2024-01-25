@@ -55,7 +55,7 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
         isSticky
           ? 'sticky top-0 translate-y-0 transform shadow'
           : '-translate-y-full transform',
-        'relative z-30 block w-full bg-light/80 backdrop-blur-lg transition-transform duration-500 ease-in-out dark:bg-bgdark/80'
+        'relative z-30 block w-full bg-light/80 backdrop-blur-lg transition-transform duration-300 ease-in-out dark:bg-bgdark/80'
       )}
     >
       {isDraftMode && <PreviewBanner />}
@@ -169,12 +169,12 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
           )}
           <div
             className={cx(
-              toggled ? 'origin-top scale-y-100' : 'origin-top scale-y-0',
-              'height__screen absolute left-0 top-0 z-30 flex w-full transform flex-col justify-center bg-white shadow-sm transition-transform duration-300 ease-in-out dark:bg-bgdark lg:hidden'
+              toggled ? 'mobile__nav__responsive' : '',
+              'height__screen mobile__nav z-30 flex w-full flex-col justify-center bg-white shadow-sm  dark:bg-bgdark lg:hidden'
             )}
           >
-            <div className='mx-auto flex h-full w-full flex-col items-center justify-between gap-8 px-8 py-32 font-semibold capitalize text-dark dark:text-light'>
-              <div className='flex flex-col gap-4 pt-10 text-xl sm:text-2xl'>
+            <div className='mx-auto flex h-full w-full flex-col items-center justify-between gap-8 px-8 py-16 font-semibold capitalize text-dark dark:text-light sm:py-32'>
+              <div className='flex flex-col gap-2 pt-[20%] text-lg xs:gap-4 xs:pt-[30%] xs:text-xl sm:pt-[20%] sm:text-2xl'>
                 {mobileNavLinks.map((link, index) => (
                   <Link
                     key={index}
@@ -188,10 +188,10 @@ const Header = ({ isDraftMode }: { isDraftMode: boolean }) => {
                 ))}
               </div>
               <div>
-                <h4 className='mb-4 text-center text-base xs:text-xl'>
+                <h4 className='mb-4 text-center text-sm xs:text-base'>
                   Follow our socials:
                 </h4>
-                <span className='flex gap-4 text-xl xs:text-3xl'>
+                <span className='flex gap-4 text-xl xs:text-2xl'>
                   <a
                     aria-label='NgwoRocks facebook profile link'
                     title='NgwoRocks facebook profile link'
