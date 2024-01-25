@@ -97,6 +97,10 @@ export const navLinks2 = [
 
 export const mobileNavLinks = [
   {
+    name: 'Home',
+    url: '/'
+  },
+  {
     name: 'About',
     url: '/about'
   },
