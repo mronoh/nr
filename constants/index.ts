@@ -49,27 +49,23 @@ export const footerPages = [
 export const achievements = [
   {
     title: 'Location Discovered',
-    stat: '50+'
+    stat: '20+'
   },
   {
     title: 'Covered on foot',
     stat: '500+ ml'
   },
   {
-    title: 'Location Discovered',
+    title: 'Audience across platforms',
+    stat: '200k+'
+  },
+  {
+    title: 'Location Toured',
     stat: '50+'
   },
   {
-    title: 'Location Discovered',
-    stat: '50+'
-  },
-  {
-    title: 'Covered on foot',
-    stat: '500+ ml'
-  },
-  {
-    title: 'Location Discovered',
-    stat: '50+'
+    title: 'Number of tourists',
+    stat: '1000+'
   }
 ]
 

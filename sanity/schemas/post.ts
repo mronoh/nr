@@ -91,7 +91,11 @@ export default defineType({
     defineField({
       name: 'publishedAt',
       title: 'Published at',
-      type: 'datetime'
+      type: 'datetime',
+      validation: Rule =>
+        Rule.max(new Date().toISOString()).error(
+          'Published date cannot be in the future.'
+        )
     }),
     defineField({
       name: 'keywords',
